@@ -11,17 +11,17 @@
 part of 'app_router.dart';
 
 /// generated route for
-/// [BrowseMainPage]
-class BrowseMainRoute extends PageRouteInfo<void> {
-  const BrowseMainRoute({List<PageRouteInfo>? children})
-    : super(BrowseMainRoute.name, initialChildren: children);
+/// [BuyMainPage]
+class BuyMainRoute extends PageRouteInfo<void> {
+  const BuyMainRoute({List<PageRouteInfo>? children})
+    : super(BuyMainRoute.name, initialChildren: children);
 
-  static const String name = 'BrowseMainRoute';
+  static const String name = 'BuyMainRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const BrowseMainPage();
+      return const BuyMainPage();
     },
   );
 }

@@ -4,8 +4,8 @@ import 'package:nem_pancser/features/shared/router/app_router.dart';
 import '../shared/widgets/pancser_button.dart';
 
 @RoutePage()
-class BrowseMainPage extends StatelessWidget {
-  const BrowseMainPage({super.key});
+class BuyMainPage extends StatelessWidget {
+  const BuyMainPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +16,13 @@ class BrowseMainPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               PancserButton(
-                text: 'PANCSER PENGŐ',
-                onPressed: () { context.router.push(const PancserPengoRoute()); },
+                text: 'RENDELÉS',
+                onPressed: () { context.router.push(const CategoryRoute()); },
               ),
               const SizedBox(height: 20),
               PancserButton(
-                text: 'RENDELÉS',
-                onPressed: () { context.router.push(const CategoryRoute()); },
+                text: 'PANCSER PENGŐ',
+                onPressed: () { context.router.push(const PancserPengoRoute()); },
               ),
             ],
           ),

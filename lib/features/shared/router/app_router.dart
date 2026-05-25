@@ -2,15 +2,15 @@ import 'package:auto_route/auto_route.dart';
 
 import '../../authentication/login/login_page.dart';
 import '../../authentication/signup/signup_page.dart';
-import '../../browse/browse_main_page.dart';
-import '../../browse/category_page.dart';
-import '../../browse/course_details_page.dart';
-import '../../browse/course_list_page.dart';
-import '../../browse/create_pizza_page.dart';
-import '../../browse/pancser_pengo_page.dart';
-import '../../cart/cart_page.dart';
+import '../../buy/buy_main_page.dart';
+import '../../buy/cart/ui/cart_page.dart';
+import '../../buy/category_page.dart';
+import '../../buy/course_details_page.dart';
+import '../../buy/course_list_page.dart';
+import '../../buy/create_pizza/ui/create_pizza_page.dart';
+import '../../buy/order/order_page.dart';
+import '../../buy/pancser_pengo/pancser_pengo_page.dart';
 import '../../dashboard/dashboard_page.dart';
-import '../../order/order_page.dart';
 import '../../profile/profile_data_page.dart';
 import '../../profile/profile_edit_page.dart';
 
@@ -30,7 +30,7 @@ class AppRouter extends RootStackRouter {
       page: DashboardRoute.page,
       path: '/dashboard',
       children: [
-        AutoRoute(page: BrowseMainRoute.page, path: 'browseMain'),
+        AutoRoute(page: BuyMainRoute.page, path: 'browseMain'),
         AutoRoute(page: ProfileDataRoute.page, path: 'profileData'),
       ],
     ),
