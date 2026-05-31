@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:nem_pancser/features/shared/widgets/pancser_appbar.dart';
+import '../../shared/router/app_router.dart';
 import '../../shared/widgets/pancser_button.dart';
 
 @RoutePage()
@@ -27,16 +29,7 @@ class PancserPengoPage extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'PANCSER PENGŐ',
-          style: TextStyle(
-            color: Color(0xFFD35400),
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-      ),
+      appBar: pancserAppBar(context, 'PANCSER PENGŐ'),
       body: SingleChildScrollView(
         child: Column(
           children: [

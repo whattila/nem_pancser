@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:nem_pancser/features/shared/widgets/pancser_appbar.dart';
 import '../shared/widgets/pancser_button.dart';
 
 @RoutePage()
@@ -9,7 +10,7 @@ class CourseDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: pancserAppBar(context, null),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20.0),

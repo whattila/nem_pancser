@@ -21,7 +21,10 @@ class NemPancserApp extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider(create: (context) => ItemsRepository()),
-        RepositoryProvider(create: (context) => Cart()),
+        RepositoryProvider(
+          create: (context) => Cart(),
+          dispose: (repository) => repository.dispose(),
+        ),
       ],
       child: MaterialApp.router(
         title: 'Nem Pancser',

@@ -20,13 +20,14 @@ class DashboardPage extends StatelessWidget {
           leading: IconButton(
             icon: const Icon(Icons.info_outline),
             onPressed: () => showInfoDialog(context),
+            color: const Color(0xFFBD3E11),
           ),
           actions: [
             TextButton(
               onPressed: () { context.router.replaceAll([LoginRoute()]); },
               child: const Text(
                 'Kijelentkezés',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Color(0xFFBD3E11)),
               ),
             ),
           ],
@@ -51,8 +52,13 @@ class DashboardPage extends StatelessWidget {
       },
       floatingActionButton: FloatingActionButton.extended(
         tooltip: 'Kosár',
+        icon: const Icon(Icons.shopping_cart, color: Colors.white),
         onPressed: () { context.router.push(const CartRoute()); },
-        label: const Text('Kosár')
+        label: const Text(
+          'KOSÁR',
+          style: TextStyle(color: Colors.white,)
+        ),
+        backgroundColor: const Color(0xFFBD3E11),
       ),
     );
   }

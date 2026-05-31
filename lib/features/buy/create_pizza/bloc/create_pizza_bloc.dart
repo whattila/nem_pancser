@@ -10,7 +10,6 @@ import '../../shared/item.dart';
 import '../../cart/service/cart.dart';
 
 class CreatePizzaBloc extends Bloc<CreatePizzaEvent, CreatePizzaState> {
-
   CreatePizzaBloc(this._itemsRepository, this._cart)
     : super(const CreatePizzaInitialState()) {
         on<CreatePizzaStarted>(_onCreatePizzaStarted);
@@ -88,5 +87,4 @@ class CreatePizzaBloc extends Bloc<CreatePizzaEvent, CreatePizzaState> {
   void _onNoToppingCanceled(CreatePizzaNoToppingCanceled event, Emitter<CreatePizzaState> emit) {
     emit((state as CreatePizzaInProgressState).copyWith(confirmNoTopping: false));
   }
-
 }

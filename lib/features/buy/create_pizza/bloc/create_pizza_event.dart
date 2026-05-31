@@ -5,7 +5,6 @@ part 'create_pizza_event.freezed.dart';
 
 @freezed
 sealed class CreatePizzaEvent with _$CreatePizzaEvent {
-
   const factory CreatePizzaEvent.started() = CreatePizzaStarted;
 
   const factory CreatePizzaEvent.selectedSizeChanged({
@@ -25,5 +24,4 @@ sealed class CreatePizzaEvent with _$CreatePizzaEvent {
   const factory CreatePizzaEvent.finishedNoToppingConfirmed() = CreatePizzaFinishedNoToppingConfirmed;
 
   const factory CreatePizzaEvent.noToppingCanceled() = CreatePizzaNoToppingCanceled;
-
 }

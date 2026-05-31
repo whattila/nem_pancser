@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nem_pancser/features/shared/router/app_router.dart';
+import 'package:nem_pancser/features/shared/widgets/pancser_appbar.dart';
 import '../../../shared/widgets/pancser_button.dart';
 import '../../cart/service/cart.dart';
 import '../bloc/create_pizza_bloc.dart';
@@ -27,7 +29,7 @@ class CreatePizzaPage extends StatelessWidget {
           if (state is CreatePizzaInProgressState) {
             showNoToppingConfirmDialog(context);
           } else {
-            context.router.pop();
+            context.router.replace(const CartRoute());
           }
         },
         child: const CreatePizzaView(),
@@ -68,9 +70,7 @@ class CreatePizzaView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Pizza összeállítása'),
-      ),
+      appBar: pancserAppBar(context, 'Pizza összeállítása'),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),

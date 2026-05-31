@@ -1,7 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nem_pancser/features/buy/cart/bloc/cart_bloc.dart';
+import 'package:nem_pancser/features/buy/cart/bloc/cart_event.dart';
+import 'package:nem_pancser/features/buy/cart/service/cart.dart';
 import 'package:nem_pancser/features/shared/router/app_router.dart';
 
+import 'package:nem_pancser/features/buy/cart/bloc/cart_state.dart';
+import 'package:nem_pancser/features/buy/shared/item.dart';
 import '../../../shared/widgets/pancser_button.dart';
 
 @RoutePage()
@@ -10,33 +16,18 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, dynamic>> cartItems = [
-      {
-        'name': '1x Abásfalvi babgulyás',
-        'price': '2155 FT',
-        'description': '650 ml. kockázott borjúhúst, sertés csülköt és pirított kolbászkarikákat zöldségekkel, babbal összefőzve, tejf...',
-        'isPP': false,
-      },
-      {
-        'name': '1x LEGO Gyűjthető F1-es versenyautók 71049',
-        'price': '1190 PP',
-        'description': '',
-        'isPP': true,
-      },
-      {
-        'name': '1x Pepsi 1 L',
-        'price': '350 PP',
-        'description': '',
-        'isPP': true,
-      },
-      {
-        'name': '1x Négysajtos Pizza 32 cm',
-        'price': '4595 FT',
-        'description': 'paradicsomszósz, mozzarella, füstölt, márvány, trappista',
-        'isPP': false,
-      },
-    ];
+    return BlocProvider(
+      create: (context) => CartBloc(context.read<Cart>())..add(const CartOpened()),
+      child: const CartView(),
+    );
+  }
+}
 
+class CartView extends StatelessWidget {
+  const CartView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -51,75 +42,77 @@ class CartPage extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: ListView.builder(
-              itemCount: cartItems.length,
-              itemBuilder: (context, index) {
-                final item = cartItems[index];
-                return Container(
-                  color: index % 2 == 1 ? const Color(0xFFFFF3E0) : Colors.white,
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              item['name'],
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            if (item['description'].isNotEmpty)
-                              Padding(
-                                padding: const EdgeInsets.only(top: 4),
-                                child: Text(
-                                  item['description'],
+            child: BlocSelector<CartBloc, CartState, List<Item>>(
+              selector: (state) => (state is CartNormalState) ? state.items : [],
+              builder: (context, items) {
+                return ListView.builder(
+                  itemCount: items.length,
+                  itemBuilder: (context, index) {
+                    final item = items[index];
+                    return Container(
+                      color: index % 2 == 1 ? const Color(0xFFFFF3E0) : Colors.white,
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  item.displayName,
                                   style: const TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.black54,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                              ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            item['price'],
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
+                                // TODO: here can come the details...
+                              ],
                             ),
                           ),
-                          const SizedBox(height: 8),
-                          PancserButton(
-                            text: 'TÖRÖL',
-                            onPressed: () {},
-                            width: 100,
-                            height: 40,
-                            fontSize: 14,
+                          const SizedBox(width: 8),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text(
+                                '${item.price} Ft',
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              PancserButton(
+                                text: 'TÖRÖL',
+                                onPressed: () {
+                                  context.read<CartBloc>().add(CartItemDeleted(item: item));
+                                },
+                                width: 100,
+                                height: 40,
+                                fontSize: 14,
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                    ],
-                  ),
+                    );
+                  },
                 );
               },
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.all(20.0),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
-                SummaryRow(label: 'Felhasznált Pancser Pengők:', value: '1540 PP'),
-                SizedBox(height: 12),
-                SummaryRow(label: 'Fizetendő:', value: '6750 FT'),
+                const SummaryRow(label: 'Felhasznált Pancser Pengők:', value: '1540 PP'),
+                const SizedBox(height: 12),
+                BlocSelector<CartBloc, CartState, int>(
+                  selector: (state) => (state is CartNormalState) ? state.price : 0,
+                  builder: (context, price) {
+                    return SummaryRow(label: 'Fizetendő:', value: '$price Ft');
+                  },
+                ),
               ],
             ),
           ),

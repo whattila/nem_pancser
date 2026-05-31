@@ -6,6 +6,7 @@ part 'item.freezed.dart';
 
 @freezed
 sealed class Item with _$Item {
+  const Item._();
 
   const factory Item.pizza({
     required PizzaSize size,
@@ -13,9 +14,14 @@ sealed class Item with _$Item {
     @Default([]) List<PizzaTopping> toppings,
   }) = Pizza;
 
-}
-
-extension PizzaX on Pizza {
   int get price =>
-      size.price + sauce.price + toppings.fold(0, (sum, t) => sum + t.price);
+      when(
+        pizza: (size, sauce, toppings)
+          => size.price + sauce.price + toppings.fold(0, (sum, t) => sum + t.price)
+      );
+
+  String get displayName =>
+      when(
+        pizza: (size, _, _) => 'Pizza, ${size.value}'
+      );
 }

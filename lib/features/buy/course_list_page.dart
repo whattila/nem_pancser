@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:nem_pancser/features/shared/router/app_router.dart';
+import 'package:nem_pancser/features/shared/widgets/pancser_appbar.dart';
 
 import '../shared/widgets/pancser_button.dart';
 
@@ -38,16 +39,7 @@ class CourseListPage extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'KÍMÉLŐ ÉTELEK',
-          style: TextStyle(
-            color: Color(0xFFD35400),
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-      ),
+      appBar: pancserAppBar(context, 'KÍMÉLŐ ÉTELEK'),
       body: ListView.builder(
         itemCount: courses.length,
         itemBuilder: (context, index) {

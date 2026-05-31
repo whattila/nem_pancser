@@ -5,7 +5,6 @@ part 'create_pizza_state.freezed.dart';
 
 @freezed
 sealed class CreatePizzaState with _$CreatePizzaState {
-
   const factory CreatePizzaState.initial() = CreatePizzaInitialState;
 
   const factory CreatePizzaState.loading() = CreatePizzaLoadingState;
@@ -25,7 +24,6 @@ sealed class CreatePizzaState with _$CreatePizzaState {
       ) = CreatePizzaErrorState;
 
   const factory CreatePizzaState.done() = CreatePizzaDoneState;
-
 }
 
 extension CreatePizzaInProgressStateX on CreatePizzaInProgressState {

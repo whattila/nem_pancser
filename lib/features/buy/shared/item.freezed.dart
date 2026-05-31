@@ -201,8 +201,8 @@ return pizza(_that.size,_that.sauce,_that.toppings);case _:
 /// @nodoc
 
 
-class Pizza implements Item {
-  const Pizza({required this.size, required this.sauce, final  List<PizzaTopping> toppings = const []}): _toppings = toppings;
+class Pizza extends Item {
+  const Pizza({required this.size, required this.sauce, final  List<PizzaTopping> toppings = const []}): _toppings = toppings,super._();
   
 
 @override final  PizzaSize size;
