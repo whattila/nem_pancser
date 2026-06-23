@@ -29,7 +29,8 @@ class CreatePizzaPage extends StatelessWidget {
           if (state is CreatePizzaInProgressState) {
             showNoToppingConfirmDialog(context);
           } else {
-            context.router.replace(const CartRoute());
+            context.router.popUntilRoot();
+            context.router.push(const CartRoute());
           }
         },
         child: const CreatePizzaView(),
