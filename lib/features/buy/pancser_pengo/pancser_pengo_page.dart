@@ -125,7 +125,7 @@ class PancserPengoPage extends StatelessWidget {
       bottomNavigationBar: BottomAppBar(
         height: 180,
         padding: EdgeInsets.zero,
-        color: const Color(0xFFBD3E11),
+        color: const Color(0xFFEE834E),
         child: Container(
           padding: const EdgeInsets.all(20),
           color: const Color(0xFFEE834E),

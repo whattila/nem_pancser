@@ -5,6 +5,7 @@ class PancserButton extends StatelessWidget {
   final double? width;
   final double? height;
   final double fontSize;
+  final Color backgroundColor;
   final bool enabled;
   final VoidCallback onPressed;
   final VoidCallback? onPressedDisabled;
@@ -15,6 +16,7 @@ class PancserButton extends StatelessWidget {
     this.width = double.infinity,
     this.height = 80,
     this.fontSize = 24,
+    this.backgroundColor = const Color(0xFFBD3E11),
     this.enabled = true,
     required this.onPressed,
     this.onPressedDisabled,
@@ -22,14 +24,13 @@ class PancserButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const Color baseColor = Color(0xFFBD3E11); // Deep orange color
     return SizedBox(
       width: width,
       height: height,
       child: ElevatedButton(
         onPressed: enabled ? onPressed : onPressedDisabled,
         style: ElevatedButton.styleFrom(
-          backgroundColor: enabled ? baseColor : baseColor.withValues(alpha: 0.5),
+          backgroundColor: enabled ? backgroundColor : Colors.grey,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.zero,
           ),

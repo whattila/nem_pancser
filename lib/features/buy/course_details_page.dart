@@ -61,7 +61,7 @@ class CourseDetailsPage extends StatelessWidget {
       ),
       bottomNavigationBar: BottomAppBar(
         height: 80,
-        color: const Color(0xFFBD3E11),
+        color: const Color(0xFFEE834E),
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Row(
           children: [

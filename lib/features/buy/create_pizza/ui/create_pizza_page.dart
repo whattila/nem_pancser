@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nem_pancser/features/shared/router/app_router.dart';
 import 'package:nem_pancser/features/shared/widgets/pancser_appbar.dart';
+import 'package:nem_pancser/features/shared/widgets/pancser_background.dart';
 import '../../../shared/widgets/pancser_button.dart';
 import '../../cart/service/cart.dart';
 import '../bloc/create_pizza_bloc.dart';
@@ -50,14 +51,20 @@ class CreatePizzaPage extends StatelessWidget {
               context.read<CreatePizzaBloc>().add(const CreatePizzaNoToppingCanceled());
               Navigator.of(dialogContext).pop();
             },
-            child: const Text('Nem'),
+            child: const Text(
+              'Nem',
+              style: TextStyle(color: Color(0xFFBD3E11))
+            ),
           ),
           TextButton(
             onPressed: () {
               context.read<CreatePizzaBloc>().add(const CreatePizzaFinishedNoToppingConfirmed());
               Navigator.of(dialogContext).pop();
             },
-            child: const Text('Igen'),
+            child: const Text(
+              'Igen',
+              style: TextStyle(color: Color(0xFFBD3E11))
+            ),
           ),
         ],
       ),
@@ -72,90 +79,89 @@ class CreatePizzaView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: pancserAppBar(context, 'Pizza összeállítása'),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Méret',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 12),
-              BlocSelector<CreatePizzaBloc, CreatePizzaState,
-                  ({List<PizzaSize> sizes, PizzaSize? selectedSize})>(
-                selector: (state) {
-                  if (state is CreatePizzaInProgressState) {
-                    return (sizes: state.sizes, selectedSize: state.selectedSize);
-                  }
-                  return (sizes: const [], selectedSize: null);
-                },
-                builder: (context, data) {
-                  return RadioGroup(
-                    groupValue: data.selectedSize,
-                    onChanged: (PizzaSize? value) {
+      body: PancserBackground(
+        content: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Méret',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 12),
+            BlocSelector<CreatePizzaBloc, CreatePizzaState,
+                ({List<PizzaSize> sizes, PizzaSize? selectedSize})>(
+              selector: (state) {
+                if (state is CreatePizzaInProgressState) {
+                  return (sizes: state.sizes, selectedSize: state.selectedSize);
+                }
+                return (sizes: const [], selectedSize: null);
+              },
+              builder: (context, data) {
+                return RadioGroup(
+                  groupValue: data.selectedSize,
+                  onChanged: (PizzaSize? value) {
+                    if (value != null) {
+                      context.read<CreatePizzaBloc>().add(
+                          CreatePizzaSelectedSizeChanged(newSize: value)
+                      );
+                    }
+                  },
+                  child: ListView(
+                    shrinkWrap: true,
+                    children: data.sizes
+                        .map((size) => Expanded(
+                          child: ListTile(
+                            leading: Radio<PizzaSize>(
+                              value: size,
+                              activeColor: const Color(0xFFBD3E11),
+                            ),
+                            title: Text('${size.value} - ${size.price} Ft'),
+                          ),
+                        ))
+                      .toList(),
+                  )
+                );
+              },
+            ),
+            const SizedBox(height: 24),
+            const Text(
+              'Szósz',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 12),
+            BlocSelector<CreatePizzaBloc, CreatePizzaState,
+                ({List<PizzaSauce> sauces, PizzaSauce? selectedSauce})>(
+              selector: (state) {
+                if (state is CreatePizzaInProgressState) {
+                  return (sauces: state.sauces, selectedSauce: state.selectedSauce);
+                }
+                return (sauces: const [], selectedSauce: null);
+              },
+              builder: (context, data) {
+                return RadioGroup(
+                    groupValue: data.selectedSauce,
+                    onChanged: (PizzaSauce? value) {
                       if (value != null) {
                         context.read<CreatePizzaBloc>().add(
-                            CreatePizzaSelectedSizeChanged(newSize: value)
+                            CreatePizzaSelectedSauceChanged(newSauce: value)
                         );
                       }
                     },
                     child: ListView(
                       shrinkWrap: true,
-                      children: data.sizes
-                          .map((size) => Expanded(
-                            child: ListTile(
-                              leading: Radio<PizzaSize>(
-                                value: size,
-                                activeColor: const Color(0xFFBD3E11),
-                              ),
-                              title: Text('${size.value} - ${size.price} Ft'),
-                            ),
-                          ))
-                        .toList(),
-                    )
-                  );
-                },
-              ),
-              const SizedBox(height: 24),
-              const Text(
-                'Szósz',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 12),
-              BlocSelector<CreatePizzaBloc, CreatePizzaState,
-                  ({List<PizzaSauce> sauces, PizzaSauce? selectedSauce})>(
-                selector: (state) {
-                  if (state is CreatePizzaInProgressState) {
-                    return (sauces: state.sauces, selectedSauce: state.selectedSauce);
-                  }
-                  return (sauces: const [], selectedSauce: null);
-                },
-                builder: (context, data) {
-                  return RadioGroup(
-                      groupValue: data.selectedSauce,
-                      onChanged: (PizzaSauce? value) {
-                        if (value != null) {
-                          context.read<CreatePizzaBloc>().add(
-                              CreatePizzaSelectedSauceChanged(newSauce: value)
-                          );
-                        }
-                      },
-                      child: ListView(
-                        shrinkWrap: true,
-                        children: data.sauces
-                            .map((sauce) => Expanded(
-                          child: ListTile(
-                            leading: Radio<PizzaSauce>(
-                              value: sauce,
-                              activeColor: const Color(0xFFBD3E11),
-                            ),
-                            title: Text('${sauce.value}${sauce.price != 0 ? ' - ${sauce.price} Ft' : ''}'),
+                      children: data.sauces
+                          .map((sauce) => Expanded(
+                        child: ListTile(
+                          leading: Radio<PizzaSauce>(
+                            value: sauce,
+                            activeColor: const Color(0xFFBD3E11),
                           ),
-                        ))
-                            .toList(),
-                      )
+                          title: Text('${sauce.value}${sauce.price != 0 ? ' - ${sauce.price} Ft' : ''}'),
+                        ),
+                      ))
+                          .toList(),
+                    )
                   );
                 },
               ),
@@ -216,7 +222,7 @@ class CreatePizzaView extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        color: const Color(0xFFBD3E11),
+        color: const Color(0xFFEE834E),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Row(

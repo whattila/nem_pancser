@@ -17,6 +17,7 @@ class DashboardPage extends StatelessWidget {
       ],
       appBarBuilder: (context, tabsRouter) {
         return AppBar(
+          toolbarHeight: 80,
           leading: IconButton(
             icon: const Icon(Icons.info_outline),
             onPressed: () => showInfoDialog(context),
@@ -32,8 +33,10 @@ class DashboardPage extends StatelessWidget {
             ),
           ],
           //TODO change to icon later
-          title: const Text(
-            "Nem Pancser Pizzéria",
+          title: Image.asset(
+            "assets/images/images.jpeg",
+            fit: BoxFit.contain,
+            height: 70,
           ),
         );
       },
@@ -48,6 +51,7 @@ class DashboardPage extends StatelessWidget {
             BottomNavigationBarItem(label: 'Rendelés', icon: Icon(Icons.local_pizza)),
             BottomNavigationBarItem(label: 'Profilod', icon: Icon(Icons.person))
           ],
+          selectedItemColor: Color(0xFFBD3E11),
         );
       },
       floatingActionButton: FloatingActionButton.extended(
