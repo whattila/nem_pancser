@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import '../shared/widgets/pancser_button.dart';
+
+import '../../shared/widgets/pancser_button.dart';
 
 @RoutePage()
 class ProfileEditPage extends StatefulWidget {

@@ -1,8 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:nem_pancser/features/shared/widgets/pancser_background.dart';
-import '../../shared/router/app_router.dart';
-import '../../shared/widgets/pancser_button.dart';
+
+import '../../../shared/router/app_router.dart';
+import '../../../shared/widgets/pancser_background.dart';
+import '../../../shared/widgets/pancser_button.dart';
 
 @RoutePage()
 class LoginPage extends StatelessWidget {
@@ -57,7 +58,7 @@ class LoginPage extends StatelessWidget {
 
               // Regisztráció gomb
               TextButton(
-                onPressed: () { context.router.push(const SignupRoute()); }, // Egyelőre üres
+                onPressed: () { context.router.push(const RegistrationRoute()); }, // Egyelőre üres
                 child: const Text(
                   'Még nincs fiókom? Regisztráció',
                   style: TextStyle(color: Colors.blueGrey),

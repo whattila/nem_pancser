@@ -1,7 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:nem_pancser/features/about/about_dialog.dart';
-import 'package:nem_pancser/features/shared/router/app_router.dart';
+
+import '../../shared/router/app_router.dart';
 
 @RoutePage()
 class DashboardPage extends StatelessWidget {

@@ -1,0 +1,47 @@
+import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+import 'models/user_access_data.model.dart';
+
+class UserAccessDataStorage {
+  UserAccessDataStorage({required FlutterSecureStorage storage}) : _storage = storage;
+
+  static const String _userAccessDataKey = 'user_access_data';
+
+  final FlutterSecureStorage _storage;
+  UserAccessData? _userAccessData;
+
+  Future<UserAccessData?> getUserAccessData() async {
+    if (_userAccessData == null && !kIsWeb) { // FlutterSecureStorage seems unsupported on the web. Is there an alternative?
+      _userAccessData = await _readAccessData();
+    }
+    return _userAccessData;
+  }
+
+  Future<void> setUserAccessData(UserAccessData user) async {
+    _userAccessData = user;
+
+    if (!kIsWeb) {
+      await _storage.write(key: _userAccessDataKey, value: jsonEncode(user));
+    }
+  }
+
+  Future<void> clearData() async {
+    _userAccessData = null;
+
+    if (!kIsWeb) {
+      await _storage.delete(key: _userAccessDataKey);
+    }
+  }
+
+  Future<UserAccessData?> _readAccessData() async {
+    final encoded = await _storage.read(key: _userAccessDataKey);
+    if (encoded == null) {
+      return null;
+    }
+    final json = jsonDecode(encoded) as Map<String, dynamic>;
+    return UserAccessData.fromJson(json);
+  }
+}

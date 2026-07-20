@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:nem_pancser/features/shared/router/app_router.dart';
-import 'package:nem_pancser/features/shared/widgets/pancser_appbar.dart';
 
-import '../shared/widgets/pancser_button.dart';
+import '../../shared/router/app_router.dart';
+import '../../shared/widgets/pancser_appbar.dart';
+import '../../shared/widgets/pancser_button.dart';
 
 @RoutePage()
 class CourseListPage extends StatelessWidget {

@@ -1,16 +1,20 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nem_pancser/features/buy/cart/service/cart.dart';
 import 'package:nem_pancser/features/buy/shared/items_repository.dart';
-
-import 'features/shared/router/app_router.dart';
+import 'package:nem_pancser/shared/network/dio.dart';
+import 'package:nem_pancser/shared/router/app_router.dart';
+import 'package:nem_pancser/shared/services/pancser_client/pancser_client.dart';
 
 void main() {
-  runApp(NemPancserApp());
+  runApp(NemPancserApp(dio: createDioInstance()));
 }
 
 class NemPancserApp extends StatelessWidget {
-  NemPancserApp({super.key});
+  NemPancserApp({super.key, required this.dio});
+
+  final Dio dio;
 
   // make sure you don't initiate your router
   // inside of the build function.
@@ -25,6 +29,7 @@ class NemPancserApp extends StatelessWidget {
           create: (context) => Cart(),
           dispose: (repository) => repository.dispose(),
         ),
+        RepositoryProvider(create: (context) => PancserClient(dio))
       ],
       child: MaterialApp.router(
         title: 'Nem Pancser',
