@@ -21,8 +21,8 @@ Map<String, dynamic> _$AddressDtoToJson(_AddressDto instance) =>
       'city': instance.city,
       'place': instance.place,
       'number': instance.number,
-      'staircase': ?instance.staircase,
-      'floor': ?instance.floor,
-      'door': ?instance.door,
-      'bell': ?instance.bell,
+      'staircase': ?optionalFieldToJson(instance.staircase),
+      'floor': ?optionalFieldToJson(instance.floor),
+      'door': ?optionalFieldToJson(instance.door),
+      'bell': ?optionalFieldToJson(instance.bell),
     };

@@ -47,7 +47,7 @@ class _RegistrationViewState extends State<RegistrationView> {
   final _formKey = GlobalKey<FormState>();
 
   final _passwordController = TextEditingController();
-  bool _isNewsletterChecked = false;
+  bool _subscribeToNewsletter = false;
   late String _username;
   late String _familyName;
   late String _givenName;
@@ -244,8 +244,8 @@ class _RegistrationViewState extends State<RegistrationView> {
                     const SizedBox(height: 16),
                     CheckboxFormField(
                       title: const Text('Hírlevelet kérek'),
-                      initialValue: _isNewsletterChecked,
-                      onSaved: (value) => _isNewsletterChecked = value ?? false,
+                      initialValue: _subscribeToNewsletter,
+                      onSaved: (value) => _subscribeToNewsletter = value ?? false,
                     ),
                     const SizedBox(height: 24),
                     PancserButton(
@@ -270,6 +270,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                                       door: _door,
                                       bell: _bell
                                     ),
+                                    subscribeToNewsletter: _subscribeToNewsletter
                                   ),
                                 ),
                               );

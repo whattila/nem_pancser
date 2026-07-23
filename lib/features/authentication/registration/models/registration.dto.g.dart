@@ -15,6 +15,7 @@ _RegistrationDto _$RegistrationDtoFromJson(Map<String, dynamic> json) =>
       givenName: json['givenName'] as String,
       phoneNumber: json['phoneNumber'] as String,
       address: AddressDto.fromJson(json['address'] as Map<String, dynamic>),
+      subscribeToNewsletter: json['subscribeToNewsletter'] as bool,
     );
 
 Map<String, dynamic> _$RegistrationDtoToJson(_RegistrationDto instance) =>
@@ -26,4 +27,5 @@ Map<String, dynamic> _$RegistrationDtoToJson(_RegistrationDto instance) =>
       'givenName': instance.givenName,
       'phoneNumber': instance.phoneNumber,
       'address': instance.address.toJson(),
+      'subscribeToNewsletter': instance.subscribeToNewsletter,
     };

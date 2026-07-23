@@ -15,7 +15,8 @@ abstract class RegistrationDto with _$RegistrationDto {
     required String familyName,
     required String givenName,
     required String phoneNumber,
-    required AddressDto address
+    required AddressDto address,
+    required bool subscribeToNewsletter
   }) = _RegistrationDto;
 
   factory RegistrationDto.fromJson(Map<String, dynamic> json) => _$RegistrationDtoFromJson(json);

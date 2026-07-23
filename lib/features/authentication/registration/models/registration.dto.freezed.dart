@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$RegistrationDto {
 
- String get username; String get email; String get password; String get familyName; String get givenName; String get phoneNumber; AddressDto get address;
+ String get username; String get email; String get password; String get familyName; String get givenName; String get phoneNumber; AddressDto get address; bool get subscribeToNewsletter;
 /// Create a copy of RegistrationDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $RegistrationDtoCopyWith<RegistrationDto> get copyWith => _$RegistrationDtoCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is RegistrationDto&&(identical(other.username, username) || other.username == username)&&(identical(other.email, email) || other.email == email)&&(identical(other.password, password) || other.password == password)&&(identical(other.familyName, familyName) || other.familyName == familyName)&&(identical(other.givenName, givenName) || other.givenName == givenName)&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber)&&(identical(other.address, address) || other.address == address));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RegistrationDto&&(identical(other.username, username) || other.username == username)&&(identical(other.email, email) || other.email == email)&&(identical(other.password, password) || other.password == password)&&(identical(other.familyName, familyName) || other.familyName == familyName)&&(identical(other.givenName, givenName) || other.givenName == givenName)&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber)&&(identical(other.address, address) || other.address == address)&&(identical(other.subscribeToNewsletter, subscribeToNewsletter) || other.subscribeToNewsletter == subscribeToNewsletter));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,username,email,password,familyName,givenName,phoneNumber,address);
+int get hashCode => Object.hash(runtimeType,username,email,password,familyName,givenName,phoneNumber,address,subscribeToNewsletter);
 
 @override
 String toString() {
-  return 'RegistrationDto(username: $username, email: $email, password: $password, familyName: $familyName, givenName: $givenName, phoneNumber: $phoneNumber, address: $address)';
+  return 'RegistrationDto(username: $username, email: $email, password: $password, familyName: $familyName, givenName: $givenName, phoneNumber: $phoneNumber, address: $address, subscribeToNewsletter: $subscribeToNewsletter)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $RegistrationDtoCopyWith<$Res>  {
   factory $RegistrationDtoCopyWith(RegistrationDto value, $Res Function(RegistrationDto) _then) = _$RegistrationDtoCopyWithImpl;
 @useResult
 $Res call({
- String username, String email, String password, String familyName, String givenName, String phoneNumber, AddressDto address
+ String username, String email, String password, String familyName, String givenName, String phoneNumber, AddressDto address, bool subscribeToNewsletter
 });
 
 
@@ -65,7 +65,7 @@ class _$RegistrationDtoCopyWithImpl<$Res>
 
 /// Create a copy of RegistrationDto
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? username = null,Object? email = null,Object? password = null,Object? familyName = null,Object? givenName = null,Object? phoneNumber = null,Object? address = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? username = null,Object? email = null,Object? password = null,Object? familyName = null,Object? givenName = null,Object? phoneNumber = null,Object? address = null,Object? subscribeToNewsletter = null,}) {
   return _then(_self.copyWith(
 username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
@@ -74,7 +74,8 @@ as String,familyName: null == familyName ? _self.familyName : familyName // igno
 as String,givenName: null == givenName ? _self.givenName : givenName // ignore: cast_nullable_to_non_nullable
 as String,phoneNumber: null == phoneNumber ? _self.phoneNumber : phoneNumber // ignore: cast_nullable_to_non_nullable
 as String,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
-as AddressDto,
+as AddressDto,subscribeToNewsletter: null == subscribeToNewsletter ? _self.subscribeToNewsletter : subscribeToNewsletter // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 /// Create a copy of RegistrationDto
@@ -168,10 +169,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String username,  String email,  String password,  String familyName,  String givenName,  String phoneNumber,  AddressDto address)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String username,  String email,  String password,  String familyName,  String givenName,  String phoneNumber,  AddressDto address,  bool subscribeToNewsletter)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _RegistrationDto() when $default != null:
-return $default(_that.username,_that.email,_that.password,_that.familyName,_that.givenName,_that.phoneNumber,_that.address);case _:
+return $default(_that.username,_that.email,_that.password,_that.familyName,_that.givenName,_that.phoneNumber,_that.address,_that.subscribeToNewsletter);case _:
   return orElse();
 
 }
@@ -189,10 +190,10 @@ return $default(_that.username,_that.email,_that.password,_that.familyName,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String username,  String email,  String password,  String familyName,  String givenName,  String phoneNumber,  AddressDto address)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String username,  String email,  String password,  String familyName,  String givenName,  String phoneNumber,  AddressDto address,  bool subscribeToNewsletter)  $default,) {final _that = this;
 switch (_that) {
 case _RegistrationDto():
-return $default(_that.username,_that.email,_that.password,_that.familyName,_that.givenName,_that.phoneNumber,_that.address);case _:
+return $default(_that.username,_that.email,_that.password,_that.familyName,_that.givenName,_that.phoneNumber,_that.address,_that.subscribeToNewsletter);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -209,10 +210,10 @@ return $default(_that.username,_that.email,_that.password,_that.familyName,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String username,  String email,  String password,  String familyName,  String givenName,  String phoneNumber,  AddressDto address)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String username,  String email,  String password,  String familyName,  String givenName,  String phoneNumber,  AddressDto address,  bool subscribeToNewsletter)?  $default,) {final _that = this;
 switch (_that) {
 case _RegistrationDto() when $default != null:
-return $default(_that.username,_that.email,_that.password,_that.familyName,_that.givenName,_that.phoneNumber,_that.address);case _:
+return $default(_that.username,_that.email,_that.password,_that.familyName,_that.givenName,_that.phoneNumber,_that.address,_that.subscribeToNewsletter);case _:
   return null;
 
 }
@@ -224,7 +225,7 @@ return $default(_that.username,_that.email,_that.password,_that.familyName,_that
 
 @JsonSerializable(explicitToJson: true)
 class _RegistrationDto implements RegistrationDto {
-  const _RegistrationDto({required this.username, required this.email, required this.password, required this.familyName, required this.givenName, required this.phoneNumber, required this.address});
+  const _RegistrationDto({required this.username, required this.email, required this.password, required this.familyName, required this.givenName, required this.phoneNumber, required this.address, required this.subscribeToNewsletter});
   factory _RegistrationDto.fromJson(Map<String, dynamic> json) => _$RegistrationDtoFromJson(json);
 
 @override final  String username;
@@ -234,6 +235,7 @@ class _RegistrationDto implements RegistrationDto {
 @override final  String givenName;
 @override final  String phoneNumber;
 @override final  AddressDto address;
+@override final  bool subscribeToNewsletter;
 
 /// Create a copy of RegistrationDto
 /// with the given fields replaced by the non-null parameter values.
@@ -248,16 +250,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RegistrationDto&&(identical(other.username, username) || other.username == username)&&(identical(other.email, email) || other.email == email)&&(identical(other.password, password) || other.password == password)&&(identical(other.familyName, familyName) || other.familyName == familyName)&&(identical(other.givenName, givenName) || other.givenName == givenName)&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber)&&(identical(other.address, address) || other.address == address));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RegistrationDto&&(identical(other.username, username) || other.username == username)&&(identical(other.email, email) || other.email == email)&&(identical(other.password, password) || other.password == password)&&(identical(other.familyName, familyName) || other.familyName == familyName)&&(identical(other.givenName, givenName) || other.givenName == givenName)&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber)&&(identical(other.address, address) || other.address == address)&&(identical(other.subscribeToNewsletter, subscribeToNewsletter) || other.subscribeToNewsletter == subscribeToNewsletter));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,username,email,password,familyName,givenName,phoneNumber,address);
+int get hashCode => Object.hash(runtimeType,username,email,password,familyName,givenName,phoneNumber,address,subscribeToNewsletter);
 
 @override
 String toString() {
-  return 'RegistrationDto(username: $username, email: $email, password: $password, familyName: $familyName, givenName: $givenName, phoneNumber: $phoneNumber, address: $address)';
+  return 'RegistrationDto(username: $username, email: $email, password: $password, familyName: $familyName, givenName: $givenName, phoneNumber: $phoneNumber, address: $address, subscribeToNewsletter: $subscribeToNewsletter)';
 }
 
 
@@ -268,7 +270,7 @@ abstract mixin class _$RegistrationDtoCopyWith<$Res> implements $RegistrationDto
   factory _$RegistrationDtoCopyWith(_RegistrationDto value, $Res Function(_RegistrationDto) _then) = __$RegistrationDtoCopyWithImpl;
 @override @useResult
 $Res call({
- String username, String email, String password, String familyName, String givenName, String phoneNumber, AddressDto address
+ String username, String email, String password, String familyName, String givenName, String phoneNumber, AddressDto address, bool subscribeToNewsletter
 });
 
 
@@ -285,7 +287,7 @@ class __$RegistrationDtoCopyWithImpl<$Res>
 
 /// Create a copy of RegistrationDto
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? username = null,Object? email = null,Object? password = null,Object? familyName = null,Object? givenName = null,Object? phoneNumber = null,Object? address = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? username = null,Object? email = null,Object? password = null,Object? familyName = null,Object? givenName = null,Object? phoneNumber = null,Object? address = null,Object? subscribeToNewsletter = null,}) {
   return _then(_RegistrationDto(
 username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
@@ -294,7 +296,8 @@ as String,familyName: null == familyName ? _self.familyName : familyName // igno
 as String,givenName: null == givenName ? _self.givenName : givenName // ignore: cast_nullable_to_non_nullable
 as String,phoneNumber: null == phoneNumber ? _self.phoneNumber : phoneNumber // ignore: cast_nullable_to_non_nullable
 as String,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
-as AddressDto,
+as AddressDto,subscribeToNewsletter: null == subscribeToNewsletter ? _self.subscribeToNewsletter : subscribeToNewsletter // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 

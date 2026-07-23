@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AddressDto {
 
- String get city; String get place; String get number; String? get staircase; String? get floor; String? get door; String? get bell;
+ String get city; String get place; String get number;@JsonKey(toJson: optionalFieldToJson) String? get staircase;@JsonKey(toJson: optionalFieldToJson) String? get floor;@JsonKey(toJson: optionalFieldToJson) String? get door;@JsonKey(toJson: optionalFieldToJson) String? get bell;
 /// Create a copy of AddressDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $AddressDtoCopyWith<$Res>  {
   factory $AddressDtoCopyWith(AddressDto value, $Res Function(AddressDto) _then) = _$AddressDtoCopyWithImpl;
 @useResult
 $Res call({
- String city, String place, String number, String? staircase, String? floor, String? door, String? bell
+ String city, String place, String number,@JsonKey(toJson: optionalFieldToJson) String? staircase,@JsonKey(toJson: optionalFieldToJson) String? floor,@JsonKey(toJson: optionalFieldToJson) String? door,@JsonKey(toJson: optionalFieldToJson) String? bell
 });
 
 
@@ -159,7 +159,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String city,  String place,  String number,  String? staircase,  String? floor,  String? door,  String? bell)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String city,  String place,  String number, @JsonKey(toJson: optionalFieldToJson)  String? staircase, @JsonKey(toJson: optionalFieldToJson)  String? floor, @JsonKey(toJson: optionalFieldToJson)  String? door, @JsonKey(toJson: optionalFieldToJson)  String? bell)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AddressDto() when $default != null:
 return $default(_that.city,_that.place,_that.number,_that.staircase,_that.floor,_that.door,_that.bell);case _:
@@ -180,7 +180,7 @@ return $default(_that.city,_that.place,_that.number,_that.staircase,_that.floor,
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String city,  String place,  String number,  String? staircase,  String? floor,  String? door,  String? bell)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String city,  String place,  String number, @JsonKey(toJson: optionalFieldToJson)  String? staircase, @JsonKey(toJson: optionalFieldToJson)  String? floor, @JsonKey(toJson: optionalFieldToJson)  String? door, @JsonKey(toJson: optionalFieldToJson)  String? bell)  $default,) {final _that = this;
 switch (_that) {
 case _AddressDto():
 return $default(_that.city,_that.place,_that.number,_that.staircase,_that.floor,_that.door,_that.bell);case _:
@@ -200,7 +200,7 @@ return $default(_that.city,_that.place,_that.number,_that.staircase,_that.floor,
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String city,  String place,  String number,  String? staircase,  String? floor,  String? door,  String? bell)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String city,  String place,  String number, @JsonKey(toJson: optionalFieldToJson)  String? staircase, @JsonKey(toJson: optionalFieldToJson)  String? floor, @JsonKey(toJson: optionalFieldToJson)  String? door, @JsonKey(toJson: optionalFieldToJson)  String? bell)?  $default,) {final _that = this;
 switch (_that) {
 case _AddressDto() when $default != null:
 return $default(_that.city,_that.place,_that.number,_that.staircase,_that.floor,_that.door,_that.bell);case _:
@@ -215,16 +215,16 @@ return $default(_that.city,_that.place,_that.number,_that.staircase,_that.floor,
 
 @JsonSerializable(includeIfNull: false)
 class _AddressDto implements AddressDto {
-  const _AddressDto({required this.city, required this.place, required this.number, this.staircase, this.floor, this.door, this.bell});
+  const _AddressDto({required this.city, required this.place, required this.number, @JsonKey(toJson: optionalFieldToJson) this.staircase, @JsonKey(toJson: optionalFieldToJson) this.floor, @JsonKey(toJson: optionalFieldToJson) this.door, @JsonKey(toJson: optionalFieldToJson) this.bell});
   factory _AddressDto.fromJson(Map<String, dynamic> json) => _$AddressDtoFromJson(json);
 
 @override final  String city;
 @override final  String place;
 @override final  String number;
-@override final  String? staircase;
-@override final  String? floor;
-@override final  String? door;
-@override final  String? bell;
+@override@JsonKey(toJson: optionalFieldToJson) final  String? staircase;
+@override@JsonKey(toJson: optionalFieldToJson) final  String? floor;
+@override@JsonKey(toJson: optionalFieldToJson) final  String? door;
+@override@JsonKey(toJson: optionalFieldToJson) final  String? bell;
 
 /// Create a copy of AddressDto
 /// with the given fields replaced by the non-null parameter values.
@@ -259,7 +259,7 @@ abstract mixin class _$AddressDtoCopyWith<$Res> implements $AddressDtoCopyWith<$
   factory _$AddressDtoCopyWith(_AddressDto value, $Res Function(_AddressDto) _then) = __$AddressDtoCopyWithImpl;
 @override @useResult
 $Res call({
- String city, String place, String number, String? staircase, String? floor, String? door, String? bell
+ String city, String place, String number,@JsonKey(toJson: optionalFieldToJson) String? staircase,@JsonKey(toJson: optionalFieldToJson) String? floor,@JsonKey(toJson: optionalFieldToJson) String? door,@JsonKey(toJson: optionalFieldToJson) String? bell
 });
 
 
