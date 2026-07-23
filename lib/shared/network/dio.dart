@@ -5,17 +5,13 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../services/user_access_data_storage/user_access_data_storage.dart';
 import 'auth_interceptor.dart';
 
-Dio createDioInstance() {
+Dio createDioInstance({required UserAccessDataStorage userAccessDataStorage}) {
   final dio = Dio();
 
   dio.options.contentType = Headers.jsonContentType;
 
   dio.interceptors.add(
-      AuthInterceptor(
-          userAccessDataStorage: UserAccessDataStorage(
-              storage: FlutterSecureStorage()
-          )
-      )
+      AuthInterceptor(userAccessDataStorage: userAccessDataStorage)
   );
   dio.interceptors.add(
     InterceptorsWrapper(

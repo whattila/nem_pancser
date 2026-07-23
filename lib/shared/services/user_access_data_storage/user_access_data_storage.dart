@@ -6,11 +6,9 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'models/user_access_data.model.dart';
 
 class UserAccessDataStorage {
-  UserAccessDataStorage({required FlutterSecureStorage storage}) : _storage = storage;
-
   static const String _userAccessDataKey = 'user_access_data';
 
-  final FlutterSecureStorage _storage;
+  final FlutterSecureStorage _storage = FlutterSecureStorage();
   UserAccessData? _userAccessData;
 
   Future<UserAccessData?> getUserAccessData() async {

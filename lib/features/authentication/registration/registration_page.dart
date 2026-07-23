@@ -1,23 +1,72 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nem_pancser/features/authentication/registration/bloc/registration.bloc.dart';
+import 'package:nem_pancser/features/authentication/registration/bloc/registration.event.dart';
+import 'package:nem_pancser/features/authentication/registration/bloc/registration.state.dart';
+import 'package:nem_pancser/features/authentication/registration/models/address.dto.dart';
+import 'package:nem_pancser/features/authentication/registration/models/registration.dto.dart';
+import 'package:nem_pancser/features/authentication/shared/auth.repository.dart';
 
 import '../../../shared/router/app_router.dart';
 import '../../../shared/widgets/pancser_button.dart';
 
 @RoutePage()
-class RegistrationPage extends StatefulWidget {
+class RegistrationPage extends StatelessWidget {
   const RegistrationPage({super.key});
 
   @override
-  State<RegistrationPage> createState() => _RegistrationPageState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => RegistrationBloc(context.read<AuthRepository>()),
+      child: BlocListener<RegistrationBloc, RegistrationState>(
+        listener: (context, state) {
+          if (state is RegistrationSuccess) {
+            context.router.replaceAll([const DashboardRoute()]);
+          } else if (state is RegistrationError) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(state.message)),
+            );
+          }
+        },
+        child: const RegistrationView(),
+      ),
+    );
+  }
 }
 
-class _RegistrationPageState extends State<RegistrationPage> {
+class RegistrationView extends StatefulWidget {
+  const RegistrationView({super.key});
+
+  @override
+  State<RegistrationView> createState() => _RegistrationViewState();
+}
+
+class _RegistrationViewState extends State<RegistrationView> {
   final _formKey = GlobalKey<FormState>();
 
   final _passwordController = TextEditingController();
   bool _isNewsletterChecked = false;
+  late String _username;
+  late String _familyName;
+  late String _givenName;
+  late String _city;
+  late String _place;
+  late String _number;
+  String? _staircase;
+  String? _floor;
+  String? _door;
+  String? _bell;
+  late String _email;
+  late String _phone;
+  late String _password;
+
+  @override
+  void dispose() {
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,9 +98,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         prefixIcon: Icon(Icons.person),
                       ),
                       validator: _validateUsername,
+                      onSaved: (value) => _username = value!,
                     ),
                     const Text(
-                      'A felhasználónév csak betűt és számot tartalmazhat',
+                      'A felhasználónév 3-20 karakter, csak betűt és számot tartalmazhat, és legalább egy betűt',
                       style: TextStyle(color: Colors.blueGrey),
                     ),
                     const SizedBox(height: 16),
@@ -61,7 +111,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         border: OutlineInputBorder(),
                         prefixIcon: Icon(Icons.person_outline),
                       ),
+                      keyboardType: TextInputType.name,
                       validator: (value) => _validateCommon(value, 'Kérjük adja meg vezetéknevét!'),
+                      onSaved: (value) => _familyName = value!,
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
@@ -70,7 +122,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         border: OutlineInputBorder(),
                         prefixIcon: Icon(Icons.person_outline),
                       ),
-                      validator: (value) => _validateCommon(value, 'Kérjük adja meg keresztnevét!'),
+                      keyboardType: TextInputType.name,
+                      validator: _validateGivenName,
+                      onSaved: (value) => _givenName = value!,
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
@@ -79,7 +133,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         border: OutlineInputBorder(),
                         prefixIcon: Icon(Icons.location_city),
                       ),
+                      keyboardType: TextInputType.text,
                       validator: (value) => _validateCommon(value, 'Kérjük adja meg a várost!'),
+                      onSaved: (value) => _city = value!,
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
@@ -89,6 +145,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         prefixIcon: Icon(Icons.location_on),
                       ),
                       validator: (value) => _validateCommon(value, 'Kérjük adja meg az utcát vagy teret!'),
+                      onSaved: (value) => _place = value!,
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
@@ -98,38 +155,43 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         prefixIcon: Icon(Icons.home),
                       ),
                       validator: (value) => _validateCommon(value, 'Kérjük adja meg a házszámot!'),
+                      onSaved: (value) => _number = value!,
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Lépcsőház',
                         border: OutlineInputBorder(),
                         prefixIcon: Icon(Icons.stairs),
                       ),
+                      onSaved: (value) => _staircase = value,
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Emelet',
                         border: OutlineInputBorder(),
                         prefixIcon: Icon(Icons.layers),
                       ),
+                      onSaved: (value) => _floor = value,
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Ajtó',
                         border: OutlineInputBorder(),
                         prefixIcon: Icon(Icons.door_front_door),
                       ),
+                      onSaved: (value) => _door = value,
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Kapucsengő',
                         border: OutlineInputBorder(),
                         prefixIcon: Icon(Icons.notifications),
                       ),
+                      onSaved: (value) => _bell = value,
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
@@ -140,6 +202,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       ),
                       keyboardType: TextInputType.emailAddress,
                       validator: _validateEmail,
+                      onSaved: (value) => _email = value!,
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
@@ -150,6 +213,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       ),
                       keyboardType: TextInputType.phone,
                       validator: (value) => _validateCommon(value, 'Kérjük adja meg a telefonszámot!'),
+                      onSaved: (value) => _phone = value!,
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
@@ -161,6 +225,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         prefixIcon: Icon(Icons.lock),
                       ),
                       validator: _validatePassword,
+                      onSaved: (value) => _password = value!,
                     ),
                     const Text(
                       'A jelszó legalább 8 karakter, és tartalmaznia kell kisbetűt, nagybetűt, számot és speciális karaktert.',
@@ -187,7 +252,27 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       onPressed: () {
                         if (_formKey.currentState?.validate() ?? false) {
                           _formKey.currentState?.save();
-                          context.router.replaceAll([const DashboardRoute()]);
+                          context.read<RegistrationBloc>().add(
+                                RegistrationRequested(
+                                  registrationData: RegistrationDto(
+                                    username: _username,
+                                    email: _email,
+                                    password: _password,
+                                    familyName: _familyName,
+                                    givenName: _givenName,
+                                    phoneNumber: _phone,
+                                    address: AddressDto(
+                                      city: _city,
+                                      place: _place,
+                                      number: _number,
+                                      staircase: _staircase,
+                                      floor: _floor,
+                                      door: _door,
+                                      bell: _bell
+                                    ),
+                                  ),
+                                ),
+                              );
                         }
                       },
                       text: 'REGISZTRÁLOK',
@@ -203,45 +288,49 @@ class _RegistrationPageState extends State<RegistrationPage> {
     );
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    _passwordController.dispose();
-  }
-
   String? _validateCommon(String? value, String? errorMessage) =>
-      value == null || value.isEmpty ?
-        errorMessage ?? 'Kérjük töltse ki ezt a mezőt!'
-        : null;
+      _isNullOrEmpty(value) ?
+          errorMessage ?? 'Kérjük töltse ki ezt a mezőt!'
+          : null;
 
   String? _validateUsername(String? value) {
-    if (value == null || value.isEmpty) {
+    if (_isNullOrEmpty(value)) {
       return 'Kérjük adjon meg egy felhasználónevet!';
     }
-    if (value.length < 3 || value.length > 20) {
+    if (value!.length < 3 || value.length > 20) {
       return 'A felhasználónévnek 3 és 20 karakter között kell lennie!';
     }
-    if (!RegExp(r'^[a-zA-Z0-9]+$').hasMatch(value)) {
-      return 'A felhasználónév csak alfanumerikus karaktereket tartalmazhat!';
+    if (!RegExp(r'^[a-zA-Z]+[0-9]*$').hasMatch(value)) {
+      return 'A felhasználónév legalább egy betűt és még számokat tartalmazhat!';
+    }
+    return null;
+  }
+
+  String? _validateGivenName(String? value) {
+    if (_isNullOrEmpty(value)) {
+      return 'Kérjük adja meg keresztnevét!';
+    }
+    if (value!.contains(' ')) {
+      return 'A keresztnév nem tartalmazhat szóközt.';
     }
     return null;
   }
 
   String? _validateEmail(String? value) {
-    if (value == null || value.isEmpty) {
+    if (_isNullOrEmpty(value)) {
       return 'Kérjük adja meg az email címét!';
     }
-    if (!EmailValidator.validate(value)) {
+    if (!EmailValidator.validate(value!)) {
       return 'Érvénytelen email formátum!';
     }
     return null;
   }
 
   String? _validatePassword(String? value) {
-    if (value == null || value.isEmpty) {
+    if (_isNullOrEmpty(value)) {
       return 'A jelszó megadása kötelező.';
     }
-    if (value.length < 8) {
+    if (value!.length < 8) {
       return 'A jelszó legalább 8 karakter hosszú legyen.';
     }
     if (!RegExp(r'[A-Z]').hasMatch(value)) {
@@ -261,6 +350,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
   String? _validatePasswordConfirm(String? value) =>
       value != _passwordController.text ? 'A két jelszó nem egyezik.' : null;
+
+  bool _isNullOrEmpty(String? value) =>
+      value == null || value.isEmpty;
 }
 
 class CheckboxFormField extends FormField<bool> {

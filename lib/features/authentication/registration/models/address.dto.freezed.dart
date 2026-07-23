@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AddressDto {
 
- String get city; String get place; String get number; String? get staircase; String? get floor; String? get door;
+ String get city; String get place; String get number; String? get staircase; String? get floor; String? get door; String? get bell;
 /// Create a copy of AddressDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $AddressDtoCopyWith<AddressDto> get copyWith => _$AddressDtoCopyWithImpl<Address
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AddressDto&&(identical(other.city, city) || other.city == city)&&(identical(other.place, place) || other.place == place)&&(identical(other.number, number) || other.number == number)&&(identical(other.staircase, staircase) || other.staircase == staircase)&&(identical(other.floor, floor) || other.floor == floor)&&(identical(other.door, door) || other.door == door));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AddressDto&&(identical(other.city, city) || other.city == city)&&(identical(other.place, place) || other.place == place)&&(identical(other.number, number) || other.number == number)&&(identical(other.staircase, staircase) || other.staircase == staircase)&&(identical(other.floor, floor) || other.floor == floor)&&(identical(other.door, door) || other.door == door)&&(identical(other.bell, bell) || other.bell == bell));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,city,place,number,staircase,floor,door);
+int get hashCode => Object.hash(runtimeType,city,place,number,staircase,floor,door,bell);
 
 @override
 String toString() {
-  return 'AddressDto(city: $city, place: $place, number: $number, staircase: $staircase, floor: $floor, door: $door)';
+  return 'AddressDto(city: $city, place: $place, number: $number, staircase: $staircase, floor: $floor, door: $door, bell: $bell)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $AddressDtoCopyWith<$Res>  {
   factory $AddressDtoCopyWith(AddressDto value, $Res Function(AddressDto) _then) = _$AddressDtoCopyWithImpl;
 @useResult
 $Res call({
- String city, String place, String number, String? staircase, String? floor, String? door
+ String city, String place, String number, String? staircase, String? floor, String? door, String? bell
 });
 
 
@@ -65,7 +65,7 @@ class _$AddressDtoCopyWithImpl<$Res>
 
 /// Create a copy of AddressDto
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? city = null,Object? place = null,Object? number = null,Object? staircase = freezed,Object? floor = freezed,Object? door = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? city = null,Object? place = null,Object? number = null,Object? staircase = freezed,Object? floor = freezed,Object? door = freezed,Object? bell = freezed,}) {
   return _then(_self.copyWith(
 city: null == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
 as String,place: null == place ? _self.place : place // ignore: cast_nullable_to_non_nullable
@@ -73,6 +73,7 @@ as String,number: null == number ? _self.number : number // ignore: cast_nullabl
 as String,staircase: freezed == staircase ? _self.staircase : staircase // ignore: cast_nullable_to_non_nullable
 as String?,floor: freezed == floor ? _self.floor : floor // ignore: cast_nullable_to_non_nullable
 as String?,door: freezed == door ? _self.door : door // ignore: cast_nullable_to_non_nullable
+as String?,bell: freezed == bell ? _self.bell : bell // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -158,10 +159,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String city,  String place,  String number,  String? staircase,  String? floor,  String? door)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String city,  String place,  String number,  String? staircase,  String? floor,  String? door,  String? bell)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AddressDto() when $default != null:
-return $default(_that.city,_that.place,_that.number,_that.staircase,_that.floor,_that.door);case _:
+return $default(_that.city,_that.place,_that.number,_that.staircase,_that.floor,_that.door,_that.bell);case _:
   return orElse();
 
 }
@@ -179,10 +180,10 @@ return $default(_that.city,_that.place,_that.number,_that.staircase,_that.floor,
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String city,  String place,  String number,  String? staircase,  String? floor,  String? door)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String city,  String place,  String number,  String? staircase,  String? floor,  String? door,  String? bell)  $default,) {final _that = this;
 switch (_that) {
 case _AddressDto():
-return $default(_that.city,_that.place,_that.number,_that.staircase,_that.floor,_that.door);case _:
+return $default(_that.city,_that.place,_that.number,_that.staircase,_that.floor,_that.door,_that.bell);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -199,10 +200,10 @@ return $default(_that.city,_that.place,_that.number,_that.staircase,_that.floor,
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String city,  String place,  String number,  String? staircase,  String? floor,  String? door)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String city,  String place,  String number,  String? staircase,  String? floor,  String? door,  String? bell)?  $default,) {final _that = this;
 switch (_that) {
 case _AddressDto() when $default != null:
-return $default(_that.city,_that.place,_that.number,_that.staircase,_that.floor,_that.door);case _:
+return $default(_that.city,_that.place,_that.number,_that.staircase,_that.floor,_that.door,_that.bell);case _:
   return null;
 
 }
@@ -214,7 +215,7 @@ return $default(_that.city,_that.place,_that.number,_that.staircase,_that.floor,
 
 @JsonSerializable(includeIfNull: false)
 class _AddressDto implements AddressDto {
-  const _AddressDto({required this.city, required this.place, required this.number, this.staircase, this.floor, this.door});
+  const _AddressDto({required this.city, required this.place, required this.number, this.staircase, this.floor, this.door, this.bell});
   factory _AddressDto.fromJson(Map<String, dynamic> json) => _$AddressDtoFromJson(json);
 
 @override final  String city;
@@ -223,6 +224,7 @@ class _AddressDto implements AddressDto {
 @override final  String? staircase;
 @override final  String? floor;
 @override final  String? door;
+@override final  String? bell;
 
 /// Create a copy of AddressDto
 /// with the given fields replaced by the non-null parameter values.
@@ -237,16 +239,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AddressDto&&(identical(other.city, city) || other.city == city)&&(identical(other.place, place) || other.place == place)&&(identical(other.number, number) || other.number == number)&&(identical(other.staircase, staircase) || other.staircase == staircase)&&(identical(other.floor, floor) || other.floor == floor)&&(identical(other.door, door) || other.door == door));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AddressDto&&(identical(other.city, city) || other.city == city)&&(identical(other.place, place) || other.place == place)&&(identical(other.number, number) || other.number == number)&&(identical(other.staircase, staircase) || other.staircase == staircase)&&(identical(other.floor, floor) || other.floor == floor)&&(identical(other.door, door) || other.door == door)&&(identical(other.bell, bell) || other.bell == bell));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,city,place,number,staircase,floor,door);
+int get hashCode => Object.hash(runtimeType,city,place,number,staircase,floor,door,bell);
 
 @override
 String toString() {
-  return 'AddressDto(city: $city, place: $place, number: $number, staircase: $staircase, floor: $floor, door: $door)';
+  return 'AddressDto(city: $city, place: $place, number: $number, staircase: $staircase, floor: $floor, door: $door, bell: $bell)';
 }
 
 
@@ -257,7 +259,7 @@ abstract mixin class _$AddressDtoCopyWith<$Res> implements $AddressDtoCopyWith<$
   factory _$AddressDtoCopyWith(_AddressDto value, $Res Function(_AddressDto) _then) = __$AddressDtoCopyWithImpl;
 @override @useResult
 $Res call({
- String city, String place, String number, String? staircase, String? floor, String? door
+ String city, String place, String number, String? staircase, String? floor, String? door, String? bell
 });
 
 
@@ -274,7 +276,7 @@ class __$AddressDtoCopyWithImpl<$Res>
 
 /// Create a copy of AddressDto
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? city = null,Object? place = null,Object? number = null,Object? staircase = freezed,Object? floor = freezed,Object? door = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? city = null,Object? place = null,Object? number = null,Object? staircase = freezed,Object? floor = freezed,Object? door = freezed,Object? bell = freezed,}) {
   return _then(_AddressDto(
 city: null == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
 as String,place: null == place ? _self.place : place // ignore: cast_nullable_to_non_nullable
@@ -282,6 +284,7 @@ as String,number: null == number ? _self.number : number // ignore: cast_nullabl
 as String,staircase: freezed == staircase ? _self.staircase : staircase // ignore: cast_nullable_to_non_nullable
 as String?,floor: freezed == floor ? _self.floor : floor // ignore: cast_nullable_to_non_nullable
 as String?,door: freezed == door ? _self.door : door // ignore: cast_nullable_to_non_nullable
+as String?,bell: freezed == bell ? _self.bell : bell // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }

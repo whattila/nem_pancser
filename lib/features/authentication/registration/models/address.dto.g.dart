@@ -13,6 +13,7 @@ _AddressDto _$AddressDtoFromJson(Map<String, dynamic> json) => _AddressDto(
   staircase: json['staircase'] as String?,
   floor: json['floor'] as String?,
   door: json['door'] as String?,
+  bell: json['bell'] as String?,
 );
 
 Map<String, dynamic> _$AddressDtoToJson(_AddressDto instance) =>
@@ -23,4 +24,5 @@ Map<String, dynamic> _$AddressDtoToJson(_AddressDto instance) =>
       'staircase': ?instance.staircase,
       'floor': ?instance.floor,
       'door': ?instance.door,
+      'bell': ?instance.bell,
     };
