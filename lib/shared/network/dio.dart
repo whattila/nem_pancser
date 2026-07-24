@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import '../services/user_access_data_storage/user_access_data_storage.dart';
 import 'auth_interceptor.dart';
@@ -33,9 +32,9 @@ Dio createDioInstance({required UserAccessDataStorage userAccessDataStorage}) {
   return dio;
 }
 
-String getDioErrorMessage(DioException e) {
-  final generalErrorMessage = 'Valami hiba történt, próbálja újra később vagy lépjen kapcsolatba ügyfélszolgálatunkkal.';
+final _generalErrorMessage = 'Valami hiba történt, próbálja újra később vagy lépjen kapcsolatba ügyfélszolgálatunkkal.';
 
+String getDioErrorMessage(DioException e) {
   switch (e.type) {
     case DioExceptionType.connectionTimeout:
     case DioExceptionType.sendTimeout:
@@ -44,11 +43,22 @@ String getDioErrorMessage(DioException e) {
     case DioExceptionType.connectionError:
       return 'Időtúllépés, kérjük próbálja újra, vagy ellenőrízze internet kapcsolatát!';
     case DioExceptionType.badResponse:
-      return e.response?.data["message"] ?? generalErrorMessage;
+      return _getBadResponseErrorMessage(e);
     case DioExceptionType.cancel:
       return 'A kérést megszakították.';
     case DioExceptionType.badCertificate:
     case DioExceptionType.unknown:
-      return generalErrorMessage;
+      return _generalErrorMessage;
   }
+}
+
+String _getBadResponseErrorMessage(DioException e) {
+  final message = e.response?.data?["message"];
+  if (message is String) {
+    return message;
+  }
+  if (e.response?.statusCode == 400) {
+    return 'Rossz kérés, kérjük ellenőrizze a beküldött adatokat.';
+  }
+  return _generalErrorMessage;
 }
