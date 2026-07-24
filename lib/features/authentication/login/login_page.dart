@@ -6,6 +6,7 @@ import 'package:nem_pancser/features/authentication/login/bloc/login.event.dart'
 import 'package:nem_pancser/features/authentication/login/bloc/login.state.dart';
 import 'package:nem_pancser/features/authentication/login/models/login.dto.dart';
 import 'package:nem_pancser/features/authentication/shared/auth.repository.dart';
+import 'package:password_text_field/password_text_field.dart';
 
 import '../../../shared/router/app_router.dart';
 import '../../../shared/widgets/pancser_background.dart';
@@ -74,8 +75,8 @@ class _LoginViewState extends State<LoginView> {
                   validator: (value) => _validateNotEmpty(value, 'Kérjük adja meg felhasználónevét!'),
                 ),
                 const SizedBox(height: 16),
-                TextFormField(
-                  obscureText: true,
+                PasswordTextFormField(
+                  initialObscurity: true,
                   decoration: const InputDecoration(
                     labelText: 'Jelszó',
                     border: OutlineInputBorder(),

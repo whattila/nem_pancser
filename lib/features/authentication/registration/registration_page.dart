@@ -8,6 +8,7 @@ import 'package:nem_pancser/features/authentication/registration/bloc/registrati
 import 'package:nem_pancser/features/authentication/registration/models/address.dto.dart';
 import 'package:nem_pancser/features/authentication/registration/models/registration.dto.dart';
 import 'package:nem_pancser/features/authentication/shared/auth.repository.dart';
+import 'package:password_text_field/password_text_field.dart';
 
 import '../../../shared/router/app_router.dart';
 import '../../../shared/widgets/pancser_button.dart';
@@ -92,6 +93,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                     ),
                     const SizedBox(height: 30),
                     TextFormField(
+                      autovalidateMode: AutovalidateMode.onUnfocus,
                       decoration: const InputDecoration(
                         labelText: 'Felhasználónév',
                         border: OutlineInputBorder(),
@@ -101,11 +103,12 @@ class _RegistrationViewState extends State<RegistrationView> {
                       onSaved: (value) => _username = value!,
                     ),
                     const Text(
-                      'A felhasználónév 3-20 karakter, csak betűt és számot tartalmazhat, és legalább egy betűt',
+                      'A felhasználónév csak betűt és számot tartalmazhat, és legalább egy betűt',
                       style: TextStyle(color: Colors.blueGrey),
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
+                      autovalidateMode: AutovalidateMode.onUnfocus,
                       decoration: const InputDecoration(
                         labelText: 'Vezetéknév',
                         border: OutlineInputBorder(),
@@ -117,17 +120,19 @@ class _RegistrationViewState extends State<RegistrationView> {
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
+                      autovalidateMode: AutovalidateMode.onUnfocus,
                       decoration: const InputDecoration(
                         labelText: 'Keresztnév',
                         border: OutlineInputBorder(),
                         prefixIcon: Icon(Icons.person_outline),
                       ),
                       keyboardType: TextInputType.name,
-                      validator: _validateGivenName,
+                      validator: (value) => _validateCommon(value, 'Kérjük adja meg keresztnevét!'),
                       onSaved: (value) => _givenName = value!,
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
+                      autovalidateMode: AutovalidateMode.onUnfocus,
                       decoration: const InputDecoration(
                         labelText: 'Város',
                         border: OutlineInputBorder(),
@@ -139,6 +144,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
+                      autovalidateMode: AutovalidateMode.onUnfocus,
                       decoration: const InputDecoration(
                         labelText: 'Utca vagy tér',
                         border: OutlineInputBorder(),
@@ -149,6 +155,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
+                      autovalidateMode: AutovalidateMode.onUnfocus,
                       decoration: const InputDecoration(
                         labelText: 'Házszám',
                         border: OutlineInputBorder(),
@@ -159,6 +166,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
+                      autovalidateMode: AutovalidateMode.onUnfocus,
                       decoration: const InputDecoration(
                         labelText: 'Lépcsőház',
                         border: OutlineInputBorder(),
@@ -168,6 +176,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
+                      autovalidateMode: AutovalidateMode.onUnfocus,
                       decoration: const InputDecoration(
                         labelText: 'Emelet',
                         border: OutlineInputBorder(),
@@ -177,6 +186,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
+                      autovalidateMode: AutovalidateMode.onUnfocus,
                       decoration: const InputDecoration(
                         labelText: 'Ajtó',
                         border: OutlineInputBorder(),
@@ -186,6 +196,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
+                      autovalidateMode: AutovalidateMode.onUnfocus,
                       decoration: const InputDecoration(
                         labelText: 'Kapucsengő',
                         border: OutlineInputBorder(),
@@ -195,6 +206,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
+                      autovalidateMode: AutovalidateMode.onUnfocus,
                       decoration: const InputDecoration(
                         labelText: 'Email',
                         border: OutlineInputBorder(),
@@ -206,6 +218,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
+                      autovalidateMode: AutovalidateMode.onUnfocus,
                       decoration: const InputDecoration(
                         labelText: 'Telefonszám',
                         border: OutlineInputBorder(),
@@ -216,9 +229,10 @@ class _RegistrationViewState extends State<RegistrationView> {
                       onSaved: (value) => _phone = value!,
                     ),
                     const SizedBox(height: 16),
-                    TextFormField(
+                    PasswordTextFormField(
+                      initialObscurity: true,
+                      autovalidateMode: AutovalidateMode.onUnfocus,
                       controller: _passwordController,
-                      obscureText: true,
                       decoration: const InputDecoration(
                         labelText: 'Jelszó',
                         border: OutlineInputBorder(),
@@ -232,8 +246,9 @@ class _RegistrationViewState extends State<RegistrationView> {
                       style: TextStyle(color: Colors.blueGrey),
                     ),
                     const SizedBox(height: 16),
-                    TextFormField(
-                      obscureText: true,
+                    PasswordTextFormField(
+                      initialObscurity: true,
+                      autovalidateMode: AutovalidateMode.onUnfocus,
                       decoration: const InputDecoration(
                         labelText: 'Jelszó megerősítése',
                         border: OutlineInputBorder(),
@@ -298,21 +313,8 @@ class _RegistrationViewState extends State<RegistrationView> {
     if (_isNullOrEmpty(value)) {
       return 'Kérjük adjon meg egy felhasználónevet!';
     }
-    if (value!.length < 3 || value.length > 20) {
-      return 'A felhasználónévnek 3 és 20 karakter között kell lennie!';
-    }
-    if (!RegExp(r'^[a-zA-Z]+[0-9]*$').hasMatch(value)) {
-      return 'A felhasználónév legalább egy betűt és még számokat tartalmazhat!';
-    }
-    return null;
-  }
-
-  String? _validateGivenName(String? value) {
-    if (_isNullOrEmpty(value)) {
-      return 'Kérjük adja meg keresztnevét!';
-    }
-    if (value!.contains(' ')) {
-      return 'A keresztnév nem tartalmazhat szóközt.';
+    if (!RegExp(r'^[a-zA-Z]+[0-9]*$').hasMatch(value!)) {
+      return 'Érvénytelen karater vagy nincs betű!';
     }
     return null;
   }

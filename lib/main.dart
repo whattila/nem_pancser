@@ -55,7 +55,7 @@ class NemPancserApp extends StatelessWidget {
       child: MaterialApp.router(
         title: 'Nem Pancser',
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
         ),
         routerConfig: _appRouter.config(),
       ),
