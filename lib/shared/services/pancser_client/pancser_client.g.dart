@@ -31,7 +31,7 @@ class _PancserClient implements PancserClient {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/user/login',
+            '/auth/login',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -60,7 +60,7 @@ class _PancserClient implements PancserClient {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/user/register',
+            '/auth/register',
             queryParameters: queryParameters,
             data: _data,
           )

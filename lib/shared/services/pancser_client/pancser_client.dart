@@ -11,12 +11,12 @@ part 'pancser_client.g.dart';
 abstract class PancserClient {
   factory PancserClient(Dio dio, {String? baseUrl}) = _PancserClient;
 
-  @POST('/user/login')
+  @POST('/auth/login')
   Future<UserAccessData> login({
     @Body() required LoginDto loginDto,
   });
 
-  @POST('/user/register')
+  @POST('/auth/register')
   Future<UserAccessData> register({
     @Body() required RegistrationDto registrationDto,
   });

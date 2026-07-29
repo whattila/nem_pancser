@@ -9,6 +9,11 @@ Dio createDioInstance({required UserAccessDataStorage userAccessDataStorage}) {
 
   dio.options.contentType = Headers.jsonContentType;
 
+  dio.options.connectTimeout = Duration(seconds: 10);
+  dio.options.sendTimeout = Duration(seconds: 10);
+  dio.options.receiveTimeout = Duration(seconds: 10);
+  dio.options.transformTimeout = Duration(seconds: 10);
+
   dio.interceptors.add(
       AuthInterceptor(userAccessDataStorage: userAccessDataStorage)
   );

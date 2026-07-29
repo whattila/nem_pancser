@@ -139,7 +139,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                         prefixIcon: Icon(Icons.location_city),
                       ),
                       keyboardType: TextInputType.text,
-                      validator: (value) => _validateCommon(value, 'Kérjük adja meg a várost!'),
+                      validator: _validateCity,
                       onSaved: (value) => _city = value!,
                     ),
                     const SizedBox(height: 16),
@@ -315,6 +315,16 @@ class _RegistrationViewState extends State<RegistrationView> {
     }
     if (!RegExp(r'^[a-zA-Z]+[0-9]*$').hasMatch(value!)) {
       return 'Érvénytelen karater vagy nincs betű!';
+    }
+    return null;
+  }
+
+  String? _validateCity(String? value) {
+    if (_isNullOrEmpty(value)) {
+      return 'Kérjük adja meg a várost!';
+    }
+    if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value!)) {
+      return 'A város csak betűt tartalmazhat!';
     }
     return null;
   }
