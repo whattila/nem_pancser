@@ -43,54 +43,6 @@ class CartRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [CategoryPage]
-class CategoryRoute extends PageRouteInfo<void> {
-  const CategoryRoute({List<PageRouteInfo>? children})
-    : super(CategoryRoute.name, initialChildren: children);
-
-  static const String name = 'CategoryRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const CategoryPage();
-    },
-  );
-}
-
-/// generated route for
-/// [CourseDetailsPage]
-class CourseDetailsRoute extends PageRouteInfo<void> {
-  const CourseDetailsRoute({List<PageRouteInfo>? children})
-    : super(CourseDetailsRoute.name, initialChildren: children);
-
-  static const String name = 'CourseDetailsRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const CourseDetailsPage();
-    },
-  );
-}
-
-/// generated route for
-/// [CourseListPage]
-class CourseListRoute extends PageRouteInfo<void> {
-  const CourseListRoute({List<PageRouteInfo>? children})
-    : super(CourseListRoute.name, initialChildren: children);
-
-  static const String name = 'CourseListRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const CourseListPage();
-    },
-  );
-}
-
-/// generated route for
 /// [CreatePizzaPage]
 class CreatePizzaRoute extends PageRouteInfo<void> {
   const CreatePizzaRoute({List<PageRouteInfo>? children})
@@ -118,6 +70,54 @@ class DashboardRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const DashboardPage();
+    },
+  );
+}
+
+/// generated route for
+/// [DishCategoryPage]
+class DishCategoryRoute extends PageRouteInfo<void> {
+  const DishCategoryRoute({List<PageRouteInfo>? children})
+    : super(DishCategoryRoute.name, initialChildren: children);
+
+  static const String name = 'DishCategoryRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const DishCategoryPage();
+    },
+  );
+}
+
+/// generated route for
+/// [DishDetailsPage]
+class DishDetailsRoute extends PageRouteInfo<void> {
+  const DishDetailsRoute({List<PageRouteInfo>? children})
+    : super(DishDetailsRoute.name, initialChildren: children);
+
+  static const String name = 'DishDetailsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const DishDetailsPage();
+    },
+  );
+}
+
+/// generated route for
+/// [DishListPage]
+class DishListRoute extends PageRouteInfo<void> {
+  const DishListRoute({List<PageRouteInfo>? children})
+    : super(DishListRoute.name, initialChildren: children);
+
+  static const String name = 'DishListRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const DishListPage();
     },
   );
 }

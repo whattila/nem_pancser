@@ -1,7 +1,5 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:nem_pancser/features/authentication/shared/auth.repository.dart';
 import 'package:nem_pancser/shared/services/user_access_data_storage/user_access_data_storage.dart';
 import 'package:nem_pancser/features/buy/cart/service/cart.dart';
@@ -40,6 +38,7 @@ class NemPancserApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
+        RepositoryProvider.value(value: pancserClient),
         RepositoryProvider(create: (context) => ItemsRepository()),
         RepositoryProvider(
           create: (context) => Cart(),

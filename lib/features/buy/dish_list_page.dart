@@ -6,12 +6,12 @@ import '../../shared/widgets/pancser_appbar.dart';
 import '../../shared/widgets/pancser_button.dart';
 
 @RoutePage()
-class CourseListPage extends StatelessWidget {
-  const CourseListPage({super.key});
+class DishListPage extends StatelessWidget {
+  const DishListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, String>> courses = [
+    final List<Map<String, String>> dishes = [
       {
         'name': 'Akció! - Maasdamer sajt magvas',
         'price': '2895 FT',
@@ -41,9 +41,9 @@ class CourseListPage extends StatelessWidget {
     return Scaffold(
       appBar: pancserAppBar(context, 'KÍMÉLŐ ÉTELEK'),
       body: ListView.builder(
-        itemCount: courses.length,
+        itemCount: dishes.length,
         itemBuilder: (context, index) {
-          final course = courses[index];
+          final dish = dishes[index];
           final isEven = index % 2 == 0;
           return Container(
             color: isEven ? Colors.white : const Color(0xFFFFF3E0),
@@ -52,7 +52,7 @@ class CourseListPage extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    course['name']!,
+                    dish['name']!,
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
@@ -61,7 +61,7 @@ class CourseListPage extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  course['price']!,
+                  dish['price']!,
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -70,7 +70,7 @@ class CourseListPage extends StatelessWidget {
                 const SizedBox(width: 12),
                 PancserButton(
                   onPressed: () {
-                    context.router.push(const CourseDetailsRoute());
+                    context.router.push(const DishDetailsRoute());
                   },
                   text: 'RÉSZLETEK',
                   width: 100,

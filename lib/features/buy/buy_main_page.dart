@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +18,7 @@ class BuyMainPage extends StatelessWidget {
           PancserButton(
             text: 'RENDELÉS',
             onPressed: () {
-              context.router.push(const CategoryRoute());
+              context.router.push(const DishCategoryRoute());
             },
           ),
           const SizedBox(height: 20),

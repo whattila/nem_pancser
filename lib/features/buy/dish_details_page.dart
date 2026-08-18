@@ -5,8 +5,8 @@ import '../../shared/widgets/pancser_appbar.dart';
 import '../../shared/widgets/pancser_button.dart';
 
 @RoutePage()
-class CourseDetailsPage extends StatelessWidget {
-  const CourseDetailsPage({super.key});
+class DishDetailsPage extends StatelessWidget {
+  const DishDetailsPage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:nem_pancser/features/buy/category/model/dish_category.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../../features/authentication/login/models/login.dto.dart';
@@ -20,4 +21,7 @@ abstract class PancserClient {
   Future<UserAccessData> register({
     @Body() required RegistrationDto registrationDto,
   });
+
+  @GET('/dishes')
+  Future<List<DishCategory>> getDishCategories();
 }
