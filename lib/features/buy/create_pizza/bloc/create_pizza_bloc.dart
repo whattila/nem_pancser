@@ -4,9 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nem_pancser/features/buy/create_pizza/bloc/create_pizza_event.dart';
 import 'package:nem_pancser/features/buy/create_pizza/bloc/create_pizza_state.dart';
 import 'package:nem_pancser/features/buy/create_pizza/model/pizza_property.dart';
-import 'package:nem_pancser/features/buy/shared/items_repository.dart';
+import 'package:nem_pancser/features/buy/shared/dish_repository.dart';
 
-import '../../shared/item.dart';
+import '../../cart/model/cart_item.dart';
 import '../../cart/service/cart.dart';
 
 class CreatePizzaBloc extends Bloc<CreatePizzaEvent, CreatePizzaState> {
@@ -21,7 +21,7 @@ class CreatePizzaBloc extends Bloc<CreatePizzaEvent, CreatePizzaState> {
         on<CreatePizzaNoToppingCanceled>(_onNoToppingCanceled);
     }
 
-  final ItemsRepository _itemsRepository;
+  final DishRepository _itemsRepository;
   final Cart _cart;
 
   FutureOr<void> _onCreatePizzaStarted(CreatePizzaStarted event, Emitter<CreatePizzaState> emit) {

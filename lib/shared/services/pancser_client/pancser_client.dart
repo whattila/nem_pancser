@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:nem_pancser/features/buy/category/model/dish_category.dart';
+import 'package:nem_pancser/features/buy/dish_details/model/dish.dart';
+import 'package:nem_pancser/features/buy/dish_list/model/dish_header.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../../features/authentication/login/models/login.dto.dart';
@@ -13,15 +15,17 @@ abstract class PancserClient {
   factory PancserClient(Dio dio, {String? baseUrl}) = _PancserClient;
 
   @POST('/auth/login')
-  Future<UserAccessData> login({
-    @Body() required LoginDto loginDto,
-  });
+  Future<UserAccessData> login({@Body() required LoginDto loginDto});
 
   @POST('/auth/register')
-  Future<UserAccessData> register({
-    @Body() required RegistrationDto registrationDto,
-  });
+  Future<UserAccessData> register({@Body() required RegistrationDto registrationDto});
 
-  @GET('/dishes')
+  @GET('/dishes/categories')
   Future<List<DishCategory>> getDishCategories();
+
+  @GET('/dishes/categories/{id}/dishes')
+  Future<List<DishHeader>> getDishesByCategory({@Path() required String id});
+
+  @GET('/dishes/{id}')
+  Future<Dish> getDish({@Path() required String id});
 }

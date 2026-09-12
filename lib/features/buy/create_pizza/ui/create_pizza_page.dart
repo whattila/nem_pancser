@@ -10,7 +10,7 @@ import '../bloc/create_pizza_bloc.dart';
 import '../bloc/create_pizza_event.dart';
 import '../bloc/create_pizza_state.dart';
 import '../model/pizza_property.dart';
-import '../../shared/items_repository.dart';
+import '../../shared/dish_repository.dart';
 
 @RoutePage()
 class CreatePizzaPage extends StatelessWidget {
@@ -20,7 +20,7 @@ class CreatePizzaPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-        CreatePizzaBloc(context.read<ItemsRepository>(), context.read<Cart>())
+        CreatePizzaBloc(context.read<DishRepository>(), context.read<Cart>())
         ..add(const CreatePizzaStarted()),
       child: BlocListener<CreatePizzaBloc, CreatePizzaState>(
         listenWhen: (previous, current) =>

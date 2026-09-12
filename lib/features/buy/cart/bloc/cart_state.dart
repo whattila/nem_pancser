@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../shared/item.dart';
+import '../model/cart_item.dart';
 
 part 'cart_state.freezed.dart';
 
@@ -9,7 +9,7 @@ sealed class CartState with _$CartState {
   const factory CartState.initial() = CartInitialState;
 
   const factory CartState.normal({
-    @Default([]) List<Item> items
+    @Default([]) List<CartItem> items
   }) = CartNormalState;
 
   const factory CartState.error() = CartErrorState;

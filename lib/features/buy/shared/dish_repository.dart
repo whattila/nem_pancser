@@ -1,6 +1,6 @@
 import 'package:nem_pancser/features/buy/create_pizza/model/pizza_property.dart';
 
-class ItemsRepository {
+class DishRepository {
   List<PizzaProperty> getAllPizzaProperties()
     => [
       PizzaSize(value: '26 cm', price: 3795),

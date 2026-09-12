@@ -1,21 +1,21 @@
 import 'package:rxdart/rxdart.dart';
 
-import '../../shared/item.dart';
+import '../model/cart_item.dart';
 
 class Cart {
-  final List<Item> _items = [];
+  final List<CartItem> _items = [];
 
-  final _itemsSubject = BehaviorSubject<List<Item>>.seeded([]);
+  final _itemsSubject = BehaviorSubject<List<CartItem>>.seeded([]);
 
-  Stream<List<Item>> get items =>
+  Stream<List<CartItem>> get items =>
       _itemsSubject.stream;
 
-  void add(Item item) {
+  void add(CartItem item) {
     _items.add(item);
     _itemsSubject.add(List.unmodifiable(_items));
   }
 
-  void remove(Item item) {
+  void remove(CartItem item) {
     _items.remove(item);
     _itemsSubject.add(List.unmodifiable(_items));
   }

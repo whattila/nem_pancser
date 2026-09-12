@@ -122,7 +122,7 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function( List<Item> items)?  normal,TResult Function()?  error,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function( List<CartItem> items)?  normal,TResult Function()?  error,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case CartInitialState() when initial != null:
 return initial();case CartNormalState() when normal != null:
@@ -145,7 +145,7 @@ return error();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function( List<Item> items)  normal,required TResult Function()  error,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function( List<CartItem> items)  normal,required TResult Function()  error,}) {final _that = this;
 switch (_that) {
 case CartInitialState():
 return initial();case CartNormalState():
@@ -164,7 +164,7 @@ return error();}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function( List<Item> items)?  normal,TResult? Function()?  error,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function( List<CartItem> items)?  normal,TResult? Function()?  error,}) {final _that = this;
 switch (_that) {
 case CartInitialState() when initial != null:
 return initial();case CartNormalState() when normal != null:
@@ -213,11 +213,11 @@ String toString() {
 
 
 class CartNormalState implements CartState {
-  const CartNormalState({final  List<Item> items = const []}): _items = items;
+  const CartNormalState({final  List<CartItem> items = const []}): _items = items;
   
 
- final  List<Item> _items;
-@JsonKey() List<Item> get items {
+ final  List<CartItem> _items;
+@JsonKey() List<CartItem> get items {
   if (_items is EqualUnmodifiableListView) return _items;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_items);
@@ -254,7 +254,7 @@ abstract mixin class $CartNormalStateCopyWith<$Res> implements $CartStateCopyWit
   factory $CartNormalStateCopyWith(CartNormalState value, $Res Function(CartNormalState) _then) = _$CartNormalStateCopyWithImpl;
 @useResult
 $Res call({
- List<Item> items
+ List<CartItem> items
 });
 
 
@@ -274,7 +274,7 @@ class _$CartNormalStateCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? items = null,}) {
   return _then(CartNormalState(
 items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
-as List<Item>,
+as List<CartItem>,
   ));
 }
 

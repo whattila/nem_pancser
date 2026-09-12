@@ -119,7 +119,7 @@ return itemDeleted(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  opened,TResult Function( Item item)?  itemDeleted,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  opened,TResult Function( CartItem item)?  itemDeleted,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case CartOpened() when opened != null:
 return opened();case CartItemDeleted() when itemDeleted != null:
@@ -141,7 +141,7 @@ return itemDeleted(_that.item);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  opened,required TResult Function( Item item)  itemDeleted,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  opened,required TResult Function( CartItem item)  itemDeleted,}) {final _that = this;
 switch (_that) {
 case CartOpened():
 return opened();case CartItemDeleted():
@@ -159,7 +159,7 @@ return itemDeleted(_that.item);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  opened,TResult? Function( Item item)?  itemDeleted,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  opened,TResult? Function( CartItem item)?  itemDeleted,}) {final _that = this;
 switch (_that) {
 case CartOpened() when opened != null:
 return opened();case CartItemDeleted() when itemDeleted != null:
@@ -210,7 +210,7 @@ class CartItemDeleted implements CartEvent {
   const CartItemDeleted({required this.item});
   
 
- final  Item item;
+ final  CartItem item;
 
 /// Create a copy of CartEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -242,11 +242,11 @@ abstract mixin class $CartItemDeletedCopyWith<$Res> implements $CartEventCopyWit
   factory $CartItemDeletedCopyWith(CartItemDeleted value, $Res Function(CartItemDeleted) _then) = _$CartItemDeletedCopyWithImpl;
 @useResult
 $Res call({
- Item item
+ CartItem item
 });
 
 
-$ItemCopyWith<$Res> get item;
+$CartItemCopyWith<$Res> get item;
 
 }
 /// @nodoc
@@ -262,7 +262,7 @@ class _$CartItemDeletedCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? item = null,}) {
   return _then(CartItemDeleted(
 item: null == item ? _self.item : item // ignore: cast_nullable_to_non_nullable
-as Item,
+as CartItem,
   ));
 }
 
@@ -270,9 +270,9 @@ as Item,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$ItemCopyWith<$Res> get item {
+$CartItemCopyWith<$Res> get item {
   
-  return $ItemCopyWith<$Res>(_self.item, (value) {
+  return $CartItemCopyWith<$Res>(_self.item, (value) {
     return _then(_self.copyWith(item: value));
   });
 }

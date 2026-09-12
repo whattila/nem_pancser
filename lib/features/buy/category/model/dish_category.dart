@@ -6,7 +6,7 @@ part 'dish_category.g.dart';
 @freezed
 abstract class DishCategory with _$DishCategory {
   const factory DishCategory({
-    @JsonKey(name: "_id") required String? id,
+    required String id,
     required String name
   }) = _DishCategory;
 

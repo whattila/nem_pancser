@@ -66,10 +66,12 @@ class DishCategoryPage extends StatelessWidget {
                             separatorBuilder: (context, index) =>
                                 const SizedBox(height: 12),
                             itemBuilder: (context, index) {
+                              final category = categories[index];
                               return PancserButton(
-                                text: categories[index].name.toUpperCase(),
+                                text: category.name.toUpperCase(),
                                 onPressed: () {
-                                  context.router.push(const DishListRoute());
+                                  context.router
+                                      .push(DishListRoute(category: category));
                                 },
                               );
                             },

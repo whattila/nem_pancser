@@ -6,7 +6,7 @@ import 'package:nem_pancser/features/buy/cart/bloc/cart_event.dart';
 import 'package:nem_pancser/features/buy/cart/service/cart.dart';
 
 import 'package:nem_pancser/features/buy/cart/bloc/cart_state.dart';
-import 'package:nem_pancser/features/buy/shared/item.dart';
+import 'package:nem_pancser/features/buy/cart/model/cart_item.dart';
 
 import '../../../../shared/router/app_router.dart';
 import '../../../../shared/widgets/pancser_button.dart';
@@ -43,7 +43,7 @@ class CartView extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: BlocSelector<CartBloc, CartState, List<Item>>(
+            child: BlocSelector<CartBloc, CartState, List<CartItem>>(
               selector: (state) => (state is CartNormalState) ? state.items : [],
               builder: (context, items) {
                 return ListView.builder(
@@ -76,7 +76,7 @@ class CartView extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Text(
-                                '${item.price} Ft',
+                                item.displayPrice,
                                 style: const TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,

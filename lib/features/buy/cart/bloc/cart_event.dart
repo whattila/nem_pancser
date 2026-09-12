@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../shared/item.dart';
+import '../model/cart_item.dart';
 
 part 'cart_event.freezed.dart';
 
@@ -8,6 +8,6 @@ part 'cart_event.freezed.dart';
 sealed class CartEvent with _$CartEvent {
   const factory CartEvent.opened() = CartOpened;
   const factory CartEvent.itemDeleted({
-    required Item item
+    required CartItem item
   }) = CartItemDeleted;
 }

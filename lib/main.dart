@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nem_pancser/features/authentication/shared/auth.repository.dart';
 import 'package:nem_pancser/shared/services/user_access_data_storage/user_access_data_storage.dart';
 import 'package:nem_pancser/features/buy/cart/service/cart.dart';
-import 'package:nem_pancser/features/buy/shared/items_repository.dart';
+import 'package:nem_pancser/features/buy/shared/dish_repository.dart';
 import 'package:nem_pancser/shared/network/dio.dart';
 import 'package:nem_pancser/shared/router/app_router.dart';
 import 'package:nem_pancser/shared/services/pancser_client/pancser_client.dart';
@@ -39,7 +39,7 @@ class NemPancserApp extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider.value(value: pancserClient),
-        RepositoryProvider(create: (context) => ItemsRepository()),
+        RepositoryProvider(create: (context) => DishRepository()),
         RepositoryProvider(
           create: (context) => Cart(),
           dispose: (repository) => repository.dispose(),

@@ -1,12 +1,13 @@
 import 'package:auto_route/auto_route.dart';
-
+import 'package:flutter/material.dart';
 import '../../features/authentication/login/login_page.dart';
 import '../../features/authentication/registration/registration_page.dart';
-import '../../features/buy/buy_main_page.dart';
+import '../../features/buy/category/model/dish_category.dart';
+import '../../features/buy/main/buy_main_page.dart';
 import '../../features/buy/cart/ui/cart_page.dart';
 import '../../features/buy/category/dish_category_page.dart';
-import '../../features/buy/dish_details_page.dart';
-import '../../features/buy/dish_list_page.dart';
+import '../../features/buy/dish_details/dish_details_page.dart';
+import '../../features/buy/dish_list/dish_list_page.dart';
 import '../../features/buy/create_pizza/ui/create_pizza_page.dart';
 import '../../features/buy/order/order_page.dart';
 import '../../features/buy/pancser_pengo/pancser_pengo_page.dart';

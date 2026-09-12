@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$DishCategory {
 
-@JsonKey(name: "_id") String? get id; String get name;
+ String get id; String get name;
 /// Create a copy of DishCategory
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $DishCategoryCopyWith<$Res>  {
   factory $DishCategoryCopyWith(DishCategory value, $Res Function(DishCategory) _then) = _$DishCategoryCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: "_id") String? id, String name
+ String id, String name
 });
 
 
@@ -65,10 +65,10 @@ class _$DishCategoryCopyWithImpl<$Res>
 
 /// Create a copy of DishCategory
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? name = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,}) {
   return _then(_self.copyWith(
-id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -154,7 +154,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "_id")  String? id,  String name)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DishCategory() when $default != null:
 return $default(_that.id,_that.name);case _:
@@ -175,7 +175,7 @@ return $default(_that.id,_that.name);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "_id")  String? id,  String name)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name)  $default,) {final _that = this;
 switch (_that) {
 case _DishCategory():
 return $default(_that.id,_that.name);case _:
@@ -195,7 +195,7 @@ return $default(_that.id,_that.name);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "_id")  String? id,  String name)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name)?  $default,) {final _that = this;
 switch (_that) {
 case _DishCategory() when $default != null:
 return $default(_that.id,_that.name);case _:
@@ -210,10 +210,10 @@ return $default(_that.id,_that.name);case _:
 @JsonSerializable()
 
 class _DishCategory implements DishCategory {
-  const _DishCategory({@JsonKey(name: "_id") required this.id, required this.name});
+  const _DishCategory({required this.id, required this.name});
   factory _DishCategory.fromJson(Map<String, dynamic> json) => _$DishCategoryFromJson(json);
 
-@override@JsonKey(name: "_id") final  String? id;
+@override final  String id;
 @override final  String name;
 
 /// Create a copy of DishCategory
@@ -249,7 +249,7 @@ abstract mixin class _$DishCategoryCopyWith<$Res> implements $DishCategoryCopyWi
   factory _$DishCategoryCopyWith(_DishCategory value, $Res Function(_DishCategory) _then) = __$DishCategoryCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: "_id") String? id, String name
+ String id, String name
 });
 
 
@@ -266,10 +266,10 @@ class __$DishCategoryCopyWithImpl<$Res>
 
 /// Create a copy of DishCategory
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? name = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,}) {
   return _then(_DishCategory(
-id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }

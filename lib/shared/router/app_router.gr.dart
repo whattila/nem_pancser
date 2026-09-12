@@ -108,18 +108,49 @@ class DishDetailsRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [DishListPage]
-class DishListRoute extends PageRouteInfo<void> {
-  const DishListRoute({List<PageRouteInfo>? children})
-    : super(DishListRoute.name, initialChildren: children);
+class DishListRoute extends PageRouteInfo<DishListRouteArgs> {
+  DishListRoute({
+    Key? key,
+    required DishCategory category,
+    List<PageRouteInfo>? children,
+  }) : super(
+         DishListRoute.name,
+         args: DishListRouteArgs(key: key, category: category),
+         initialChildren: children,
+       );
 
   static const String name = 'DishListRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const DishListPage();
+      final args = data.argsAs<DishListRouteArgs>();
+      return DishListPage(key: args.key, category: args.category);
     },
   );
+}
+
+class DishListRouteArgs {
+  const DishListRouteArgs({this.key, required this.category});
+
+  final Key? key;
+
+  final DishCategory category;
+
+  @override
+  String toString() {
+    return 'DishListRouteArgs{key: $key, category: $category}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! DishListRouteArgs) return false;
+    return key == other.key && category == other.category;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ category.hashCode;
 }
 
 /// generated route for
