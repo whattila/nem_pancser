@@ -4,10 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nem_pancser/features/buy/create_pizza/bloc/create_pizza_event.dart';
 import 'package:nem_pancser/features/buy/create_pizza/bloc/create_pizza_state.dart';
 import 'package:nem_pancser/features/buy/create_pizza/model/pizza_property.dart';
-import 'package:nem_pancser/features/buy/shared/dish_repository.dart';
 
 import '../../cart/model/cart_item.dart';
 import '../../cart/service/cart.dart';
+import '../../repository/dish_repository.dart';
 
 class CreatePizzaBloc extends Bloc<CreatePizzaEvent, CreatePizzaState> {
   CreatePizzaBloc(this._itemsRepository, this._cart)
@@ -55,7 +55,7 @@ class CreatePizzaBloc extends Bloc<CreatePizzaEvent, CreatePizzaState> {
       updatedToppingSelection.remove(event.topping);
     }
 
-    emit(inProgressState.copyWith(selectedToppings: updatedToppingSelection,));
+    emit(inProgressState.copyWith(selectedToppings: updatedToppingSelection));
   }
 
   void _onFinished(CreatePizzaFinished event, Emitter<CreatePizzaState> emit) {
@@ -67,7 +67,8 @@ class CreatePizzaBloc extends Bloc<CreatePizzaEvent, CreatePizzaState> {
       final pizza = Pizza(
         size: inProgressState.selectedSize!,
         sauce: inProgressState.selectedSauce!,
-        toppings: inProgressState.selectedToppings.toList(),
+        toppings: inProgressState.selectedToppings,
+        amount: 1 // TODO: add actual amount
       );
       _cart.add(pizza);
       emit(const CreatePizzaDoneState());
@@ -79,6 +80,7 @@ class CreatePizzaBloc extends Bloc<CreatePizzaEvent, CreatePizzaState> {
     final pizza = Pizza(
       size: inProgressState.selectedSize!,
       sauce: inProgressState.selectedSauce!,
+      amount: 1 // TODO: add actual amount
     );
     _cart.add(pizza);
     emit(const CreatePizzaDoneState());

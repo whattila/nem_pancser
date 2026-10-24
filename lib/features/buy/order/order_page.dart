@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import '../../../shared/widgets/dropdown_button_row.dart';
 import '../../../shared/widgets/pancser_button.dart';
 
 @RoutePage()
@@ -51,9 +52,11 @@ class _OrderPageState extends State<OrderPage> {
                       : null,
                 ),
                 const SizedBox(height: 12),
-                const SelectRow(
+                DropdownButtonRow(
                   label: 'Város: *',
                   options: ['2120 Dunakeszi', '2121 Fót', '2131 Göd'],
+                  optionToString: (val) => val,
+                  value: '2120 Dunakeszi',
                 ),
                 const SizedBox(height: 12),
                 InputRow(
@@ -105,14 +108,18 @@ class _OrderPageState extends State<OrderPage> {
                 const SizedBox(height: 12),
                 const InputRow(label: 'Megjegyzés:'),
                 const SizedBox(height: 12),
-                const SelectRow(
+                DropdownButtonRow(
                   label: 'Fizetés: *',
-                  options: ['Készpénz', 'Bankkártya'],
+                  options: const ['Készpénz', 'Bankkártya'],
+                  optionToString: (val) => val,
+                  value: 'Készpénz',
                 ),
                 const SizedBox(height: 12),
-                const SelectRow(
+                DropdownButtonRow(
                   label: 'Szállítás: *',
                   options: ['Házhozszállítás', 'Személyes átvétel'],
+                  optionToString: (val) => val,
+                  value: 'Házhozszállítás',
                 ),
                 const SizedBox(height: 20),
               ],
@@ -179,65 +186,6 @@ class InputRow extends StatelessWidget {
               isDense: true,
               contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               border: OutlineInputBorder(),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class SelectRow extends StatelessWidget {
-  static const String unsetValue = "- nincs kiválasztva -";
-
-  final String label;
-  final List<String> options;
-
-  const SelectRow({
-    super.key,
-    required this.label,
-    required this.options,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final allOptions = [
-      unsetValue,
-      ...options
-    ];
-
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-          width: 120,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 12.0),
-            child: Text(
-              label,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-            ),
-          ),
-        ),
-        Expanded(
-          child: DropdownButtonFormField<String>(
-            initialValue: unsetValue,
-            items: allOptions.map((String val) {
-              return DropdownMenuItem<String>(
-                value: val,
-                child: Text(val),
-              );
-            }).toList(),
-            onChanged: (val) {},
-            validator: (val) {
-              if (val == null || val == unsetValue) {
-                return 'Kérjük válassz!';
-              }
-              return null;
-            },
-            decoration: const InputDecoration(
-              isDense: true,
-              contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             ),
           ),
         ),

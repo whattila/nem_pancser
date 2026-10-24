@@ -14,30 +14,61 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CartItem {
 
-
+ int get amount;
+/// Create a copy of CartItem
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CartItemCopyWith<CartItem> get copyWith => _$CartItemCopyWithImpl<CartItem>(this as CartItem, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CartItem);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CartItem&&(identical(other.amount, amount) || other.amount == amount));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,amount);
 
 @override
 String toString() {
-  return 'CartItem()';
+  return 'CartItem(amount: $amount)';
 }
 
 
 }
 
 /// @nodoc
-class $CartItemCopyWith<$Res>  {
-$CartItemCopyWith(CartItem _, $Res Function(CartItem) __);
+abstract mixin class $CartItemCopyWith<$Res>  {
+  factory $CartItemCopyWith(CartItem value, $Res Function(CartItem) _then) = _$CartItemCopyWithImpl;
+@useResult
+$Res call({
+ int amount
+});
+
+
+
+
+}
+/// @nodoc
+class _$CartItemCopyWithImpl<$Res>
+    implements $CartItemCopyWith<$Res> {
+  _$CartItemCopyWithImpl(this._self, this._then);
+
+  final CartItem _self;
+  final $Res Function(CartItem) _then;
+
+/// Create a copy of CartItem
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? amount = null,}) {
+  return _then(_self.copyWith(
+amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
 }
 
 
@@ -55,12 +86,13 @@ extension CartItemPatterns on CartItem {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( Pizza value)?  pizza,TResult Function( OtherDish value)?  otherDish,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( Pizza value)?  pizza,TResult Function( DishWithOptions value)?  dishWithOptions,TResult Function( Salad value)?  salad,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case Pizza() when pizza != null:
-return pizza(_that);case OtherDish() when otherDish != null:
-return otherDish(_that);case _:
+return pizza(_that);case DishWithOptions() when dishWithOptions != null:
+return dishWithOptions(_that);case Salad() when salad != null:
+return salad(_that);case _:
   return orElse();
 
 }
@@ -78,12 +110,13 @@ return otherDish(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( Pizza value)  pizza,required TResult Function( OtherDish value)  otherDish,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( Pizza value)  pizza,required TResult Function( DishWithOptions value)  dishWithOptions,required TResult Function( Salad value)  salad,}){
 final _that = this;
 switch (_that) {
 case Pizza():
-return pizza(_that);case OtherDish():
-return otherDish(_that);}
+return pizza(_that);case DishWithOptions():
+return dishWithOptions(_that);case Salad():
+return salad(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -97,12 +130,13 @@ return otherDish(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( Pizza value)?  pizza,TResult? Function( OtherDish value)?  otherDish,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( Pizza value)?  pizza,TResult? Function( DishWithOptions value)?  dishWithOptions,TResult? Function( Salad value)?  salad,}){
 final _that = this;
 switch (_that) {
 case Pizza() when pizza != null:
-return pizza(_that);case OtherDish() when otherDish != null:
-return otherDish(_that);case _:
+return pizza(_that);case DishWithOptions() when dishWithOptions != null:
+return dishWithOptions(_that);case Salad() when salad != null:
+return salad(_that);case _:
   return null;
 
 }
@@ -119,11 +153,12 @@ return otherDish(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( PizzaSize size,  PizzaSauce sauce,  List<PizzaTopping> toppings)?  pizza,TResult Function( DishHeader dish)?  otherDish,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( PizzaSize size,  PizzaSauce sauce,  Set<PizzaTopping> toppings,  int amount)?  pizza,TResult Function( Dish dish,  SideDish? selectedSideDish,  MeatOption? selectedMeatOption,  int amount)?  dishWithOptions,TResult Function( Dish dish,  Set<SaladExtra> selectedSaladExtras,  int amount)?  salad,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case Pizza() when pizza != null:
-return pizza(_that.size,_that.sauce,_that.toppings);case OtherDish() when otherDish != null:
-return otherDish(_that.dish);case _:
+return pizza(_that.size,_that.sauce,_that.toppings,_that.amount);case DishWithOptions() when dishWithOptions != null:
+return dishWithOptions(_that.dish,_that.selectedSideDish,_that.selectedMeatOption,_that.amount);case Salad() when salad != null:
+return salad(_that.dish,_that.selectedSaladExtras,_that.amount);case _:
   return orElse();
 
 }
@@ -141,11 +176,12 @@ return otherDish(_that.dish);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( PizzaSize size,  PizzaSauce sauce,  List<PizzaTopping> toppings)  pizza,required TResult Function( DishHeader dish)  otherDish,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( PizzaSize size,  PizzaSauce sauce,  Set<PizzaTopping> toppings,  int amount)  pizza,required TResult Function( Dish dish,  SideDish? selectedSideDish,  MeatOption? selectedMeatOption,  int amount)  dishWithOptions,required TResult Function( Dish dish,  Set<SaladExtra> selectedSaladExtras,  int amount)  salad,}) {final _that = this;
 switch (_that) {
 case Pizza():
-return pizza(_that.size,_that.sauce,_that.toppings);case OtherDish():
-return otherDish(_that.dish);}
+return pizza(_that.size,_that.sauce,_that.toppings,_that.amount);case DishWithOptions():
+return dishWithOptions(_that.dish,_that.selectedSideDish,_that.selectedMeatOption,_that.amount);case Salad():
+return salad(_that.dish,_that.selectedSaladExtras,_that.amount);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -159,11 +195,12 @@ return otherDish(_that.dish);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( PizzaSize size,  PizzaSauce sauce,  List<PizzaTopping> toppings)?  pizza,TResult? Function( DishHeader dish)?  otherDish,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( PizzaSize size,  PizzaSauce sauce,  Set<PizzaTopping> toppings,  int amount)?  pizza,TResult? Function( Dish dish,  SideDish? selectedSideDish,  MeatOption? selectedMeatOption,  int amount)?  dishWithOptions,TResult? Function( Dish dish,  Set<SaladExtra> selectedSaladExtras,  int amount)?  salad,}) {final _that = this;
 switch (_that) {
 case Pizza() when pizza != null:
-return pizza(_that.size,_that.sauce,_that.toppings);case OtherDish() when otherDish != null:
-return otherDish(_that.dish);case _:
+return pizza(_that.size,_that.sauce,_that.toppings,_that.amount);case DishWithOptions() when dishWithOptions != null:
+return dishWithOptions(_that.dish,_that.selectedSideDish,_that.selectedMeatOption,_that.amount);case Salad() when salad != null:
+return salad(_that.dish,_that.selectedSaladExtras,_that.amount);case _:
   return null;
 
 }
@@ -175,22 +212,23 @@ return otherDish(_that.dish);case _:
 
 
 class Pizza extends CartItem {
-  const Pizza({required this.size, required this.sauce, final  List<PizzaTopping> toppings = const []}): _toppings = toppings,super._();
+  const Pizza({required this.size, required this.sauce, final  Set<PizzaTopping> toppings = const {}, required this.amount}): _toppings = toppings,super._();
   
 
  final  PizzaSize size;
  final  PizzaSauce sauce;
- final  List<PizzaTopping> _toppings;
-@JsonKey() List<PizzaTopping> get toppings {
-  if (_toppings is EqualUnmodifiableListView) return _toppings;
+ final  Set<PizzaTopping> _toppings;
+@JsonKey() Set<PizzaTopping> get toppings {
+  if (_toppings is EqualUnmodifiableSetView) return _toppings;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_toppings);
+  return EqualUnmodifiableSetView(_toppings);
 }
 
+@override final  int amount;
 
 /// Create a copy of CartItem
 /// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
+@override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $PizzaCopyWith<Pizza> get copyWith => _$PizzaCopyWithImpl<Pizza>(this, _$identity);
 
@@ -198,16 +236,16 @@ $PizzaCopyWith<Pizza> get copyWith => _$PizzaCopyWithImpl<Pizza>(this, _$identit
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Pizza&&const DeepCollectionEquality().equals(other.size, size)&&const DeepCollectionEquality().equals(other.sauce, sauce)&&const DeepCollectionEquality().equals(other._toppings, _toppings));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Pizza&&const DeepCollectionEquality().equals(other.size, size)&&const DeepCollectionEquality().equals(other.sauce, sauce)&&const DeepCollectionEquality().equals(other._toppings, _toppings)&&(identical(other.amount, amount) || other.amount == amount));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(size),const DeepCollectionEquality().hash(sauce),const DeepCollectionEquality().hash(_toppings));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(size),const DeepCollectionEquality().hash(sauce),const DeepCollectionEquality().hash(_toppings),amount);
 
 @override
 String toString() {
-  return 'CartItem.pizza(size: $size, sauce: $sauce, toppings: $toppings)';
+  return 'CartItem.pizza(size: $size, sauce: $sauce, toppings: $toppings, amount: $amount)';
 }
 
 
@@ -216,9 +254,9 @@ String toString() {
 /// @nodoc
 abstract mixin class $PizzaCopyWith<$Res> implements $CartItemCopyWith<$Res> {
   factory $PizzaCopyWith(Pizza value, $Res Function(Pizza) _then) = _$PizzaCopyWithImpl;
-@useResult
+@override @useResult
 $Res call({
- PizzaSize size, PizzaSauce sauce, List<PizzaTopping> toppings
+ PizzaSize size, PizzaSauce sauce, Set<PizzaTopping> toppings, int amount
 });
 
 
@@ -235,12 +273,13 @@ class _$PizzaCopyWithImpl<$Res>
 
 /// Create a copy of CartItem
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? size = freezed,Object? sauce = freezed,Object? toppings = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? size = freezed,Object? sauce = freezed,Object? toppings = null,Object? amount = null,}) {
   return _then(Pizza(
 size: freezed == size ? _self.size : size // ignore: cast_nullable_to_non_nullable
 as PizzaSize,sauce: freezed == sauce ? _self.sauce : sauce // ignore: cast_nullable_to_non_nullable
 as PizzaSauce,toppings: null == toppings ? _self._toppings : toppings // ignore: cast_nullable_to_non_nullable
-as List<PizzaTopping>,
+as Set<PizzaTopping>,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 
@@ -250,63 +289,69 @@ as List<PizzaTopping>,
 /// @nodoc
 
 
-class OtherDish extends CartItem {
-  const OtherDish({required this.dish}): super._();
+class DishWithOptions extends CartItem {
+  const DishWithOptions({required this.dish, this.selectedSideDish, this.selectedMeatOption, required this.amount}): super._();
   
 
- final  DishHeader dish;
+ final  Dish dish;
+ final  SideDish? selectedSideDish;
+ final  MeatOption? selectedMeatOption;
+@override final  int amount;
 
 /// Create a copy of CartItem
 /// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
+@override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$OtherDishCopyWith<OtherDish> get copyWith => _$OtherDishCopyWithImpl<OtherDish>(this, _$identity);
+$DishWithOptionsCopyWith<DishWithOptions> get copyWith => _$DishWithOptionsCopyWithImpl<DishWithOptions>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OtherDish&&(identical(other.dish, dish) || other.dish == dish));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DishWithOptions&&(identical(other.dish, dish) || other.dish == dish)&&const DeepCollectionEquality().equals(other.selectedSideDish, selectedSideDish)&&const DeepCollectionEquality().equals(other.selectedMeatOption, selectedMeatOption)&&(identical(other.amount, amount) || other.amount == amount));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,dish);
+int get hashCode => Object.hash(runtimeType,dish,const DeepCollectionEquality().hash(selectedSideDish),const DeepCollectionEquality().hash(selectedMeatOption),amount);
 
 @override
 String toString() {
-  return 'CartItem.otherDish(dish: $dish)';
+  return 'CartItem.dishWithOptions(dish: $dish, selectedSideDish: $selectedSideDish, selectedMeatOption: $selectedMeatOption, amount: $amount)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $OtherDishCopyWith<$Res> implements $CartItemCopyWith<$Res> {
-  factory $OtherDishCopyWith(OtherDish value, $Res Function(OtherDish) _then) = _$OtherDishCopyWithImpl;
-@useResult
+abstract mixin class $DishWithOptionsCopyWith<$Res> implements $CartItemCopyWith<$Res> {
+  factory $DishWithOptionsCopyWith(DishWithOptions value, $Res Function(DishWithOptions) _then) = _$DishWithOptionsCopyWithImpl;
+@override @useResult
 $Res call({
- DishHeader dish
+ Dish dish, SideDish? selectedSideDish, MeatOption? selectedMeatOption, int amount
 });
 
 
-$DishHeaderCopyWith<$Res> get dish;
+$DishCopyWith<$Res> get dish;
 
 }
 /// @nodoc
-class _$OtherDishCopyWithImpl<$Res>
-    implements $OtherDishCopyWith<$Res> {
-  _$OtherDishCopyWithImpl(this._self, this._then);
+class _$DishWithOptionsCopyWithImpl<$Res>
+    implements $DishWithOptionsCopyWith<$Res> {
+  _$DishWithOptionsCopyWithImpl(this._self, this._then);
 
-  final OtherDish _self;
-  final $Res Function(OtherDish) _then;
+  final DishWithOptions _self;
+  final $Res Function(DishWithOptions) _then;
 
 /// Create a copy of CartItem
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? dish = null,}) {
-  return _then(OtherDish(
+@override @pragma('vm:prefer-inline') $Res call({Object? dish = null,Object? selectedSideDish = freezed,Object? selectedMeatOption = freezed,Object? amount = null,}) {
+  return _then(DishWithOptions(
 dish: null == dish ? _self.dish : dish // ignore: cast_nullable_to_non_nullable
-as DishHeader,
+as Dish,selectedSideDish: freezed == selectedSideDish ? _self.selectedSideDish : selectedSideDish // ignore: cast_nullable_to_non_nullable
+as SideDish?,selectedMeatOption: freezed == selectedMeatOption ? _self.selectedMeatOption : selectedMeatOption // ignore: cast_nullable_to_non_nullable
+as MeatOption?,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 
@@ -314,9 +359,94 @@ as DishHeader,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$DishHeaderCopyWith<$Res> get dish {
+$DishCopyWith<$Res> get dish {
   
-  return $DishHeaderCopyWith<$Res>(_self.dish, (value) {
+  return $DishCopyWith<$Res>(_self.dish, (value) {
+    return _then(_self.copyWith(dish: value));
+  });
+}
+}
+
+/// @nodoc
+
+
+class Salad extends CartItem {
+  const Salad({required this.dish, final  Set<SaladExtra> selectedSaladExtras = const {}, required this.amount}): _selectedSaladExtras = selectedSaladExtras,super._();
+  
+
+ final  Dish dish;
+ final  Set<SaladExtra> _selectedSaladExtras;
+@JsonKey() Set<SaladExtra> get selectedSaladExtras {
+  if (_selectedSaladExtras is EqualUnmodifiableSetView) return _selectedSaladExtras;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableSetView(_selectedSaladExtras);
+}
+
+@override final  int amount;
+
+/// Create a copy of CartItem
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SaladCopyWith<Salad> get copyWith => _$SaladCopyWithImpl<Salad>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Salad&&(identical(other.dish, dish) || other.dish == dish)&&const DeepCollectionEquality().equals(other._selectedSaladExtras, _selectedSaladExtras)&&(identical(other.amount, amount) || other.amount == amount));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,dish,const DeepCollectionEquality().hash(_selectedSaladExtras),amount);
+
+@override
+String toString() {
+  return 'CartItem.salad(dish: $dish, selectedSaladExtras: $selectedSaladExtras, amount: $amount)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $SaladCopyWith<$Res> implements $CartItemCopyWith<$Res> {
+  factory $SaladCopyWith(Salad value, $Res Function(Salad) _then) = _$SaladCopyWithImpl;
+@override @useResult
+$Res call({
+ Dish dish, Set<SaladExtra> selectedSaladExtras, int amount
+});
+
+
+$DishCopyWith<$Res> get dish;
+
+}
+/// @nodoc
+class _$SaladCopyWithImpl<$Res>
+    implements $SaladCopyWith<$Res> {
+  _$SaladCopyWithImpl(this._self, this._then);
+
+  final Salad _self;
+  final $Res Function(Salad) _then;
+
+/// Create a copy of CartItem
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? dish = null,Object? selectedSaladExtras = null,Object? amount = null,}) {
+  return _then(Salad(
+dish: null == dish ? _self.dish : dish // ignore: cast_nullable_to_non_nullable
+as Dish,selectedSaladExtras: null == selectedSaladExtras ? _self._selectedSaladExtras : selectedSaladExtras // ignore: cast_nullable_to_non_nullable
+as Set<SaladExtra>,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+/// Create a copy of CartItem
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$DishCopyWith<$Res> get dish {
+  
+  return $DishCopyWith<$Res>(_self.dish, (value) {
     return _then(_self.copyWith(dish: value));
   });
 }

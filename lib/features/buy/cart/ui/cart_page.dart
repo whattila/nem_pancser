@@ -44,7 +44,7 @@ class CartView extends StatelessWidget {
         children: [
           Expanded(
             child: BlocSelector<CartBloc, CartState, List<CartItem>>(
-              selector: (state) => (state is CartNormalState) ? state.items : [],
+              selector: (state) => (state is CartInUseState) ? state.items : [],
               builder: (context, items) {
                 return ListView.builder(
                   itemCount: items.length,
@@ -61,13 +61,23 @@ class CartView extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  item.displayName,
+                                  '${item.amount}x ${item.displayName}',
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
                                   style: const TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                // TODO: here can come the details...
+                                const SizedBox(height: 8),
+                                for (String extraDetail in item.extraDetails) ...[
+                                  Text(
+                                    extraDetail,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(fontSize: 16)
+                                  )
+                                ]
                               ],
                             ),
                           ),
@@ -76,7 +86,7 @@ class CartView extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Text(
-                                item.displayPrice,
+                                '${item.price} Ft',
                                 style: const TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
@@ -109,7 +119,7 @@ class CartView extends StatelessWidget {
                 const SummaryRow(label: 'Felhasznált Pancser Pengők:', value: '1540 PP'),
                 const SizedBox(height: 12),
                 BlocSelector<CartBloc, CartState, int>(
-                  selector: (state) => (state is CartNormalState) ? state.price : 0,
+                  selector: (state) => (state is CartInUseState) ? state.price : 0,
                   builder: (context, price) {
                     return SummaryRow(label: 'Fizetendő:', value: '$price Ft');
                   },

@@ -5,12 +5,12 @@ import 'package:nem_pancser/features/authentication/login/bloc/login.bloc.dart';
 import 'package:nem_pancser/features/authentication/login/bloc/login.event.dart';
 import 'package:nem_pancser/features/authentication/login/bloc/login.state.dart';
 import 'package:nem_pancser/features/authentication/login/models/login.dto.dart';
-import 'package:nem_pancser/features/authentication/shared/auth.repository.dart';
 import 'package:password_text_field/password_text_field.dart';
 
 import '../../../shared/router/app_router.dart';
 import '../../../shared/widgets/pancser_background.dart';
 import '../../../shared/widgets/pancser_button.dart';
+import '../repository/auth.repository.dart';
 
 @RoutePage()
 class LoginPage extends StatelessWidget {

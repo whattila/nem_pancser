@@ -6,11 +6,11 @@ import '../../../../shared/widgets/pancser_appbar.dart';
 import '../../../../shared/widgets/pancser_background.dart';
 import '../../../../shared/widgets/pancser_button.dart';
 import '../../cart/service/cart.dart';
+import '../../repository/dish_repository.dart';
 import '../bloc/create_pizza_bloc.dart';
 import '../bloc/create_pizza_event.dart';
 import '../bloc/create_pizza_state.dart';
 import '../model/pizza_property.dart';
-import '../../shared/dish_repository.dart';
 
 @RoutePage()
 class CreatePizzaPage extends StatelessWidget {
@@ -23,7 +23,7 @@ class CreatePizzaPage extends StatelessWidget {
         CreatePizzaBloc(context.read<DishRepository>(), context.read<Cart>())
         ..add(const CreatePizzaStarted()),
       child: BlocListener<CreatePizzaBloc, CreatePizzaState>(
-        listenWhen: (previous, current) =>
+        listenWhen: (_, current) =>
             current is CreatePizzaInProgressState && current.confirmNoTopping
             || current is CreatePizzaDoneState,
         listener: (context, state) {
@@ -130,8 +130,11 @@ class CreatePizzaView extends StatelessWidget {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 12),
-            BlocSelector<CreatePizzaBloc, CreatePizzaState,
-                ({List<PizzaSauce> sauces, PizzaSauce? selectedSauce})>(
+            BlocSelector<
+                CreatePizzaBloc,
+                CreatePizzaState,
+                ({List<PizzaSauce> sauces, PizzaSauce? selectedSauce})
+            >(
               selector: (state) {
                 if (state is CreatePizzaInProgressState) {
                   return (sauces: state.sauces, selectedSauce: state.selectedSauce);
@@ -208,7 +211,9 @@ class CreatePizzaView extends StatelessWidget {
                               },
                               activeColor: const Color(0xFFBD3E11),
                               side: const BorderSide(
-                                  color: Color(0xFFBD3E11), width: 2),
+                                  color: Color(0xFFBD3E11),
+                                  width: 2
+                              ),
                             ),
                           );
                         },

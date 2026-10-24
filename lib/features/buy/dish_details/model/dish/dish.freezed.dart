@@ -11,33 +11,30 @@ part of 'dish.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
-
 /// @nodoc
 mixin _$Dish {
 
- String get id; String get name; int get price; String get description; List<String> get allergens; int get pancserCredit; String get imageUrl;
+ String get id; String get name; int get price; String get description; List<String> get allergens; int get pancserCreditValue; String? get imageUrl;
 /// Create a copy of Dish
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $DishCopyWith<Dish> get copyWith => _$DishCopyWithImpl<Dish>(this as Dish, _$identity);
 
-  /// Serializes this Dish to a JSON map.
-  Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Dish&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.price, price) || other.price == price)&&(identical(other.description, description) || other.description == description)&&const DeepCollectionEquality().equals(other.allergens, allergens)&&(identical(other.pancserCredit, pancserCredit) || other.pancserCredit == pancserCredit)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Dish&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.price, price) || other.price == price)&&(identical(other.description, description) || other.description == description)&&const DeepCollectionEquality().equals(other.allergens, allergens)&&(identical(other.pancserCreditValue, pancserCreditValue) || other.pancserCreditValue == pancserCreditValue)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl));
 }
 
-@JsonKey(includeFromJson: false, includeToJson: false)
+
 @override
-int get hashCode => Object.hash(runtimeType,id,name,price,description,const DeepCollectionEquality().hash(allergens),pancserCredit,imageUrl);
+int get hashCode => Object.hash(runtimeType,id,name,price,description,const DeepCollectionEquality().hash(allergens),pancserCreditValue,imageUrl);
 
 @override
 String toString() {
-  return 'Dish(id: $id, name: $name, price: $price, description: $description, allergens: $allergens, pancserCredit: $pancserCredit, imageUrl: $imageUrl)';
+  return 'Dish(id: $id, name: $name, price: $price, description: $description, allergens: $allergens, pancserCreditValue: $pancserCreditValue, imageUrl: $imageUrl)';
 }
 
 
@@ -48,7 +45,7 @@ abstract mixin class $DishCopyWith<$Res>  {
   factory $DishCopyWith(Dish value, $Res Function(Dish) _then) = _$DishCopyWithImpl;
 @useResult
 $Res call({
- String id, String name, int price, String description, List<String> allergens, int pancserCredit, String imageUrl
+ String id, String name, int price, String description, List<String> allergens, int pancserCreditValue, String? imageUrl
 });
 
 
@@ -65,16 +62,16 @@ class _$DishCopyWithImpl<$Res>
 
 /// Create a copy of Dish
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? price = null,Object? description = null,Object? allergens = null,Object? pancserCredit = null,Object? imageUrl = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? price = null,Object? description = null,Object? allergens = null,Object? pancserCreditValue = null,Object? imageUrl = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
 as int,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,allergens: null == allergens ? _self.allergens : allergens // ignore: cast_nullable_to_non_nullable
-as List<String>,pancserCredit: null == pancserCredit ? _self.pancserCredit : pancserCredit // ignore: cast_nullable_to_non_nullable
-as int,imageUrl: null == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String,
+as List<String>,pancserCreditValue: null == pancserCreditValue ? _self.pancserCreditValue : pancserCreditValue // ignore: cast_nullable_to_non_nullable
+as int,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -159,10 +156,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  int price,  String description,  List<String> allergens,  int pancserCredit,  String imageUrl)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  int price,  String description,  List<String> allergens,  int pancserCreditValue,  String? imageUrl)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Dish() when $default != null:
-return $default(_that.id,_that.name,_that.price,_that.description,_that.allergens,_that.pancserCredit,_that.imageUrl);case _:
+return $default(_that.id,_that.name,_that.price,_that.description,_that.allergens,_that.pancserCreditValue,_that.imageUrl);case _:
   return orElse();
 
 }
@@ -180,10 +177,10 @@ return $default(_that.id,_that.name,_that.price,_that.description,_that.allergen
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  int price,  String description,  List<String> allergens,  int pancserCredit,  String imageUrl)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  int price,  String description,  List<String> allergens,  int pancserCreditValue,  String? imageUrl)  $default,) {final _that = this;
 switch (_that) {
 case _Dish():
-return $default(_that.id,_that.name,_that.price,_that.description,_that.allergens,_that.pancserCredit,_that.imageUrl);case _:
+return $default(_that.id,_that.name,_that.price,_that.description,_that.allergens,_that.pancserCreditValue,_that.imageUrl);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -200,10 +197,10 @@ return $default(_that.id,_that.name,_that.price,_that.description,_that.allergen
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  int price,  String description,  List<String> allergens,  int pancserCredit,  String imageUrl)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  int price,  String description,  List<String> allergens,  int pancserCreditValue,  String? imageUrl)?  $default,) {final _that = this;
 switch (_that) {
 case _Dish() when $default != null:
-return $default(_that.id,_that.name,_that.price,_that.description,_that.allergens,_that.pancserCredit,_that.imageUrl);case _:
+return $default(_that.id,_that.name,_that.price,_that.description,_that.allergens,_that.pancserCreditValue,_that.imageUrl);case _:
   return null;
 
 }
@@ -212,11 +209,11 @@ return $default(_that.id,_that.name,_that.price,_that.description,_that.allergen
 }
 
 /// @nodoc
-@JsonSerializable()
+
 
 class _Dish implements Dish {
-  const _Dish({required this.id, required this.name, required this.price, required this.description, final  List<String> allergens = const [], this.pancserCredit = 0, required this.imageUrl}): _allergens = allergens;
-  factory _Dish.fromJson(Map<String, dynamic> json) => _$DishFromJson(json);
+  const _Dish({required this.id, required this.name, required this.price, required this.description, final  List<String> allergens = const [], this.pancserCreditValue = 0, required this.imageUrl}): _allergens = allergens;
+  
 
 @override final  String id;
 @override final  String name;
@@ -229,8 +226,8 @@ class _Dish implements Dish {
   return EqualUnmodifiableListView(_allergens);
 }
 
-@override@JsonKey() final  int pancserCredit;
-@override final  String imageUrl;
+@override@JsonKey() final  int pancserCreditValue;
+@override final  String? imageUrl;
 
 /// Create a copy of Dish
 /// with the given fields replaced by the non-null parameter values.
@@ -238,23 +235,20 @@ class _Dish implements Dish {
 @pragma('vm:prefer-inline')
 _$DishCopyWith<_Dish> get copyWith => __$DishCopyWithImpl<_Dish>(this, _$identity);
 
-@override
-Map<String, dynamic> toJson() {
-  return _$DishToJson(this, );
-}
+
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Dish&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.price, price) || other.price == price)&&(identical(other.description, description) || other.description == description)&&const DeepCollectionEquality().equals(other._allergens, _allergens)&&(identical(other.pancserCredit, pancserCredit) || other.pancserCredit == pancserCredit)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Dish&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.price, price) || other.price == price)&&(identical(other.description, description) || other.description == description)&&const DeepCollectionEquality().equals(other._allergens, _allergens)&&(identical(other.pancserCreditValue, pancserCreditValue) || other.pancserCreditValue == pancserCreditValue)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl));
 }
 
-@JsonKey(includeFromJson: false, includeToJson: false)
+
 @override
-int get hashCode => Object.hash(runtimeType,id,name,price,description,const DeepCollectionEquality().hash(_allergens),pancserCredit,imageUrl);
+int get hashCode => Object.hash(runtimeType,id,name,price,description,const DeepCollectionEquality().hash(_allergens),pancserCreditValue,imageUrl);
 
 @override
 String toString() {
-  return 'Dish(id: $id, name: $name, price: $price, description: $description, allergens: $allergens, pancserCredit: $pancserCredit, imageUrl: $imageUrl)';
+  return 'Dish(id: $id, name: $name, price: $price, description: $description, allergens: $allergens, pancserCreditValue: $pancserCreditValue, imageUrl: $imageUrl)';
 }
 
 
@@ -265,7 +259,7 @@ abstract mixin class _$DishCopyWith<$Res> implements $DishCopyWith<$Res> {
   factory _$DishCopyWith(_Dish value, $Res Function(_Dish) _then) = __$DishCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String name, int price, String description, List<String> allergens, int pancserCredit, String imageUrl
+ String id, String name, int price, String description, List<String> allergens, int pancserCreditValue, String? imageUrl
 });
 
 
@@ -282,16 +276,16 @@ class __$DishCopyWithImpl<$Res>
 
 /// Create a copy of Dish
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? price = null,Object? description = null,Object? allergens = null,Object? pancserCredit = null,Object? imageUrl = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? price = null,Object? description = null,Object? allergens = null,Object? pancserCreditValue = null,Object? imageUrl = freezed,}) {
   return _then(_Dish(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
 as int,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,allergens: null == allergens ? _self._allergens : allergens // ignore: cast_nullable_to_non_nullable
-as List<String>,pancserCredit: null == pancserCredit ? _self.pancserCredit : pancserCredit // ignore: cast_nullable_to_non_nullable
-as int,imageUrl: null == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String,
+as List<String>,pancserCreditValue: null == pancserCreditValue ? _self.pancserCreditValue : pancserCreditValue // ignore: cast_nullable_to_non_nullable
+as int,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

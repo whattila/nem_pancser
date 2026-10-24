@@ -7,11 +7,11 @@ import 'package:nem_pancser/features/authentication/registration/bloc/registrati
 import 'package:nem_pancser/features/authentication/registration/bloc/registration.state.dart';
 import 'package:nem_pancser/features/authentication/registration/models/address.dto.dart';
 import 'package:nem_pancser/features/authentication/registration/models/registration.dto.dart';
-import 'package:nem_pancser/features/authentication/shared/auth.repository.dart';
 import 'package:password_text_field/password_text_field.dart';
 
 import '../../../shared/router/app_router.dart';
 import '../../../shared/widgets/pancser_button.dart';
+import '../repository/auth.repository.dart';
 
 @RoutePage()
 class RegistrationPage extends StatelessWidget {

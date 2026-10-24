@@ -1,11 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:nem_pancser/features/buy/category/model/dish_category.dart';
-import 'package:nem_pancser/features/buy/dish_details/model/dish.dart';
 import 'package:nem_pancser/features/buy/dish_list/model/dish_header.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../../features/authentication/login/models/login.dto.dart';
 import '../../../features/authentication/registration/models/registration.dto.dart';
+import '../../../features/buy/dish_details/dto/dish/dish.dto.dart';
+import '../../../features/buy/dish_details/dto/dish_accessory/dish_accessory.dto.dart';
 import '../user_access_data_storage/models/user_access_data.model.dart';
 
 part 'pancser_client.g.dart';
@@ -27,5 +28,11 @@ abstract class PancserClient {
   Future<List<DishHeader>> getDishesByCategory({@Path() required String id});
 
   @GET('/dishes/{id}')
-  Future<Dish> getDish({@Path() required String id});
+  Future<DishDto> getDish({@Path() required String id});
+
+  @GET('/dishes/dishOptions')
+  Future<List<DishAccessoryDto>> getDishOptions();
+
+  @GET('/dishes/saladExtras')
+  Future<List<DishAccessoryDto>> getSaladExtras();
 }

@@ -27,15 +27,8 @@ sealed class CreatePizzaState with _$CreatePizzaState {
 }
 
 extension CreatePizzaInProgressStateX on CreatePizzaInProgressState {
-  int get price {
-    final toppingsPrice =
-      selectedToppings.fold(
-        0,
-        (sum, topping) => sum + topping.price,
-      );
-    return
+  int get price =>
       (selectedSize?.price ?? 0) +
       (selectedSauce?.price ?? 0) +
-      toppingsPrice;
-  }
+      selectedToppings.fold(0, (sum, topping) => sum + topping.price);
 }

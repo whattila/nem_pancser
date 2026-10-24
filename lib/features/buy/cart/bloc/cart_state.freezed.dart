@@ -55,12 +55,12 @@ extension CartStatePatterns on CartState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( CartInitialState value)?  initial,TResult Function( CartNormalState value)?  normal,TResult Function( CartErrorState value)?  error,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( CartInitialState value)?  initial,TResult Function( CartInUseState value)?  inUse,TResult Function( CartErrorState value)?  error,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case CartInitialState() when initial != null:
-return initial(_that);case CartNormalState() when normal != null:
-return normal(_that);case CartErrorState() when error != null:
+return initial(_that);case CartInUseState() when inUse != null:
+return inUse(_that);case CartErrorState() when error != null:
 return error(_that);case _:
   return orElse();
 
@@ -79,12 +79,12 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( CartInitialState value)  initial,required TResult Function( CartNormalState value)  normal,required TResult Function( CartErrorState value)  error,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( CartInitialState value)  initial,required TResult Function( CartInUseState value)  inUse,required TResult Function( CartErrorState value)  error,}){
 final _that = this;
 switch (_that) {
 case CartInitialState():
-return initial(_that);case CartNormalState():
-return normal(_that);case CartErrorState():
+return initial(_that);case CartInUseState():
+return inUse(_that);case CartErrorState():
 return error(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
@@ -99,12 +99,12 @@ return error(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( CartInitialState value)?  initial,TResult? Function( CartNormalState value)?  normal,TResult? Function( CartErrorState value)?  error,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( CartInitialState value)?  initial,TResult? Function( CartInUseState value)?  inUse,TResult? Function( CartErrorState value)?  error,}){
 final _that = this;
 switch (_that) {
 case CartInitialState() when initial != null:
-return initial(_that);case CartNormalState() when normal != null:
-return normal(_that);case CartErrorState() when error != null:
+return initial(_that);case CartInUseState() when inUse != null:
+return inUse(_that);case CartErrorState() when error != null:
 return error(_that);case _:
   return null;
 
@@ -122,11 +122,11 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function( List<CartItem> items)?  normal,TResult Function()?  error,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function( List<CartItem> items)?  inUse,TResult Function()?  error,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case CartInitialState() when initial != null:
-return initial();case CartNormalState() when normal != null:
-return normal(_that.items);case CartErrorState() when error != null:
+return initial();case CartInUseState() when inUse != null:
+return inUse(_that.items);case CartErrorState() when error != null:
 return error();case _:
   return orElse();
 
@@ -145,11 +145,11 @@ return error();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function( List<CartItem> items)  normal,required TResult Function()  error,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function( List<CartItem> items)  inUse,required TResult Function()  error,}) {final _that = this;
 switch (_that) {
 case CartInitialState():
-return initial();case CartNormalState():
-return normal(_that.items);case CartErrorState():
+return initial();case CartInUseState():
+return inUse(_that.items);case CartErrorState():
 return error();}
 }
 /// A variant of `when` that fallback to returning `null`
@@ -164,11 +164,11 @@ return error();}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function( List<CartItem> items)?  normal,TResult? Function()?  error,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function( List<CartItem> items)?  inUse,TResult? Function()?  error,}) {final _that = this;
 switch (_that) {
 case CartInitialState() when initial != null:
-return initial();case CartNormalState() when normal != null:
-return normal(_that.items);case CartErrorState() when error != null:
+return initial();case CartInUseState() when inUse != null:
+return inUse(_that.items);case CartErrorState() when error != null:
 return error();case _:
   return null;
 
@@ -212,8 +212,8 @@ String toString() {
 /// @nodoc
 
 
-class CartNormalState implements CartState {
-  const CartNormalState({final  List<CartItem> items = const []}): _items = items;
+class CartInUseState implements CartState {
+  const CartInUseState({final  List<CartItem> items = const []}): _items = items;
   
 
  final  List<CartItem> _items;
@@ -228,13 +228,13 @@ class CartNormalState implements CartState {
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$CartNormalStateCopyWith<CartNormalState> get copyWith => _$CartNormalStateCopyWithImpl<CartNormalState>(this, _$identity);
+$CartInUseStateCopyWith<CartInUseState> get copyWith => _$CartInUseStateCopyWithImpl<CartInUseState>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CartNormalState&&const DeepCollectionEquality().equals(other._items, _items));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CartInUseState&&const DeepCollectionEquality().equals(other._items, _items));
 }
 
 
@@ -243,15 +243,15 @@ int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(
 
 @override
 String toString() {
-  return 'CartState.normal(items: $items)';
+  return 'CartState.inUse(items: $items)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $CartNormalStateCopyWith<$Res> implements $CartStateCopyWith<$Res> {
-  factory $CartNormalStateCopyWith(CartNormalState value, $Res Function(CartNormalState) _then) = _$CartNormalStateCopyWithImpl;
+abstract mixin class $CartInUseStateCopyWith<$Res> implements $CartStateCopyWith<$Res> {
+  factory $CartInUseStateCopyWith(CartInUseState value, $Res Function(CartInUseState) _then) = _$CartInUseStateCopyWithImpl;
 @useResult
 $Res call({
  List<CartItem> items
@@ -262,17 +262,17 @@ $Res call({
 
 }
 /// @nodoc
-class _$CartNormalStateCopyWithImpl<$Res>
-    implements $CartNormalStateCopyWith<$Res> {
-  _$CartNormalStateCopyWithImpl(this._self, this._then);
+class _$CartInUseStateCopyWithImpl<$Res>
+    implements $CartInUseStateCopyWith<$Res> {
+  _$CartInUseStateCopyWithImpl(this._self, this._then);
 
-  final CartNormalState _self;
-  final $Res Function(CartNormalState) _then;
+  final CartInUseState _self;
+  final $Res Function(CartInUseState) _then;
 
 /// Create a copy of CartState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? items = null,}) {
-  return _then(CartNormalState(
+  return _then(CartInUseState(
 items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
 as List<CartItem>,
   ));

@@ -6,12 +6,10 @@ import 'package:nem_pancser/shared/services/pancser_client/pancser_client.dart';
 import 'package:nem_pancser/shared/services/user_access_data_storage/user_access_data_storage.dart';
 
 class AuthRepository {
-  AuthRepository({
-    required PancserClient pancserClient,
-    required UserAccessDataStorage userAccessDataStorage
-  }) :
-      _pancserClient = pancserClient,
-      _userAccessDataStorage = userAccessDataStorage;
+  AuthRepository(
+    this._pancserClient,
+    this._userAccessDataStorage
+  );
 
   final PancserClient _pancserClient;
   final UserAccessDataStorage _userAccessDataStorage;

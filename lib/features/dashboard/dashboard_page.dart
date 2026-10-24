@@ -57,13 +57,13 @@ class DashboardPage extends StatelessWidget {
       },
       floatingActionButton: FloatingActionButton.extended(
         tooltip: 'Kosár',
-        icon: const Icon(Icons.shopping_cart, color: Colors.white),
+        icon: const Icon(Icons.shopping_cart, color: Color(0xFFBD3E11)),
         onPressed: () { context.router.push(const CartRoute()); },
         label: const Text(
           'KOSÁR',
-          style: TextStyle(color: Colors.white,)
+          style: TextStyle(color: Color(0xFFBD3E11))
         ),
-        backgroundColor: const Color(0xFFBD3E11),
+        backgroundColor: Colors.white
       ),
     );
   }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../features/authentication/login/login_page.dart';
 import '../../features/authentication/registration/registration_page.dart';
 import '../../features/buy/category/model/dish_category.dart';
+import '../../features/buy/dish_list/model/dish_header.dart';
 import '../../features/buy/main/buy_main_page.dart';
 import '../../features/buy/cart/ui/cart_page.dart';
 import '../../features/buy/category/dish_category_page.dart';

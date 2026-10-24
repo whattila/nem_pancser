@@ -14,7 +14,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   Future<void> _onOpened(CartOpened event, Emitter<CartState> emit) async {
     await emit.forEach(
       _cart.items,
-      onData: (items) => CartNormalState(items: items),
+      onData: (items) => CartInUseState(items: items),
       onError: (_, _) => const CartErrorState(),
     );
   }

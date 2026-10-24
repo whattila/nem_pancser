@@ -1,5 +1,6 @@
+import 'dart:developer' as developer;
+
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 
 import '../services/user_access_data_storage/user_access_data_storage.dart';
 import 'auth_interceptor.dart';
@@ -20,15 +21,11 @@ Dio createDioInstance({required UserAccessDataStorage userAccessDataStorage}) {
   dio.interceptors.add(
     InterceptorsWrapper(
       onResponse: (e, handler) {
-        if (kDebugMode) {
-          print('Http status: ${e.statusCode} - data: ${e.data}');
-        }
+        developer.log('Http status: ${e.statusCode} - data: ${e.data}');
         handler.next(e);
       },
       onError: (e, handler) async {
-        if (kDebugMode) {
-          print('Dio exception occured:\n${e.response}');
-        }
+        developer.log('Dio exception occured:', error: e);
         handler.reject(e);
       },
     ),

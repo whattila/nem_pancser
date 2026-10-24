@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nem_pancser/features/buy/category/bloc/dish_category.bloc.dart';
 import 'package:nem_pancser/features/buy/category/bloc/dish_category.event.dart';
 import 'package:nem_pancser/features/buy/category/bloc/dish_category.state.dart';
-import 'package:nem_pancser/shared/services/pancser_client/pancser_client.dart';
+import 'package:nem_pancser/features/buy/repository/dish_repository.dart';
 
 import '../../../shared/router/app_router.dart';
 import '../../../shared/widgets/pancser_appbar.dart';
@@ -18,7 +18,7 @@ class DishCategoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => DishCategoryBloc(context.read<PancserClient>())
+      create: (context) => DishCategoryBloc(context.read<DishRepository>())
         ..add(const DishCategoryLoadingRequested()),
       child: Scaffold(
         appBar: pancserAppBar(context, 'RENDELÉS'),

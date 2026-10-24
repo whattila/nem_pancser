@@ -5,7 +5,7 @@ import 'package:nem_pancser/features/buy/category/model/dish_category.dart';
 import 'package:nem_pancser/features/buy/dish_list/bloc/dish_list.bloc.dart';
 import 'package:nem_pancser/features/buy/dish_list/bloc/dish_list.event.dart';
 import 'package:nem_pancser/features/buy/dish_list/bloc/dish_list.state.dart';
-import 'package:nem_pancser/shared/services/pancser_client/pancser_client.dart';
+import 'package:nem_pancser/features/buy/repository/dish_repository.dart';
 
 import '../../../shared/router/app_router.dart';
 import '../../../shared/widgets/pancser_appbar.dart';
@@ -21,7 +21,7 @@ class DishListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => DishListBloc(context.read<PancserClient>())
+      create: (context) => DishListBloc(context.read<DishRepository>())
         ..add(DishListEvent.loadingRequested(category: category)),
       child: Scaffold(
         appBar: pancserAppBar(context, category.name.toUpperCase()),
@@ -82,7 +82,7 @@ class DishListPage extends StatelessWidget {
                               const SizedBox(width: 12),
                               PancserButton(
                                 onPressed: () {
-                                  context.router.push(const DishDetailsRoute());
+                                  context.router.push(DishDetailsRoute(header: dish));
                                 },
                                 text: 'RÉSZLETEK',
                                 width: 100,

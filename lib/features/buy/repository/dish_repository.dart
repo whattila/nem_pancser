@@ -1,8 +1,87 @@
+import 'dart:developer' as developer;
+
+import 'package:nem_pancser/features/buy/category/model/dish_category.dart';
 import 'package:nem_pancser/features/buy/create_pizza/model/pizza_property.dart';
+import 'package:nem_pancser/features/buy/dish_details/model/dish/dish.dart';
+import 'package:nem_pancser/features/buy/dish_details/model/dish_accessory/dish_accessory.dart';
+import 'package:nem_pancser/features/buy/dish_list/model/dish_header.dart';
+import 'package:nem_pancser/shared/services/pancser_client/pancser_client.dart';
+
+import '../dish_details/dto/dish/dish.dto.dart';
+import '../dish_details/dto/dish_accessory/dish_accessory.dto.dart';
+import '../dish_details/dto/dish_accessory/dish_accessory_type.dart';
 
 class DishRepository {
-  List<PizzaProperty> getAllPizzaProperties()
-    => [
+  DishRepository(this._pancserClient);
+
+  final PancserClient _pancserClient;
+
+  final List<DishCategory> _dishCategories = [];
+  final List<SideDish> _sideDishes = [];
+  final List<MeatOption> _meatOptions = [];
+  final List<SaladExtra> _saladExtras = [];
+  final List<PizzaSize> _pizzaSizes = [];
+  final List<PizzaSauce> _pizzaSauces = [];
+  final List<PizzaTopping> _pizzaToppings = [];
+
+  Future<List<DishCategory>> getDishCategories() async {
+    if (_dishCategories.isEmpty) {
+      final categories = await _pancserClient.getDishCategories();
+      _dishCategories.addAll(categories);
+    }
+    return _dishCategories;
+  }
+
+  Future<List<DishHeader>> getDishesByCategory(String categoryId) async =>
+      await _pancserClient.getDishesByCategory(id: categoryId);
+
+  Future<(Dish, List<SideDish>?, List<MeatOption>?, List<SaladExtra>?)> getDish(String dishId) async {
+      final dishDto = await _pancserClient.getDish(id: dishId);
+      List<SideDish>? sideDishes;
+      List<MeatOption>? meatOptions;
+      List<SaladExtra>? saladExtras;
+
+      if (dishDto.hasSideDishOption) {
+        if (_sideDishes.isEmpty) {
+          await _getDishOptions();
+        }
+        sideDishes = _sideDishes;
+      }
+      if (dishDto.hasMeatOption) {
+        if (_meatOptions.isEmpty) {
+          await _getDishOptions();
+        }
+        meatOptions = _meatOptions;
+      }
+      if (dishDto.hasSaladExtraOption) {
+        if (_saladExtras.isEmpty) {
+          final dtos = await _pancserClient.getSaladExtras();
+          _saladExtras.addAll(dtos.map((dto) => dto.toModel() as SaladExtra));
+        }
+        saladExtras = _saladExtras;
+      }
+
+      return (dishDto.toModel(), sideDishes, meatOptions, saladExtras);
+  }
+
+  Future<void> _getDishOptions() async {
+    final dtos = await _pancserClient.getDishOptions();
+    for (final dto in dtos) {
+      switch (dto.type) {
+        case DishAccessoryType.sideDish:
+          _sideDishes.add(dto.toModel() as SideDish);
+          break;
+        case DishAccessoryType.meatOption:
+          _meatOptions.add(dto.toModel() as MeatOption);
+          break;
+        default:
+          developer.log('Invalid dish accessory type: ${dto.type}');
+      }
+    }
+  }
+
+  List<PizzaProperty> getAllPizzaProperties() =>
+    [
       PizzaSize(value: '26 cm', price: 3795),
       PizzaSize(value: '32 cm', price: 4195),
       PizzaSize(value: '45 cm', price: 7495),

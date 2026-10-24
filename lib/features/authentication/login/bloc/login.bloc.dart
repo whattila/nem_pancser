@@ -1,7 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nem_pancser/features/authentication/login/bloc/login.event.dart';
 import 'package:nem_pancser/features/authentication/login/bloc/login.state.dart';
-import 'package:nem_pancser/features/authentication/shared/auth.repository.dart';
+
+import '../../repository/auth.repository.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc(this._authRepository) : super(const LoginInitial()) {

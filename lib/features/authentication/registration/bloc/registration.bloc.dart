@@ -2,7 +2,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nem_pancser/features/authentication/registration/bloc/registration.event.dart';
 import 'package:nem_pancser/features/authentication/registration/bloc/registration.state.dart';
 
-import '../../shared/auth.repository.dart';
+import '../../repository/auth.repository.dart';
+
 
 class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
   RegistrationBloc(this._authRepository) : super(const RegistrationInitial()) {
