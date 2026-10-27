@@ -153,7 +153,7 @@ return salad(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( PizzaSize size,  PizzaSauce sauce,  Set<PizzaTopping> toppings,  int amount)?  pizza,TResult Function( Dish dish,  SideDish? selectedSideDish,  MeatOption? selectedMeatOption,  int amount)?  dishWithOptions,TResult Function( Dish dish,  Set<SaladExtra> selectedSaladExtras,  int amount)?  salad,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( Size size,  Sauce sauce,  Set<Topping> toppings,  int amount)?  pizza,TResult Function( Dish dish,  SideDish? selectedSideDish,  MeatOption? selectedMeatOption,  int amount)?  dishWithOptions,TResult Function( Dish dish,  Set<SaladExtra> selectedSaladExtras,  int amount)?  salad,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case Pizza() when pizza != null:
 return pizza(_that.size,_that.sauce,_that.toppings,_that.amount);case DishWithOptions() when dishWithOptions != null:
@@ -176,7 +176,7 @@ return salad(_that.dish,_that.selectedSaladExtras,_that.amount);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( PizzaSize size,  PizzaSauce sauce,  Set<PizzaTopping> toppings,  int amount)  pizza,required TResult Function( Dish dish,  SideDish? selectedSideDish,  MeatOption? selectedMeatOption,  int amount)  dishWithOptions,required TResult Function( Dish dish,  Set<SaladExtra> selectedSaladExtras,  int amount)  salad,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( Size size,  Sauce sauce,  Set<Topping> toppings,  int amount)  pizza,required TResult Function( Dish dish,  SideDish? selectedSideDish,  MeatOption? selectedMeatOption,  int amount)  dishWithOptions,required TResult Function( Dish dish,  Set<SaladExtra> selectedSaladExtras,  int amount)  salad,}) {final _that = this;
 switch (_that) {
 case Pizza():
 return pizza(_that.size,_that.sauce,_that.toppings,_that.amount);case DishWithOptions():
@@ -195,7 +195,7 @@ return salad(_that.dish,_that.selectedSaladExtras,_that.amount);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( PizzaSize size,  PizzaSauce sauce,  Set<PizzaTopping> toppings,  int amount)?  pizza,TResult? Function( Dish dish,  SideDish? selectedSideDish,  MeatOption? selectedMeatOption,  int amount)?  dishWithOptions,TResult? Function( Dish dish,  Set<SaladExtra> selectedSaladExtras,  int amount)?  salad,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( Size size,  Sauce sauce,  Set<Topping> toppings,  int amount)?  pizza,TResult? Function( Dish dish,  SideDish? selectedSideDish,  MeatOption? selectedMeatOption,  int amount)?  dishWithOptions,TResult? Function( Dish dish,  Set<SaladExtra> selectedSaladExtras,  int amount)?  salad,}) {final _that = this;
 switch (_that) {
 case Pizza() when pizza != null:
 return pizza(_that.size,_that.sauce,_that.toppings,_that.amount);case DishWithOptions() when dishWithOptions != null:
@@ -212,13 +212,13 @@ return salad(_that.dish,_that.selectedSaladExtras,_that.amount);case _:
 
 
 class Pizza extends CartItem {
-  const Pizza({required this.size, required this.sauce, final  Set<PizzaTopping> toppings = const {}, required this.amount}): _toppings = toppings,super._();
+  const Pizza({required this.size, required this.sauce, final  Set<Topping> toppings = const {}, required this.amount}): _toppings = toppings,super._();
   
 
- final  PizzaSize size;
- final  PizzaSauce sauce;
- final  Set<PizzaTopping> _toppings;
-@JsonKey() Set<PizzaTopping> get toppings {
+ final  Size size;
+ final  Sauce sauce;
+ final  Set<Topping> _toppings;
+@JsonKey() Set<Topping> get toppings {
   if (_toppings is EqualUnmodifiableSetView) return _toppings;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableSetView(_toppings);
@@ -256,7 +256,7 @@ abstract mixin class $PizzaCopyWith<$Res> implements $CartItemCopyWith<$Res> {
   factory $PizzaCopyWith(Pizza value, $Res Function(Pizza) _then) = _$PizzaCopyWithImpl;
 @override @useResult
 $Res call({
- PizzaSize size, PizzaSauce sauce, Set<PizzaTopping> toppings, int amount
+ Size size, Sauce sauce, Set<Topping> toppings, int amount
 });
 
 
@@ -276,9 +276,9 @@ class _$PizzaCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? size = freezed,Object? sauce = freezed,Object? toppings = null,Object? amount = null,}) {
   return _then(Pizza(
 size: freezed == size ? _self.size : size // ignore: cast_nullable_to_non_nullable
-as PizzaSize,sauce: freezed == sauce ? _self.sauce : sauce // ignore: cast_nullable_to_non_nullable
-as PizzaSauce,toppings: null == toppings ? _self._toppings : toppings // ignore: cast_nullable_to_non_nullable
-as Set<PizzaTopping>,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as Size,sauce: freezed == sauce ? _self.sauce : sauce // ignore: cast_nullable_to_non_nullable
+as Sauce,toppings: null == toppings ? _self._toppings : toppings // ignore: cast_nullable_to_non_nullable
+as Set<Topping>,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }

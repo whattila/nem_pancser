@@ -28,9 +28,9 @@ class CreatePizzaBloc extends Bloc<CreatePizzaEvent, CreatePizzaState> {
     emit(const CreatePizzaLoadingState());
     final allProperties = _itemsRepository.getAllPizzaProperties();
 
-    final sizes = allProperties.whereType<PizzaSize>().toList();
-    final sauces = allProperties.whereType<PizzaSauce>().toList();
-    final toppings = allProperties.whereType<PizzaTopping>().toList();
+    final sizes = allProperties.whereType<Size>().toList();
+    final sauces = allProperties.whereType<Sauce>().toList();
+    final toppings = allProperties.whereType<Topping>().toList();
 
     emit(CreatePizzaInProgressState(
       sizes: sizes,
@@ -49,7 +49,7 @@ class CreatePizzaBloc extends Bloc<CreatePizzaEvent, CreatePizzaState> {
 
   void _onToppingSelectionChanged(CreatePizzaToppingSelectionChanged event, Emitter<CreatePizzaState> emit) {
     final inProgressState = state as CreatePizzaInProgressState;
-    final updatedToppingSelection = Set<PizzaTopping>.from(inProgressState.selectedToppings);
+    final updatedToppingSelection = Set<Topping>.from(inProgressState.selectedToppings);
 
     if (!updatedToppingSelection.add(event.topping)) {
       updatedToppingSelection.remove(event.topping);

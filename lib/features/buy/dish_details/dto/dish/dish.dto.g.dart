@@ -10,15 +10,15 @@ _DishDto _$DishDtoFromJson(Map<String, dynamic> json) => _DishDto(
   id: json['id'] as String,
   name: json['name'] as String,
   price: (json['price'] as num).toInt(),
-  description: json['description'] as String,
+  description: json['description'] as String? ?? '',
   allergens:
       (json['allergens'] as List<dynamic>?)?.map((e) => e as String).toList() ??
       const [],
   pancserCreditValue: (json['pancserCreditValue'] as num?)?.toInt() ?? 0,
-  imageUrl: json['imageUrl'] as String?,
-  hasSideDishOption: json['hasSideDishOption'] as bool,
-  hasMeatOption: json['hasMeatOption'] as bool,
-  hasSaladExtraOption: json['hasSaladExtraOption'] as bool,
+  imageUrl: json['imageUrl'] as String? ?? '',
+  hasSideDishOption: json['hasSideDishOption'] as bool? ?? false,
+  hasMeatOption: json['hasMeatOption'] as bool? ?? false,
+  hasSaladExtraOption: json['hasSaladExtraOption'] as bool? ?? false,
 );
 
 Map<String, dynamic> _$DishDtoToJson(_DishDto instance) => <String, dynamic>{

@@ -212,13 +212,13 @@ return $default(_that.id,_that.name,_that.type,_that.price);case _:
 @JsonSerializable()
 
 class _DishAccessoryDto implements DishAccessoryDto {
-  const _DishAccessoryDto({required this.id, required this.name, required this.type, required this.price});
+  const _DishAccessoryDto({required this.id, required this.name, required this.type, this.price = 0});
   factory _DishAccessoryDto.fromJson(Map<String, dynamic> json) => _$DishAccessoryDtoFromJson(json);
 
 @override final  String id;
 @override final  String name;
 @override final  DishAccessoryType type;
-@override final  int price;
+@override@JsonKey() final  int price;
 
 /// Create a copy of DishAccessoryDto
 /// with the given fields replaced by the non-null parameter values.

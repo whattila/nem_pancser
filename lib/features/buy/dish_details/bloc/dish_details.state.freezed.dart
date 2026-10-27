@@ -128,7 +128,7 @@ return done(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( Dish dish,  List<SideDish>? sideDishes,  SideDish? selectedSideDish,  List<MeatOption>? meatOptions,  MeatOption? selectedMeatOption,  List<SaladExtra>? saladExtras,  Set<SaladExtra>? selectedSaladExtras,  int amount,  String? errorMessage)?  inProgress,TResult Function()?  error,TResult Function()?  done,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( Dish dish,  List<SideDish>? sideDishes,  SideDish? selectedSideDish,  List<MeatOption>? meatOptions,  MeatOption? selectedMeatOption,  List<SaladExtra>? saladExtras,  Set<SaladExtra> selectedSaladExtras,  int amount,  String? errorMessage)?  inProgress,TResult Function()?  error,TResult Function()?  done,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case DishDetailsInitial() when initial != null:
 return initial();case DishDetailsLoading() when loading != null:
@@ -153,7 +153,7 @@ return done();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( Dish dish,  List<SideDish>? sideDishes,  SideDish? selectedSideDish,  List<MeatOption>? meatOptions,  MeatOption? selectedMeatOption,  List<SaladExtra>? saladExtras,  Set<SaladExtra>? selectedSaladExtras,  int amount,  String? errorMessage)  inProgress,required TResult Function()  error,required TResult Function()  done,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( Dish dish,  List<SideDish>? sideDishes,  SideDish? selectedSideDish,  List<MeatOption>? meatOptions,  MeatOption? selectedMeatOption,  List<SaladExtra>? saladExtras,  Set<SaladExtra> selectedSaladExtras,  int amount,  String? errorMessage)  inProgress,required TResult Function()  error,required TResult Function()  done,}) {final _that = this;
 switch (_that) {
 case DishDetailsInitial():
 return initial();case DishDetailsLoading():
@@ -174,7 +174,7 @@ return done();}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( Dish dish,  List<SideDish>? sideDishes,  SideDish? selectedSideDish,  List<MeatOption>? meatOptions,  MeatOption? selectedMeatOption,  List<SaladExtra>? saladExtras,  Set<SaladExtra>? selectedSaladExtras,  int amount,  String? errorMessage)?  inProgress,TResult? Function()?  error,TResult? Function()?  done,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( Dish dish,  List<SideDish>? sideDishes,  SideDish? selectedSideDish,  List<MeatOption>? meatOptions,  MeatOption? selectedMeatOption,  List<SaladExtra>? saladExtras,  Set<SaladExtra> selectedSaladExtras,  int amount,  String? errorMessage)?  inProgress,TResult? Function()?  error,TResult? Function()?  done,}) {final _that = this;
 switch (_that) {
 case DishDetailsInitial() when initial != null:
 return initial();case DishDetailsLoading() when loading != null:
@@ -257,7 +257,7 @@ String toString() {
 
 
 class DishDetailsInProgress implements DishDetailsState {
-  const DishDetailsInProgress({required this.dish, final  List<SideDish>? sideDishes, this.selectedSideDish, final  List<MeatOption>? meatOptions, this.selectedMeatOption, final  List<SaladExtra>? saladExtras, final  Set<SaladExtra>? selectedSaladExtras, this.amount = 1, this.errorMessage}): _sideDishes = sideDishes,_meatOptions = meatOptions,_saladExtras = saladExtras,_selectedSaladExtras = selectedSaladExtras;
+  const DishDetailsInProgress({required this.dish, final  List<SideDish>? sideDishes, this.selectedSideDish, final  List<MeatOption>? meatOptions, this.selectedMeatOption, final  List<SaladExtra>? saladExtras, final  Set<SaladExtra> selectedSaladExtras = const {}, this.amount = 1, this.errorMessage}): _sideDishes = sideDishes,_meatOptions = meatOptions,_saladExtras = saladExtras,_selectedSaladExtras = selectedSaladExtras;
   
 
  final  Dish dish;
@@ -290,13 +290,11 @@ class DishDetailsInProgress implements DishDetailsState {
   return EqualUnmodifiableListView(value);
 }
 
- final  Set<SaladExtra>? _selectedSaladExtras;
- Set<SaladExtra>? get selectedSaladExtras {
-  final value = _selectedSaladExtras;
-  if (value == null) return null;
+ final  Set<SaladExtra> _selectedSaladExtras;
+@JsonKey() Set<SaladExtra> get selectedSaladExtras {
   if (_selectedSaladExtras is EqualUnmodifiableSetView) return _selectedSaladExtras;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableSetView(value);
+  return EqualUnmodifiableSetView(_selectedSaladExtras);
 }
 
 @JsonKey() final  int amount;
@@ -332,7 +330,7 @@ abstract mixin class $DishDetailsInProgressCopyWith<$Res> implements $DishDetail
   factory $DishDetailsInProgressCopyWith(DishDetailsInProgress value, $Res Function(DishDetailsInProgress) _then) = _$DishDetailsInProgressCopyWithImpl;
 @useResult
 $Res call({
- Dish dish, List<SideDish>? sideDishes, SideDish? selectedSideDish, List<MeatOption>? meatOptions, MeatOption? selectedMeatOption, List<SaladExtra>? saladExtras, Set<SaladExtra>? selectedSaladExtras, int amount, String? errorMessage
+ Dish dish, List<SideDish>? sideDishes, SideDish? selectedSideDish, List<MeatOption>? meatOptions, MeatOption? selectedMeatOption, List<SaladExtra>? saladExtras, Set<SaladExtra> selectedSaladExtras, int amount, String? errorMessage
 });
 
 
@@ -349,7 +347,7 @@ class _$DishDetailsInProgressCopyWithImpl<$Res>
 
 /// Create a copy of DishDetailsState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? dish = null,Object? sideDishes = freezed,Object? selectedSideDish = freezed,Object? meatOptions = freezed,Object? selectedMeatOption = freezed,Object? saladExtras = freezed,Object? selectedSaladExtras = freezed,Object? amount = null,Object? errorMessage = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? dish = null,Object? sideDishes = freezed,Object? selectedSideDish = freezed,Object? meatOptions = freezed,Object? selectedMeatOption = freezed,Object? saladExtras = freezed,Object? selectedSaladExtras = null,Object? amount = null,Object? errorMessage = freezed,}) {
   return _then(DishDetailsInProgress(
 dish: null == dish ? _self.dish : dish // ignore: cast_nullable_to_non_nullable
 as Dish,sideDishes: freezed == sideDishes ? _self._sideDishes : sideDishes // ignore: cast_nullable_to_non_nullable
@@ -357,8 +355,8 @@ as List<SideDish>?,selectedSideDish: freezed == selectedSideDish ? _self.selecte
 as SideDish?,meatOptions: freezed == meatOptions ? _self._meatOptions : meatOptions // ignore: cast_nullable_to_non_nullable
 as List<MeatOption>?,selectedMeatOption: freezed == selectedMeatOption ? _self.selectedMeatOption : selectedMeatOption // ignore: cast_nullable_to_non_nullable
 as MeatOption?,saladExtras: freezed == saladExtras ? _self._saladExtras : saladExtras // ignore: cast_nullable_to_non_nullable
-as List<SaladExtra>?,selectedSaladExtras: freezed == selectedSaladExtras ? _self._selectedSaladExtras : selectedSaladExtras // ignore: cast_nullable_to_non_nullable
-as Set<SaladExtra>?,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as List<SaladExtra>?,selectedSaladExtras: null == selectedSaladExtras ? _self._selectedSaladExtras : selectedSaladExtras // ignore: cast_nullable_to_non_nullable
+as Set<SaladExtra>,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
 as int,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
 as String?,
   ));

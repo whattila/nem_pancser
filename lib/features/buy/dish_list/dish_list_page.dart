@@ -56,17 +56,17 @@ class DishListPage extends StatelessWidget {
                         final dish = dishes[index];
                         final isEven = index % 2 == 0;
                         return Container(
-                          color:
-                              isEven ? Colors.white : const Color(0xFFFFF3E0),
+                          color: isEven ? Colors.white : const Color(0xFFFFF3E0),
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 16.0, vertical: 12.0),
+                              horizontal: 16.0, vertical: 12.0
+                          ),
                           child: Row(
                             children: [
                               Expanded(
                                 child: Text(
                                   dish.name,
                                   style: const TextStyle(
-                                    fontSize: 18,
+                                    fontSize: 10,
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
@@ -75,7 +75,7 @@ class DishListPage extends StatelessWidget {
                               Text(
                                 '${dish.price} FT',
                                 style: const TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 12,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -85,9 +85,9 @@ class DishListPage extends StatelessWidget {
                                   context.router.push(DishDetailsRoute(header: dish));
                                 },
                                 text: 'RÉSZLETEK',
-                                width: 100,
-                                height: 40,
-                                fontSize: 14,
+                                width: 75,
+                                height: 30,
+                                fontSize: 10,
                               ),
                             ],
                           ),

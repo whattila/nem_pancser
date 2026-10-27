@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$DishDto {
 
- String get id; String get name; int get price; String get description; List<String> get allergens; int get pancserCreditValue; String? get imageUrl; bool get hasSideDishOption; bool get hasMeatOption; bool get hasSaladExtraOption;
+ String get id; String get name; int get price; String get description; List<String> get allergens; int get pancserCreditValue; String get imageUrl; bool get hasSideDishOption; bool get hasMeatOption; bool get hasSaladExtraOption;
 /// Create a copy of DishDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $DishDtoCopyWith<$Res>  {
   factory $DishDtoCopyWith(DishDto value, $Res Function(DishDto) _then) = _$DishDtoCopyWithImpl;
 @useResult
 $Res call({
- String id, String name, int price, String description, List<String> allergens, int pancserCreditValue, String? imageUrl, bool hasSideDishOption, bool hasMeatOption, bool hasSaladExtraOption
+ String id, String name, int price, String description, List<String> allergens, int pancserCreditValue, String imageUrl, bool hasSideDishOption, bool hasMeatOption, bool hasSaladExtraOption
 });
 
 
@@ -65,7 +65,7 @@ class _$DishDtoCopyWithImpl<$Res>
 
 /// Create a copy of DishDto
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? price = null,Object? description = null,Object? allergens = null,Object? pancserCreditValue = null,Object? imageUrl = freezed,Object? hasSideDishOption = null,Object? hasMeatOption = null,Object? hasSaladExtraOption = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? price = null,Object? description = null,Object? allergens = null,Object? pancserCreditValue = null,Object? imageUrl = null,Object? hasSideDishOption = null,Object? hasMeatOption = null,Object? hasSaladExtraOption = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -73,8 +73,8 @@ as String,price: null == price ? _self.price : price // ignore: cast_nullable_to
 as int,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,allergens: null == allergens ? _self.allergens : allergens // ignore: cast_nullable_to_non_nullable
 as List<String>,pancserCreditValue: null == pancserCreditValue ? _self.pancserCreditValue : pancserCreditValue // ignore: cast_nullable_to_non_nullable
-as int,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String?,hasSideDishOption: null == hasSideDishOption ? _self.hasSideDishOption : hasSideDishOption // ignore: cast_nullable_to_non_nullable
+as int,imageUrl: null == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String,hasSideDishOption: null == hasSideDishOption ? _self.hasSideDishOption : hasSideDishOption // ignore: cast_nullable_to_non_nullable
 as bool,hasMeatOption: null == hasMeatOption ? _self.hasMeatOption : hasMeatOption // ignore: cast_nullable_to_non_nullable
 as bool,hasSaladExtraOption: null == hasSaladExtraOption ? _self.hasSaladExtraOption : hasSaladExtraOption // ignore: cast_nullable_to_non_nullable
 as bool,
@@ -162,7 +162,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  int price,  String description,  List<String> allergens,  int pancserCreditValue,  String? imageUrl,  bool hasSideDishOption,  bool hasMeatOption,  bool hasSaladExtraOption)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  int price,  String description,  List<String> allergens,  int pancserCreditValue,  String imageUrl,  bool hasSideDishOption,  bool hasMeatOption,  bool hasSaladExtraOption)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DishDto() when $default != null:
 return $default(_that.id,_that.name,_that.price,_that.description,_that.allergens,_that.pancserCreditValue,_that.imageUrl,_that.hasSideDishOption,_that.hasMeatOption,_that.hasSaladExtraOption);case _:
@@ -183,7 +183,7 @@ return $default(_that.id,_that.name,_that.price,_that.description,_that.allergen
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  int price,  String description,  List<String> allergens,  int pancserCreditValue,  String? imageUrl,  bool hasSideDishOption,  bool hasMeatOption,  bool hasSaladExtraOption)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  int price,  String description,  List<String> allergens,  int pancserCreditValue,  String imageUrl,  bool hasSideDishOption,  bool hasMeatOption,  bool hasSaladExtraOption)  $default,) {final _that = this;
 switch (_that) {
 case _DishDto():
 return $default(_that.id,_that.name,_that.price,_that.description,_that.allergens,_that.pancserCreditValue,_that.imageUrl,_that.hasSideDishOption,_that.hasMeatOption,_that.hasSaladExtraOption);case _:
@@ -203,7 +203,7 @@ return $default(_that.id,_that.name,_that.price,_that.description,_that.allergen
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  int price,  String description,  List<String> allergens,  int pancserCreditValue,  String? imageUrl,  bool hasSideDishOption,  bool hasMeatOption,  bool hasSaladExtraOption)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  int price,  String description,  List<String> allergens,  int pancserCreditValue,  String imageUrl,  bool hasSideDishOption,  bool hasMeatOption,  bool hasSaladExtraOption)?  $default,) {final _that = this;
 switch (_that) {
 case _DishDto() when $default != null:
 return $default(_that.id,_that.name,_that.price,_that.description,_that.allergens,_that.pancserCreditValue,_that.imageUrl,_that.hasSideDishOption,_that.hasMeatOption,_that.hasSaladExtraOption);case _:
@@ -218,13 +218,13 @@ return $default(_that.id,_that.name,_that.price,_that.description,_that.allergen
 @JsonSerializable()
 
 class _DishDto implements DishDto {
-  const _DishDto({required this.id, required this.name, required this.price, required this.description, final  List<String> allergens = const [], this.pancserCreditValue = 0, required this.imageUrl, required this.hasSideDishOption, required this.hasMeatOption, required this.hasSaladExtraOption}): _allergens = allergens;
+  const _DishDto({required this.id, required this.name, required this.price, this.description = '', final  List<String> allergens = const [], this.pancserCreditValue = 0, this.imageUrl = '', this.hasSideDishOption = false, this.hasMeatOption = false, this.hasSaladExtraOption = false}): _allergens = allergens;
   factory _DishDto.fromJson(Map<String, dynamic> json) => _$DishDtoFromJson(json);
 
 @override final  String id;
 @override final  String name;
 @override final  int price;
-@override final  String description;
+@override@JsonKey() final  String description;
  final  List<String> _allergens;
 @override@JsonKey() List<String> get allergens {
   if (_allergens is EqualUnmodifiableListView) return _allergens;
@@ -233,10 +233,10 @@ class _DishDto implements DishDto {
 }
 
 @override@JsonKey() final  int pancserCreditValue;
-@override final  String? imageUrl;
-@override final  bool hasSideDishOption;
-@override final  bool hasMeatOption;
-@override final  bool hasSaladExtraOption;
+@override@JsonKey() final  String imageUrl;
+@override@JsonKey() final  bool hasSideDishOption;
+@override@JsonKey() final  bool hasMeatOption;
+@override@JsonKey() final  bool hasSaladExtraOption;
 
 /// Create a copy of DishDto
 /// with the given fields replaced by the non-null parameter values.
@@ -271,7 +271,7 @@ abstract mixin class _$DishDtoCopyWith<$Res> implements $DishDtoCopyWith<$Res> {
   factory _$DishDtoCopyWith(_DishDto value, $Res Function(_DishDto) _then) = __$DishDtoCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String name, int price, String description, List<String> allergens, int pancserCreditValue, String? imageUrl, bool hasSideDishOption, bool hasMeatOption, bool hasSaladExtraOption
+ String id, String name, int price, String description, List<String> allergens, int pancserCreditValue, String imageUrl, bool hasSideDishOption, bool hasMeatOption, bool hasSaladExtraOption
 });
 
 
@@ -288,7 +288,7 @@ class __$DishDtoCopyWithImpl<$Res>
 
 /// Create a copy of DishDto
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? price = null,Object? description = null,Object? allergens = null,Object? pancserCreditValue = null,Object? imageUrl = freezed,Object? hasSideDishOption = null,Object? hasMeatOption = null,Object? hasSaladExtraOption = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? price = null,Object? description = null,Object? allergens = null,Object? pancserCreditValue = null,Object? imageUrl = null,Object? hasSideDishOption = null,Object? hasMeatOption = null,Object? hasSaladExtraOption = null,}) {
   return _then(_DishDto(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -296,8 +296,8 @@ as String,price: null == price ? _self.price : price // ignore: cast_nullable_to
 as int,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,allergens: null == allergens ? _self._allergens : allergens // ignore: cast_nullable_to_non_nullable
 as List<String>,pancserCreditValue: null == pancserCreditValue ? _self.pancserCreditValue : pancserCreditValue // ignore: cast_nullable_to_non_nullable
-as int,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String?,hasSideDishOption: null == hasSideDishOption ? _self.hasSideDishOption : hasSideDishOption // ignore: cast_nullable_to_non_nullable
+as int,imageUrl: null == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String,hasSideDishOption: null == hasSideDishOption ? _self.hasSideDishOption : hasSideDishOption // ignore: cast_nullable_to_non_nullable
 as bool,hasMeatOption: null == hasMeatOption ? _self.hasMeatOption : hasMeatOption // ignore: cast_nullable_to_non_nullable
 as bool,hasSaladExtraOption: null == hasSaladExtraOption ? _self.hasSaladExtraOption : hasSaladExtraOption // ignore: cast_nullable_to_non_nullable
 as bool,

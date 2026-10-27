@@ -18,7 +18,7 @@ sealed class DishDetailsState with _$DishDetailsState {
     List<MeatOption>? meatOptions,
     MeatOption? selectedMeatOption,
     List<SaladExtra>? saladExtras,
-    Set<SaladExtra>? selectedSaladExtras,
+    @Default({}) Set<SaladExtra> selectedSaladExtras,
     @Default(1) int amount,
     String? errorMessage
   }) = DishDetailsInProgress;
@@ -30,10 +30,11 @@ sealed class DishDetailsState with _$DishDetailsState {
 
 extension DishDetailsInProgressX on DishDetailsInProgress {
   int get price =>
-      dish.price * amount +
+      amount *
+      (dish.price +
       (selectedSideDish?.price ?? 0) +
       (selectedMeatOption?.price ?? 0) +
-      (selectedSaladExtras?.fold(0, (sum, extra) => sum! + extra.price) ?? 0);
+      (selectedSaladExtras.fold(0, (sum, extra) => sum + extra.price)));
 
   bool get isEverythingSelected =>
       sideDishes == null || selectedSideDish != null &&

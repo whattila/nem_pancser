@@ -8,15 +8,15 @@ sealed class CreatePizzaEvent with _$CreatePizzaEvent {
   const factory CreatePizzaEvent.started() = CreatePizzaStarted;
 
   const factory CreatePizzaEvent.selectedSizeChanged({
-    required PizzaSize newSize
+    required Size newSize
   }) = CreatePizzaSelectedSizeChanged;
 
   const factory CreatePizzaEvent.selectedSauceChanged({
-    required PizzaSauce newSauce
+    required Sauce newSauce
   }) = CreatePizzaSelectedSauceChanged;
 
   const factory CreatePizzaEvent.toppingSelectionChanged({
-    required PizzaTopping topping
+    required Topping topping
   }) = CreatePizzaToppingSelectionChanged;
 
   const factory CreatePizzaEvent.finished() = CreatePizzaFinished;

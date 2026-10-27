@@ -134,7 +134,7 @@ return noToppingCanceled(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function( PizzaSize newSize)?  selectedSizeChanged,TResult Function( PizzaSauce newSauce)?  selectedSauceChanged,TResult Function( PizzaTopping topping)?  toppingSelectionChanged,TResult Function()?  finished,TResult Function()?  finishedNoToppingConfirmed,TResult Function()?  noToppingCanceled,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function( Size newSize)?  selectedSizeChanged,TResult Function( Sauce newSauce)?  selectedSauceChanged,TResult Function( Topping topping)?  toppingSelectionChanged,TResult Function()?  finished,TResult Function()?  finishedNoToppingConfirmed,TResult Function()?  noToppingCanceled,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case CreatePizzaStarted() when started != null:
 return started();case CreatePizzaSelectedSizeChanged() when selectedSizeChanged != null:
@@ -161,7 +161,7 @@ return noToppingCanceled();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function( PizzaSize newSize)  selectedSizeChanged,required TResult Function( PizzaSauce newSauce)  selectedSauceChanged,required TResult Function( PizzaTopping topping)  toppingSelectionChanged,required TResult Function()  finished,required TResult Function()  finishedNoToppingConfirmed,required TResult Function()  noToppingCanceled,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function( Size newSize)  selectedSizeChanged,required TResult Function( Sauce newSauce)  selectedSauceChanged,required TResult Function( Topping topping)  toppingSelectionChanged,required TResult Function()  finished,required TResult Function()  finishedNoToppingConfirmed,required TResult Function()  noToppingCanceled,}) {final _that = this;
 switch (_that) {
 case CreatePizzaStarted():
 return started();case CreatePizzaSelectedSizeChanged():
@@ -184,7 +184,7 @@ return noToppingCanceled();}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function( PizzaSize newSize)?  selectedSizeChanged,TResult? Function( PizzaSauce newSauce)?  selectedSauceChanged,TResult? Function( PizzaTopping topping)?  toppingSelectionChanged,TResult? Function()?  finished,TResult? Function()?  finishedNoToppingConfirmed,TResult? Function()?  noToppingCanceled,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function( Size newSize)?  selectedSizeChanged,TResult? Function( Sauce newSauce)?  selectedSauceChanged,TResult? Function( Topping topping)?  toppingSelectionChanged,TResult? Function()?  finished,TResult? Function()?  finishedNoToppingConfirmed,TResult? Function()?  noToppingCanceled,}) {final _that = this;
 switch (_that) {
 case CreatePizzaStarted() when started != null:
 return started();case CreatePizzaSelectedSizeChanged() when selectedSizeChanged != null:
@@ -240,7 +240,7 @@ class CreatePizzaSelectedSizeChanged implements CreatePizzaEvent {
   const CreatePizzaSelectedSizeChanged({required this.newSize});
   
 
- final  PizzaSize newSize;
+ final  Size newSize;
 
 /// Create a copy of CreatePizzaEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -272,7 +272,7 @@ abstract mixin class $CreatePizzaSelectedSizeChangedCopyWith<$Res> implements $C
   factory $CreatePizzaSelectedSizeChangedCopyWith(CreatePizzaSelectedSizeChanged value, $Res Function(CreatePizzaSelectedSizeChanged) _then) = _$CreatePizzaSelectedSizeChangedCopyWithImpl;
 @useResult
 $Res call({
- PizzaSize newSize
+ Size newSize
 });
 
 
@@ -292,7 +292,7 @@ class _$CreatePizzaSelectedSizeChangedCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? newSize = freezed,}) {
   return _then(CreatePizzaSelectedSizeChanged(
 newSize: freezed == newSize ? _self.newSize : newSize // ignore: cast_nullable_to_non_nullable
-as PizzaSize,
+as Size,
   ));
 }
 
@@ -306,7 +306,7 @@ class CreatePizzaSelectedSauceChanged implements CreatePizzaEvent {
   const CreatePizzaSelectedSauceChanged({required this.newSauce});
   
 
- final  PizzaSauce newSauce;
+ final  Sauce newSauce;
 
 /// Create a copy of CreatePizzaEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -338,7 +338,7 @@ abstract mixin class $CreatePizzaSelectedSauceChangedCopyWith<$Res> implements $
   factory $CreatePizzaSelectedSauceChangedCopyWith(CreatePizzaSelectedSauceChanged value, $Res Function(CreatePizzaSelectedSauceChanged) _then) = _$CreatePizzaSelectedSauceChangedCopyWithImpl;
 @useResult
 $Res call({
- PizzaSauce newSauce
+ Sauce newSauce
 });
 
 
@@ -358,7 +358,7 @@ class _$CreatePizzaSelectedSauceChangedCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? newSauce = freezed,}) {
   return _then(CreatePizzaSelectedSauceChanged(
 newSauce: freezed == newSauce ? _self.newSauce : newSauce // ignore: cast_nullable_to_non_nullable
-as PizzaSauce,
+as Sauce,
   ));
 }
 
@@ -372,7 +372,7 @@ class CreatePizzaToppingSelectionChanged implements CreatePizzaEvent {
   const CreatePizzaToppingSelectionChanged({required this.topping});
   
 
- final  PizzaTopping topping;
+ final  Topping topping;
 
 /// Create a copy of CreatePizzaEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -404,7 +404,7 @@ abstract mixin class $CreatePizzaToppingSelectionChangedCopyWith<$Res> implement
   factory $CreatePizzaToppingSelectionChangedCopyWith(CreatePizzaToppingSelectionChanged value, $Res Function(CreatePizzaToppingSelectionChanged) _then) = _$CreatePizzaToppingSelectionChangedCopyWithImpl;
 @useResult
 $Res call({
- PizzaTopping topping
+ Topping topping
 });
 
 
@@ -424,7 +424,7 @@ class _$CreatePizzaToppingSelectionChangedCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? topping = freezed,}) {
   return _then(CreatePizzaToppingSelectionChanged(
 topping: freezed == topping ? _self.topping : topping // ignore: cast_nullable_to_non_nullable
-as PizzaTopping,
+as Topping,
   ));
 }
 

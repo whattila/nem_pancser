@@ -90,7 +90,7 @@ class CreatePizzaView extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             BlocSelector<CreatePizzaBloc, CreatePizzaState,
-                ({List<PizzaSize> sizes, PizzaSize? selectedSize})>(
+                ({List<Size> sizes, Size? selectedSize})>(
               selector: (state) {
                 if (state is CreatePizzaInProgressState) {
                   return (sizes: state.sizes, selectedSize: state.selectedSize);
@@ -100,7 +100,7 @@ class CreatePizzaView extends StatelessWidget {
               builder: (context, data) {
                 return RadioGroup(
                   groupValue: data.selectedSize,
-                  onChanged: (PizzaSize? value) {
+                  onChanged: (Size? value) {
                     if (value != null) {
                       context.read<CreatePizzaBloc>().add(
                           CreatePizzaSelectedSizeChanged(newSize: value)
@@ -112,7 +112,7 @@ class CreatePizzaView extends StatelessWidget {
                     children: data.sizes
                         .map((size) => Expanded(
                           child: ListTile(
-                            leading: Radio<PizzaSize>(
+                            leading: Radio<Size>(
                               value: size,
                               activeColor: const Color(0xFFBD3E11),
                             ),
@@ -133,7 +133,7 @@ class CreatePizzaView extends StatelessWidget {
             BlocSelector<
                 CreatePizzaBloc,
                 CreatePizzaState,
-                ({List<PizzaSauce> sauces, PizzaSauce? selectedSauce})
+                ({List<Sauce> sauces, Sauce? selectedSauce})
             >(
               selector: (state) {
                 if (state is CreatePizzaInProgressState) {
@@ -144,7 +144,7 @@ class CreatePizzaView extends StatelessWidget {
               builder: (context, data) {
                 return RadioGroup(
                     groupValue: data.selectedSauce,
-                    onChanged: (PizzaSauce? value) {
+                    onChanged: (Sauce? value) {
                       if (value != null) {
                         context.read<CreatePizzaBloc>().add(
                             CreatePizzaSelectedSauceChanged(newSauce: value)
@@ -156,7 +156,7 @@ class CreatePizzaView extends StatelessWidget {
                       children: data.sauces
                           .map((sauce) => Expanded(
                         child: ListTile(
-                          leading: Radio<PizzaSauce>(
+                          leading: Radio<Sauce>(
                             value: sauce,
                             activeColor: const Color(0xFFBD3E11),
                           ),
@@ -174,7 +174,7 @@ class CreatePizzaView extends StatelessWidget {
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 12),
-              BlocSelector<CreatePizzaBloc, CreatePizzaState, List<PizzaTopping>>(
+              BlocSelector<CreatePizzaBloc, CreatePizzaState, List<Topping>>(
                 selector: (state) {
                   if (state is CreatePizzaInProgressState) {
                     return state.toppings;

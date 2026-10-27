@@ -11,7 +11,7 @@ _DishAccessoryDto _$DishAccessoryDtoFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       name: json['name'] as String,
       type: $enumDecode(_$DishAccessoryTypeEnumMap, json['type']),
-      price: (json['price'] as num).toInt(),
+      price: (json['price'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$DishAccessoryDtoToJson(_DishAccessoryDto instance) =>

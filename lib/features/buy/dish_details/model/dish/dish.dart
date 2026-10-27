@@ -8,9 +8,9 @@ abstract class Dish with _$Dish {
     required String id,
     required String name,
     required int price,
-    required String description,
+    @Default('') String description,
     @Default([]) List<String> allergens,
     @Default(0) int pancserCreditValue,
-    required String? imageUrl
+    @Default('') String imageUrl
   }) = _Dish;
 }

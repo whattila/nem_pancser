@@ -87,12 +87,12 @@ extension PizzaPropertyPatterns on PizzaProperty {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( PizzaSize value)?  size,TResult Function( PizzaSauce value)?  sauce,TResult Function( PizzaTopping value)?  topping,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( Size value)?  size,TResult Function( Sauce value)?  sauce,TResult Function( Topping value)?  topping,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case PizzaSize() when size != null:
-return size(_that);case PizzaSauce() when sauce != null:
-return sauce(_that);case PizzaTopping() when topping != null:
+case Size() when size != null:
+return size(_that);case Sauce() when sauce != null:
+return sauce(_that);case Topping() when topping != null:
 return topping(_that);case _:
   return orElse();
 
@@ -111,12 +111,12 @@ return topping(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( PizzaSize value)  size,required TResult Function( PizzaSauce value)  sauce,required TResult Function( PizzaTopping value)  topping,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( Size value)  size,required TResult Function( Sauce value)  sauce,required TResult Function( Topping value)  topping,}){
 final _that = this;
 switch (_that) {
-case PizzaSize():
-return size(_that);case PizzaSauce():
-return sauce(_that);case PizzaTopping():
+case Size():
+return size(_that);case Sauce():
+return sauce(_that);case Topping():
 return topping(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
@@ -131,12 +131,12 @@ return topping(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( PizzaSize value)?  size,TResult? Function( PizzaSauce value)?  sauce,TResult? Function( PizzaTopping value)?  topping,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( Size value)?  size,TResult? Function( Sauce value)?  sauce,TResult? Function( Topping value)?  topping,}){
 final _that = this;
 switch (_that) {
-case PizzaSize() when size != null:
-return size(_that);case PizzaSauce() when sauce != null:
-return sauce(_that);case PizzaTopping() when topping != null:
+case Size() when size != null:
+return size(_that);case Sauce() when sauce != null:
+return sauce(_that);case Topping() when topping != null:
 return topping(_that);case _:
   return null;
 
@@ -156,9 +156,9 @@ return topping(_that);case _:
 
 @optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String value,  int price)?  size,TResult Function( String value,  int price)?  sauce,TResult Function( String value,  int price)?  topping,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case PizzaSize() when size != null:
-return size(_that.value,_that.price);case PizzaSauce() when sauce != null:
-return sauce(_that.value,_that.price);case PizzaTopping() when topping != null:
+case Size() when size != null:
+return size(_that.value,_that.price);case Sauce() when sauce != null:
+return sauce(_that.value,_that.price);case Topping() when topping != null:
 return topping(_that.value,_that.price);case _:
   return orElse();
 
@@ -179,9 +179,9 @@ return topping(_that.value,_that.price);case _:
 
 @optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String value,  int price)  size,required TResult Function( String value,  int price)  sauce,required TResult Function( String value,  int price)  topping,}) {final _that = this;
 switch (_that) {
-case PizzaSize():
-return size(_that.value,_that.price);case PizzaSauce():
-return sauce(_that.value,_that.price);case PizzaTopping():
+case Size():
+return size(_that.value,_that.price);case Sauce():
+return sauce(_that.value,_that.price);case Topping():
 return topping(_that.value,_that.price);}
 }
 /// A variant of `when` that fallback to returning `null`
@@ -198,9 +198,9 @@ return topping(_that.value,_that.price);}
 
 @optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String value,  int price)?  size,TResult? Function( String value,  int price)?  sauce,TResult? Function( String value,  int price)?  topping,}) {final _that = this;
 switch (_that) {
-case PizzaSize() when size != null:
-return size(_that.value,_that.price);case PizzaSauce() when sauce != null:
-return sauce(_that.value,_that.price);case PizzaTopping() when topping != null:
+case Size() when size != null:
+return size(_that.value,_that.price);case Sauce() when sauce != null:
+return sauce(_that.value,_that.price);case Topping() when topping != null:
 return topping(_that.value,_that.price);case _:
   return null;
 
@@ -212,8 +212,8 @@ return topping(_that.value,_that.price);case _:
 /// @nodoc
 
 
-class PizzaSize implements PizzaProperty {
-  const PizzaSize({required this.value, this.price = 0});
+class Size implements PizzaProperty {
+  const Size({required this.value, this.price = 0});
   
 
 @override final  String value;
@@ -223,13 +223,13 @@ class PizzaSize implements PizzaProperty {
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$PizzaSizeCopyWith<PizzaSize> get copyWith => _$PizzaSizeCopyWithImpl<PizzaSize>(this, _$identity);
+$SizeCopyWith<Size> get copyWith => _$SizeCopyWithImpl<Size>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PizzaSize&&(identical(other.value, value) || other.value == value)&&(identical(other.price, price) || other.price == price));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Size&&(identical(other.value, value) || other.value == value)&&(identical(other.price, price) || other.price == price));
 }
 
 
@@ -245,8 +245,8 @@ String toString() {
 }
 
 /// @nodoc
-abstract mixin class $PizzaSizeCopyWith<$Res> implements $PizzaPropertyCopyWith<$Res> {
-  factory $PizzaSizeCopyWith(PizzaSize value, $Res Function(PizzaSize) _then) = _$PizzaSizeCopyWithImpl;
+abstract mixin class $SizeCopyWith<$Res> implements $PizzaPropertyCopyWith<$Res> {
+  factory $SizeCopyWith(Size value, $Res Function(Size) _then) = _$SizeCopyWithImpl;
 @override @useResult
 $Res call({
  String value, int price
@@ -257,17 +257,17 @@ $Res call({
 
 }
 /// @nodoc
-class _$PizzaSizeCopyWithImpl<$Res>
-    implements $PizzaSizeCopyWith<$Res> {
-  _$PizzaSizeCopyWithImpl(this._self, this._then);
+class _$SizeCopyWithImpl<$Res>
+    implements $SizeCopyWith<$Res> {
+  _$SizeCopyWithImpl(this._self, this._then);
 
-  final PizzaSize _self;
-  final $Res Function(PizzaSize) _then;
+  final Size _self;
+  final $Res Function(Size) _then;
 
 /// Create a copy of PizzaProperty
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? value = null,Object? price = null,}) {
-  return _then(PizzaSize(
+  return _then(Size(
 value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
 as String,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
 as int,
@@ -280,8 +280,8 @@ as int,
 /// @nodoc
 
 
-class PizzaSauce implements PizzaProperty {
-  const PizzaSauce({required this.value, this.price = 0});
+class Sauce implements PizzaProperty {
+  const Sauce({required this.value, this.price = 0});
   
 
 @override final  String value;
@@ -291,13 +291,13 @@ class PizzaSauce implements PizzaProperty {
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$PizzaSauceCopyWith<PizzaSauce> get copyWith => _$PizzaSauceCopyWithImpl<PizzaSauce>(this, _$identity);
+$SauceCopyWith<Sauce> get copyWith => _$SauceCopyWithImpl<Sauce>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PizzaSauce&&(identical(other.value, value) || other.value == value)&&(identical(other.price, price) || other.price == price));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Sauce&&(identical(other.value, value) || other.value == value)&&(identical(other.price, price) || other.price == price));
 }
 
 
@@ -313,8 +313,8 @@ String toString() {
 }
 
 /// @nodoc
-abstract mixin class $PizzaSauceCopyWith<$Res> implements $PizzaPropertyCopyWith<$Res> {
-  factory $PizzaSauceCopyWith(PizzaSauce value, $Res Function(PizzaSauce) _then) = _$PizzaSauceCopyWithImpl;
+abstract mixin class $SauceCopyWith<$Res> implements $PizzaPropertyCopyWith<$Res> {
+  factory $SauceCopyWith(Sauce value, $Res Function(Sauce) _then) = _$SauceCopyWithImpl;
 @override @useResult
 $Res call({
  String value, int price
@@ -325,17 +325,17 @@ $Res call({
 
 }
 /// @nodoc
-class _$PizzaSauceCopyWithImpl<$Res>
-    implements $PizzaSauceCopyWith<$Res> {
-  _$PizzaSauceCopyWithImpl(this._self, this._then);
+class _$SauceCopyWithImpl<$Res>
+    implements $SauceCopyWith<$Res> {
+  _$SauceCopyWithImpl(this._self, this._then);
 
-  final PizzaSauce _self;
-  final $Res Function(PizzaSauce) _then;
+  final Sauce _self;
+  final $Res Function(Sauce) _then;
 
 /// Create a copy of PizzaProperty
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? value = null,Object? price = null,}) {
-  return _then(PizzaSauce(
+  return _then(Sauce(
 value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
 as String,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
 as int,
@@ -348,8 +348,8 @@ as int,
 /// @nodoc
 
 
-class PizzaTopping implements PizzaProperty {
-  const PizzaTopping({required this.value, this.price = 0});
+class Topping implements PizzaProperty {
+  const Topping({required this.value, this.price = 0});
   
 
 @override final  String value;
@@ -359,13 +359,13 @@ class PizzaTopping implements PizzaProperty {
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$PizzaToppingCopyWith<PizzaTopping> get copyWith => _$PizzaToppingCopyWithImpl<PizzaTopping>(this, _$identity);
+$ToppingCopyWith<Topping> get copyWith => _$ToppingCopyWithImpl<Topping>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PizzaTopping&&(identical(other.value, value) || other.value == value)&&(identical(other.price, price) || other.price == price));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Topping&&(identical(other.value, value) || other.value == value)&&(identical(other.price, price) || other.price == price));
 }
 
 
@@ -381,8 +381,8 @@ String toString() {
 }
 
 /// @nodoc
-abstract mixin class $PizzaToppingCopyWith<$Res> implements $PizzaPropertyCopyWith<$Res> {
-  factory $PizzaToppingCopyWith(PizzaTopping value, $Res Function(PizzaTopping) _then) = _$PizzaToppingCopyWithImpl;
+abstract mixin class $ToppingCopyWith<$Res> implements $PizzaPropertyCopyWith<$Res> {
+  factory $ToppingCopyWith(Topping value, $Res Function(Topping) _then) = _$ToppingCopyWithImpl;
 @override @useResult
 $Res call({
  String value, int price
@@ -393,17 +393,17 @@ $Res call({
 
 }
 /// @nodoc
-class _$PizzaToppingCopyWithImpl<$Res>
-    implements $PizzaToppingCopyWith<$Res> {
-  _$PizzaToppingCopyWithImpl(this._self, this._then);
+class _$ToppingCopyWithImpl<$Res>
+    implements $ToppingCopyWith<$Res> {
+  _$ToppingCopyWithImpl(this._self, this._then);
 
-  final PizzaTopping _self;
-  final $Res Function(PizzaTopping) _then;
+  final Topping _self;
+  final $Res Function(Topping) _then;
 
 /// Create a copy of PizzaProperty
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? value = null,Object? price = null,}) {
-  return _then(PizzaTopping(
+  return _then(Topping(
 value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
 as String,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
 as int,

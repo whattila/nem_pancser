@@ -214,12 +214,12 @@ return saladExtra(_that.id,_that.name,_that.price);case _:
 
 
 class SideDish implements DishAccessory {
-  const SideDish({required this.id, required this.name, required this.price});
+  const SideDish({required this.id, required this.name, this.price = 0});
   
 
 @override final  String id;
 @override final  String name;
-@override final  int price;
+@override@JsonKey() final  int price;
 
 /// Create a copy of DishAccessory
 /// with the given fields replaced by the non-null parameter values.
@@ -284,12 +284,12 @@ as int,
 
 
 class MeatOption implements DishAccessory {
-  const MeatOption({required this.id, required this.name, required this.price});
+  const MeatOption({required this.id, required this.name, this.price = 0});
   
 
 @override final  String id;
 @override final  String name;
-@override final  int price;
+@override@JsonKey() final  int price;
 
 /// Create a copy of DishAccessory
 /// with the given fields replaced by the non-null parameter values.
@@ -354,12 +354,12 @@ as int,
 
 
 class SaladExtra implements DishAccessory {
-  const SaladExtra({required this.id, required this.name, required this.price});
+  const SaladExtra({required this.id, required this.name, this.price = 0});
   
 
 @override final  String id;
 @override final  String name;
-@override final  int price;
+@override@JsonKey() final  int price;
 
 /// Create a copy of DishAccessory
 /// with the given fields replaced by the non-null parameter values.

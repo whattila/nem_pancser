@@ -25,7 +25,7 @@ class DropdownButtonRow<T> extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-          width: 120,
+          width: 90,
           child: Padding(
             padding: const EdgeInsets.only(top: 12.0),
             child: Text(
@@ -36,11 +36,25 @@ class DropdownButtonRow<T> extends StatelessWidget {
         ),
         Expanded(
           child: DropdownButtonFormField<T>(
+            isExpanded: true,
             initialValue: value,
-            items: options.map((T val) {
+            items: options.map((T value) {
               return DropdownMenuItem<T>(
-                value: val,
-                child: Text(optionToString(val)),
+                value: value,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  child: Text(optionToString(value), softWrap: true),
+                ),
+              );
+            }).toList(),
+            selectedItemBuilder: (context) => options.map((value) {
+              return Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  optionToString(value),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
               );
             }).toList(),
             onChanged: onChanged,

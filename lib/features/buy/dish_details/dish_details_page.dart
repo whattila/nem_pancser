@@ -105,10 +105,10 @@ class DishDetailsView extends StatelessWidget {
                         ),
                         const SizedBox(height: 20),
                         // TODO: use placeholder if null!
-                        if (dish.imageUrl != null) ...[
+                        if (dish.imageUrl.isNotEmpty) ...[
                           // TODO: CachedNetworkImage
                           Image.network(
-                            dish.imageUrl!,
+                            dish.imageUrl,
                             width: double.infinity,
                             height: 250,
                             fit: BoxFit.cover,
@@ -128,15 +128,17 @@ class DishDetailsView extends StatelessWidget {
                               ),
                           ),
                         ],
-                        const SizedBox(height: 30),
-                        Text(
-                          dish.description,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            height: 1.5,
+                        if (dish.description.isNotEmpty) ...[
+                          const SizedBox(height: 30),
+                          Text(
+                            dish.description,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              height: 1.5,
+                            ),
                           ),
-                        ),
+                        ],
                         if (dish.allergens.isNotEmpty) ...[
                           const SizedBox(height: 30),
                           Text(
@@ -147,6 +149,17 @@ class DishDetailsView extends StatelessWidget {
                               color: Colors.black87,
                             ),
                           ),
+                        ],
+                        if (dish.pancserCreditValue != 0) ...[
+                          const SizedBox(height: 30),
+                          Text(
+                            'Megrendelésével ${dish.pancserCreditValue} Pancser Pengő gyűjthető',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              color: Colors.black87,
+                            ),
+                          )
                         ],
                         if (sideDishes != null) ...[
                           const SizedBox(height: 30),
@@ -161,7 +174,7 @@ class DishDetailsView extends StatelessWidget {
                               return DropdownButtonRow<SideDish>(
                                 label: 'Köret',
                                 options: sideDishes,
-                                optionToString: (sideDish) => sideDish.name,
+                                optionToString: (sideDish) => '${sideDish.name}: ${sideDish.price} Ft',
                                 value: selectedSideDish,
                                 onChanged: (sideDish) {
                                   context.read<DishDetailsBloc>().add(
@@ -207,7 +220,7 @@ class DishDetailsView extends StatelessWidget {
                               return BlocSelector<DishDetailsBloc, DishDetailsState, bool>(
                                 selector: (state) {
                                   if (state is DishDetailsInProgress) {
-                                    return state.saladExtras!.contains(saladExtra);
+                                    return state.selectedSaladExtras.contains(saladExtra);
                                   }
                                   return false;
                                 },
@@ -265,9 +278,9 @@ class DishDetailsView extends StatelessWidget {
                   onPressed: () {
                     context.read<DishDetailsBloc>().add(DishDetailsAmountIncreased());
                   },
-                  width: 50,
-                  height: 50,
-                  fontSize: 24,
+                  width: 42,
+                  height: 42,
+                  fontSize: 21,
                 ),
                 const SizedBox(width: 10),
                 PancserButton(
@@ -275,12 +288,12 @@ class DishDetailsView extends StatelessWidget {
                   onPressed: () {
                     context.read<DishDetailsBloc>().add(DishDetailsAmountDecreased());
                   },
-                  width: 50,
-                  height: 50,
-                  fontSize: 24,
+                  width: 42,
+                  height: 42,
+                  fontSize: 21,
                 ),
                 Expanded(
-                  child: Row(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       BlocSelector<DishDetailsBloc, DishDetailsState, int>(
@@ -288,7 +301,7 @@ class DishDetailsView extends StatelessWidget {
                         builder: (context, amount) {
                           return Text(
                             '$amount db  ',
-                            style: const TextStyle(color: Colors.white, fontSize: 18),
+                            style: const TextStyle(color: Colors.white, fontSize: 20),
                           );
                         },
                       ),
@@ -299,7 +312,7 @@ class DishDetailsView extends StatelessWidget {
                             '$price FT',
                             style: const TextStyle(
                               color: Colors.white,
-                              fontSize: 22,
+                              fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
                           );
@@ -308,24 +321,15 @@ class DishDetailsView extends StatelessWidget {
                     ],
                   ),
                 ),
-                BlocSelector<DishDetailsBloc, DishDetailsState, bool>(
-                  selector: (state) =>
-                    state is DishDetailsInProgress ?
-                        state.isEverythingSelected
-                      : false,
-                  builder: (context, isEverythingSelected) {
-                    return PancserButton(
-                      text: 'KOSÁRBA',
-                      onPressed: () {
-                        context.read<DishDetailsBloc>().add(DishDetailsFinished());
-                      },
-                      width: 120,
-                      height: 50,
-                      fontSize: 16,
-                      enabled: isEverythingSelected,
-                    );
+                PancserButton(
+                  text: 'KOSÁRBA',
+                  onPressed: () {
+                    context.read<DishDetailsBloc>().add(DishDetailsFinished());
                   },
-                ),
+                  width: 110,
+                  height: 46,
+                  fontSize: 15,
+                )
               ],
             ),
           );

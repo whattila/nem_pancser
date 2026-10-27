@@ -7,15 +7,15 @@ sealed class PizzaProperty with _$PizzaProperty {
   const factory PizzaProperty.size({
     required String value,
     @Default(0) int price,
-  }) = PizzaSize;
+  }) = Size;
 
   const factory PizzaProperty.sauce({
     required String value,
     @Default(0) int price,
-  }) = PizzaSauce;
+  }) = Sauce;
 
   const factory PizzaProperty.topping({
     required String value,
     @Default(0) int price,
-  }) = PizzaTopping;
+  }) = Topping;
 }

@@ -128,7 +128,7 @@ return done(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<PizzaSize> sizes,  PizzaSize? selectedSize,  List<PizzaSauce> sauces,  PizzaSauce? selectedSauce,  List<PizzaTopping> toppings,  Set<PizzaTopping> selectedToppings,  bool confirmNoTopping)?  inProgress,TResult Function( String message)?  error,TResult Function()?  done,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<Size> sizes,  Size? selectedSize,  List<Sauce> sauces,  Sauce? selectedSauce,  List<Topping> toppings,  Set<Topping> selectedToppings,  bool confirmNoTopping)?  inProgress,TResult Function( String message)?  error,TResult Function()?  done,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case CreatePizzaInitialState() when initial != null:
 return initial();case CreatePizzaLoadingState() when loading != null:
@@ -153,7 +153,7 @@ return done();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<PizzaSize> sizes,  PizzaSize? selectedSize,  List<PizzaSauce> sauces,  PizzaSauce? selectedSauce,  List<PizzaTopping> toppings,  Set<PizzaTopping> selectedToppings,  bool confirmNoTopping)  inProgress,required TResult Function( String message)  error,required TResult Function()  done,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<Size> sizes,  Size? selectedSize,  List<Sauce> sauces,  Sauce? selectedSauce,  List<Topping> toppings,  Set<Topping> selectedToppings,  bool confirmNoTopping)  inProgress,required TResult Function( String message)  error,required TResult Function()  done,}) {final _that = this;
 switch (_that) {
 case CreatePizzaInitialState():
 return initial();case CreatePizzaLoadingState():
@@ -174,7 +174,7 @@ return done();}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<PizzaSize> sizes,  PizzaSize? selectedSize,  List<PizzaSauce> sauces,  PizzaSauce? selectedSauce,  List<PizzaTopping> toppings,  Set<PizzaTopping> selectedToppings,  bool confirmNoTopping)?  inProgress,TResult? Function( String message)?  error,TResult? Function()?  done,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<Size> sizes,  Size? selectedSize,  List<Sauce> sauces,  Sauce? selectedSauce,  List<Topping> toppings,  Set<Topping> selectedToppings,  bool confirmNoTopping)?  inProgress,TResult? Function( String message)?  error,TResult? Function()?  done,}) {final _that = this;
 switch (_that) {
 case CreatePizzaInitialState() when initial != null:
 return initial();case CreatePizzaLoadingState() when loading != null:
@@ -257,34 +257,34 @@ String toString() {
 
 
 class CreatePizzaInProgressState implements CreatePizzaState {
-  const CreatePizzaInProgressState({required final  List<PizzaSize> sizes, this.selectedSize, required final  List<PizzaSauce> sauces, this.selectedSauce, required final  List<PizzaTopping> toppings, final  Set<PizzaTopping> selectedToppings = const {}, this.confirmNoTopping = false}): _sizes = sizes,_sauces = sauces,_toppings = toppings,_selectedToppings = selectedToppings;
+  const CreatePizzaInProgressState({required final  List<Size> sizes, this.selectedSize, required final  List<Sauce> sauces, this.selectedSauce, required final  List<Topping> toppings, final  Set<Topping> selectedToppings = const {}, this.confirmNoTopping = false}): _sizes = sizes,_sauces = sauces,_toppings = toppings,_selectedToppings = selectedToppings;
   
 
- final  List<PizzaSize> _sizes;
- List<PizzaSize> get sizes {
+ final  List<Size> _sizes;
+ List<Size> get sizes {
   if (_sizes is EqualUnmodifiableListView) return _sizes;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_sizes);
 }
 
- final  PizzaSize? selectedSize;
- final  List<PizzaSauce> _sauces;
- List<PizzaSauce> get sauces {
+ final  Size? selectedSize;
+ final  List<Sauce> _sauces;
+ List<Sauce> get sauces {
   if (_sauces is EqualUnmodifiableListView) return _sauces;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_sauces);
 }
 
- final  PizzaSauce? selectedSauce;
- final  List<PizzaTopping> _toppings;
- List<PizzaTopping> get toppings {
+ final  Sauce? selectedSauce;
+ final  List<Topping> _toppings;
+ List<Topping> get toppings {
   if (_toppings is EqualUnmodifiableListView) return _toppings;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_toppings);
 }
 
- final  Set<PizzaTopping> _selectedToppings;
-@JsonKey() Set<PizzaTopping> get selectedToppings {
+ final  Set<Topping> _selectedToppings;
+@JsonKey() Set<Topping> get selectedToppings {
   if (_selectedToppings is EqualUnmodifiableSetView) return _selectedToppings;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableSetView(_selectedToppings);
@@ -322,7 +322,7 @@ abstract mixin class $CreatePizzaInProgressStateCopyWith<$Res> implements $Creat
   factory $CreatePizzaInProgressStateCopyWith(CreatePizzaInProgressState value, $Res Function(CreatePizzaInProgressState) _then) = _$CreatePizzaInProgressStateCopyWithImpl;
 @useResult
 $Res call({
- List<PizzaSize> sizes, PizzaSize? selectedSize, List<PizzaSauce> sauces, PizzaSauce? selectedSauce, List<PizzaTopping> toppings, Set<PizzaTopping> selectedToppings, bool confirmNoTopping
+ List<Size> sizes, Size? selectedSize, List<Sauce> sauces, Sauce? selectedSauce, List<Topping> toppings, Set<Topping> selectedToppings, bool confirmNoTopping
 });
 
 
@@ -342,12 +342,12 @@ class _$CreatePizzaInProgressStateCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? sizes = null,Object? selectedSize = freezed,Object? sauces = null,Object? selectedSauce = freezed,Object? toppings = null,Object? selectedToppings = null,Object? confirmNoTopping = null,}) {
   return _then(CreatePizzaInProgressState(
 sizes: null == sizes ? _self._sizes : sizes // ignore: cast_nullable_to_non_nullable
-as List<PizzaSize>,selectedSize: freezed == selectedSize ? _self.selectedSize : selectedSize // ignore: cast_nullable_to_non_nullable
-as PizzaSize?,sauces: null == sauces ? _self._sauces : sauces // ignore: cast_nullable_to_non_nullable
-as List<PizzaSauce>,selectedSauce: freezed == selectedSauce ? _self.selectedSauce : selectedSauce // ignore: cast_nullable_to_non_nullable
-as PizzaSauce?,toppings: null == toppings ? _self._toppings : toppings // ignore: cast_nullable_to_non_nullable
-as List<PizzaTopping>,selectedToppings: null == selectedToppings ? _self._selectedToppings : selectedToppings // ignore: cast_nullable_to_non_nullable
-as Set<PizzaTopping>,confirmNoTopping: null == confirmNoTopping ? _self.confirmNoTopping : confirmNoTopping // ignore: cast_nullable_to_non_nullable
+as List<Size>,selectedSize: freezed == selectedSize ? _self.selectedSize : selectedSize // ignore: cast_nullable_to_non_nullable
+as Size?,sauces: null == sauces ? _self._sauces : sauces // ignore: cast_nullable_to_non_nullable
+as List<Sauce>,selectedSauce: freezed == selectedSauce ? _self.selectedSauce : selectedSauce // ignore: cast_nullable_to_non_nullable
+as Sauce?,toppings: null == toppings ? _self._toppings : toppings // ignore: cast_nullable_to_non_nullable
+as List<Topping>,selectedToppings: null == selectedToppings ? _self._selectedToppings : selectedToppings // ignore: cast_nullable_to_non_nullable
+as Set<Topping>,confirmNoTopping: null == confirmNoTopping ? _self.confirmNoTopping : confirmNoTopping // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }

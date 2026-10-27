@@ -10,12 +10,12 @@ sealed class CreatePizzaState with _$CreatePizzaState {
   const factory CreatePizzaState.loading() = CreatePizzaLoadingState;
 
   const factory CreatePizzaState.inProgress({
-    required List<PizzaSize> sizes,
-    PizzaSize? selectedSize,
-    required List<PizzaSauce> sauces,
-    PizzaSauce? selectedSauce,
-    required List<PizzaTopping> toppings,
-    @Default({}) Set<PizzaTopping> selectedToppings,
+    required List<Size> sizes,
+    Size? selectedSize,
+    required List<Sauce> sauces,
+    Sauce? selectedSauce,
+    required List<Topping> toppings,
+    @Default({}) Set<Topping> selectedToppings,
     @Default(false) bool confirmNoTopping
   }) = CreatePizzaInProgressState;
 

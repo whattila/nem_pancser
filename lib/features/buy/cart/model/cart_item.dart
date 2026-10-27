@@ -11,9 +11,9 @@ sealed class CartItem with _$CartItem {
   const CartItem._();
 
   const factory CartItem.pizza({
-    required PizzaSize size,
-    required PizzaSauce sauce,
-    @Default({}) Set<PizzaTopping> toppings,
+    required Size size,
+    required Sauce sauce,
+    @Default({}) Set<Topping> toppings,
     required int amount
   }) = Pizza;
 

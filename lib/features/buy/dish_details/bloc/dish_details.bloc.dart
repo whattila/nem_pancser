@@ -30,11 +30,8 @@ class DishDetailsBloc extends Bloc<DishDetailsEvent, DishDetailsState> {
       emit(DishDetailsInProgress(
         dish: dish,
         sideDishes: sideDishes,
-        selectedSideDish: sideDishes?.isNotEmpty == true ? sideDishes!.first : null,
         meatOptions: meatOptions,
-        selectedMeatOption: meatOptions?.isNotEmpty == true ? meatOptions!.first : null,
-        saladExtras: saladExtras,
-        selectedSaladExtras: saladExtras != null ? {} : null
+        saladExtras: saladExtras
       ));
     } catch (e) {
       emit(const DishDetailsError());
@@ -51,7 +48,7 @@ class DishDetailsBloc extends Bloc<DishDetailsEvent, DishDetailsState> {
 
   void _onSaladExtraSelectionChanged(DishDetailsSaladExtraSelectionChanged event, Emitter<DishDetailsState> emit) {
     final inProgressState = state as DishDetailsInProgress;
-    final updatedSaladExtras = Set<SaladExtra>.from(inProgressState.selectedSaladExtras!);
+    final updatedSaladExtras = Set<SaladExtra>.from(inProgressState.selectedSaladExtras);
 
     if (!updatedSaladExtras.add(event.saladExtra)) {
       updatedSaladExtras.remove(event.saladExtra);
@@ -79,7 +76,7 @@ class DishDetailsBloc extends Bloc<DishDetailsEvent, DishDetailsState> {
       if (inProgressState.saladExtras != null) {
         dish = Salad(
             dish: inProgressState.dish,
-            selectedSaladExtras: inProgressState.selectedSaladExtras!,
+            selectedSaladExtras: inProgressState.selectedSaladExtras,
             amount: inProgressState.amount
         );
       }

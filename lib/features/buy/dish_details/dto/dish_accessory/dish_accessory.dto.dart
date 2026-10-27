@@ -12,7 +12,7 @@ abstract class DishAccessoryDto with _$DishAccessoryDto {
     required String id,
     required String name,
     required DishAccessoryType type,
-    required int price,
+    @Default(0) int price,
   }) = _DishAccessoryDto;
 
   factory DishAccessoryDto.fromJson(Map<String, Object?> json) => _$DishAccessoryDtoFromJson(json);

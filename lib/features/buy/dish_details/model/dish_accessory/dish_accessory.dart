@@ -7,18 +7,18 @@ sealed class DishAccessory with _$DishAccessory {
   const factory DishAccessory.sideDish({
     required String id,
     required String name,
-    required int price,
+    @Default(0) int price,
   }) = SideDish;
 
   const factory DishAccessory.meatOption({
     required String id,
     required String name,
-    required int price,
+    @Default(0) int price,
   }) = MeatOption;
 
   const factory DishAccessory.saladExtra({
     required String id,
     required String name,
-    required int price,
+    @Default(0) int price,
   }) = SaladExtra;
 }
