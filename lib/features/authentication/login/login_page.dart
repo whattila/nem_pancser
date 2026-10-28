@@ -109,7 +109,7 @@ class _LoginViewState extends State<LoginView> {
                   },
                   child: const Text(
                     'Még nincs fiókom? Regisztráció',
-                    style: TextStyle(color: Colors.blueGrey),
+                    style: TextStyle(color: Colors.blueGrey, fontSize: 17),
                   ),
                 ),
               ],

@@ -84,7 +84,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      'Regisztráció',
+                      'REGISZTRÁCIÓ',
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,

@@ -36,7 +36,9 @@ extension DishDetailsInProgressX on DishDetailsInProgress {
       (selectedMeatOption?.price ?? 0) +
       (selectedSaladExtras.fold(0, (sum, extra) => sum + extra.price)));
 
-  bool get isEverythingSelected =>
-      sideDishes == null || selectedSideDish != null &&
+  bool get isSideDishSelected =>
+      sideDishes == null || selectedSideDish != null;
+
+  bool get isMeatOptionSelected =>
       meatOptions == null || selectedMeatOption != null;
 }

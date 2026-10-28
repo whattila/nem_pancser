@@ -66,16 +66,18 @@ class DishListPage extends StatelessWidget {
                                 child: Text(
                                   dish.name,
                                   style: const TextStyle(
-                                    fontSize: 10,
+                                    fontSize: 15,
                                     fontWeight: FontWeight.w500,
                                   ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                               ),
                               const SizedBox(width: 8),
                               Text(
                                 '${dish.price} FT',
                                 style: const TextStyle(
-                                  fontSize: 12,
+                                  fontSize: 15,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -85,9 +87,9 @@ class DishListPage extends StatelessWidget {
                                   context.router.push(DishDetailsRoute(header: dish));
                                 },
                                 text: 'RÉSZLETEK',
-                                width: 75,
-                                height: 30,
-                                fontSize: 10,
+                                width: 82,
+                                height: 36,
+                                fontSize: 11,
                               ),
                             ],
                           ),

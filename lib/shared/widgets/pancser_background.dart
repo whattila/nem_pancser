@@ -37,13 +37,13 @@ class PancserBackground extends StatelessWidget {
           child: Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(
-                horizontal: 32,
-                vertical: 20
+                horizontal: 15,
+                vertical: 15
               ),
               child: Container(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 32,
-                  vertical: 40,
+                  horizontal: 15,
+                  vertical: 15,
                 ),
                 decoration: BoxDecoration(
                   color: Colors.white,

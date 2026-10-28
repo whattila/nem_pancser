@@ -70,7 +70,7 @@ class DishDetailsBloc extends Bloc<DishDetailsEvent, DishDetailsState> {
   void _onFinished(DishDetailsFinished event, Emitter<DishDetailsState> emit) {
     final inProgressState = state as DishDetailsInProgress;
 
-    if (inProgressState.isEverythingSelected) {
+    if (inProgressState.isSideDishSelected && inProgressState.isMeatOptionSelected) {
       late CartItem dish;
 
       if (inProgressState.saladExtras != null) {
@@ -93,12 +93,11 @@ class DishDetailsBloc extends Bloc<DishDetailsEvent, DishDetailsState> {
       emit(const DishDetailsDone());
     }
     else {
-      if (inProgressState.sideDishes != null && inProgressState.selectedSideDish == null) {
-        emit(inProgressState.copyWith(errorMessage: 'Válassz köretet!'));
-      }
-      else {
-        emit(inProgressState.copyWith(errorMessage: 'Válassz húsfélét!'));
-      }
+      final errorMessages = [
+        if (!inProgressState.isSideDishSelected) 'köretet',
+        if (!inProgressState.isMeatOptionSelected) 'húsfélét'
+      ];
+      emit((state as DishDetailsInProgress).copyWith(errorMessage: 'Válassz ${errorMessages.join(', ')}!'));
       emit((state as DishDetailsInProgress).copyWith(errorMessage: null));
     }
   }
